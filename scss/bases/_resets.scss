@@ -13,6 +13,16 @@ html {
   margin: 0;
   padding: 0;
 }
+body {
+  font-family: $font-principal;
+}
 picture {
   margin: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  text-decoration: none;
 }
