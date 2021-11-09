@@ -1,0 +1,48 @@
+/**********************************\
+    $NAVS
+\**********************************/
+
+.navegacion {
+  ul {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+  }
+  &__opcion {
+    border: 5px solid map-get($colors-background, black);
+    border: {
+      top: 3px solid map-get($colors-background, black);
+      bottom: 2px solid map-get($colors-background, black);
+    }
+    background-color: map-get($colors-background, yellow);
+  }
+  a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    padding: 25px 10px 25px;
+  }
+  &__opcion:first-of-type {
+    border-top: 5px solid map-get($colors-background, black);
+  }
+  &__opcion:last-of-type {
+    border-bottom: 5px solid map-get($colors-background, black);
+  }
+  img {
+    width: 80px;
+    height: 80px;
+  }
+  &__taller {
+    margin-bottom: 5px;
+    font-size: map-get($font-sizes, big);
+    text-transform: uppercase;
+  }
+  &__title {
+    font-family: $font-secundaria;
+    font-size: map-get($font-sizes, x-big);
+  }
+  &__descripcion {
+    margin-top: 18px;
+  }
+}
