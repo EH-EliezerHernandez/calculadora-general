@@ -1,0 +1,16 @@
+//ABSTRACTS
+@import "./abstracts/variables";
+@import "./abstracts/_mixins";
+
+//BASES
+@import "./bases/resets";
+
+//PAGES
+@import "./pages/principal";
+
+//LAYOUT
+@import "./layout/headers";
+
+//COMPONENTS
+@import "./components/logos";
+@import "./components/autors";
