@@ -38,20 +38,22 @@ a {
   text-decoration: none;
 }
 
-/*********************************\
-        $PRINCIPALS
-\*********************************/
-.principal {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 100px 1fr 538px;
-  grid-template-columns: 100px 1fr 538px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
 }
 
 /*********************************\
         $HEADERS
 \*********************************/
 .header {
+  position: fixed;
+  width: 100px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -89,6 +91,12 @@ a {
 /**********************************\
     $NAVS
 \**********************************/
+.navegacion {
+  position: fixed;
+  right: 0;
+  top: 0;
+  max-width: 530px;
+}
 .navegacion:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
@@ -141,6 +149,7 @@ a {
      -moz-column-gap: 16px;
           column-gap: 16px;
   padding: 25px 10px 25px;
+  cursor: pointer;
 }
 .navegacion img {
   width: 80px;
@@ -152,13 +161,39 @@ a {
   text-transform: uppercase;
 }
 .navegacion__title {
-  font-family: "Poppins", sans-serif;
   font-size: 24px;
 }
 .navegacion__descripcion {
   margin-top: 18px;
 }
 
+/**********************************\
+    $MAINS
+\**********************************/
+.main {
+  margin-left: 100px;
+  padding: 50px 30px;
+  padding-right: 560px;
+}
+.main__subtitle {
+  margin-bottom: 28px;
+  font-size: 24px;
+  color: #97c93e;
+  text-transform: uppercase;
+}
+.main__title {
+  font-size: 48px;
+  margin-bottom: 36px;
+}
+
+/*********************************\
+        $PRINCIPALS
+\*********************************/
+/* .principal {
+  display: grid;
+  grid-template-columns: 100px 1fr 538px;
+}
+ */
 /*********************************\
         $LOGOS
 \*********************************/
@@ -166,7 +201,6 @@ a {
   width: 50px;
   height: 50px;
 }
-
 .logo--platzi {
   width: 100px;
   height: 31px;

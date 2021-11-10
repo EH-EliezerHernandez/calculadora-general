@@ -2,11 +2,13 @@
         $LOGOS
 \*********************************/
 
-.logo--js {
-  @include dimensionImg(50px, 50px);
-}
-.logo--platzi {
-  @include dimensionImg(100px, 31px);
-  transform: rotate(-90deg) translateX(60px);
-  margin-top: auto;
+.logo-- {
+  &js {
+    @include dimensionImg(50px, 50px);
+  }
+  &platzi {
+    @include dimensionImg(100px, 31px);
+    transform: rotate(-90deg) translateX(60px);
+    margin-top: auto;
+  }
 }
