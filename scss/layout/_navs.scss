@@ -3,12 +3,23 @@
 \**********************************/
 
 .navegacion {
+  &:hover &__opcion:not(.navegacion__opcion:hover) {
+    transition: background-color 0.3s;
+    background-color: map-get($map: $colors-background, $key: black);
+    color: white;
+  }
   ul {
     height: 100vh;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
+    background-color: map-get($map: $colors-background, $key: black);
+  }
+  ul:hover {
+    background-color: map-get($map: $colors-background, $key: yellow);
   }
   &__opcion {
+    transition-property: transform, border-color;
+    transition-duration: 0.3s;
     border: 5px solid map-get($colors-background, black);
     border: {
       top: 3px solid map-get($colors-background, black);
@@ -16,18 +27,22 @@
     }
     background-color: map-get($colors-background, yellow);
   }
+  &__opcion:first-of-type {
+    border-top: 5px solid map-get($colors-background, black);
+  }
+  &__opcion:last-of-type {
+    border-bottom: 5px solid map-get($colors-background, black);
+  }
+  &__opcion:hover {
+    border-color: map-get($colors-background, yellow);
+    transform: translateX(-10px);
+  }
   a {
     height: 100%;
     display: flex;
     align-items: center;
     column-gap: 16px;
     padding: 25px 10px 25px;
-  }
-  &__opcion:first-of-type {
-    border-top: 5px solid map-get($colors-background, black);
-  }
-  &__opcion:last-of-type {
-    border-bottom: 5px solid map-get($colors-background, black);
   }
   img {
     width: 80px;

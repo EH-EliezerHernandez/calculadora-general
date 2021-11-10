@@ -89,18 +89,45 @@ a {
 /**********************************\
     $NAVS
 \**********************************/
+.navegacion:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  background-color: black;
+  color: white;
+}
 .navegacion ul {
   height: 100vh;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: (1fr)[4];
   grid-template-rows: repeat(4, 1fr);
+  background-color: black;
+}
+.navegacion ul:hover {
+  background-color: #f6df1c;
 }
 .navegacion__opcion {
+  -webkit-transition-property: border-color, -webkit-transform;
+  transition-property: border-color, -webkit-transform;
+  transition-property: transform, border-color;
+  transition-property: transform, border-color, -webkit-transform;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
   border: 5px solid black;
   border-top: 3px solid black;
   border-bottom: 2px solid black;
   background-color: #f6df1c;
+}
+.navegacion__opcion:first-of-type {
+  border-top: 5px solid black;
+}
+.navegacion__opcion:last-of-type {
+  border-bottom: 5px solid black;
+}
+.navegacion__opcion:hover {
+  border-color: #f6df1c;
+  -webkit-transform: translateX(-10px);
+          transform: translateX(-10px);
 }
 .navegacion a {
   height: 100%;
@@ -114,12 +141,6 @@ a {
      -moz-column-gap: 16px;
           column-gap: 16px;
   padding: 25px 10px 25px;
-}
-.navegacion__opcion:first-of-type {
-  border-top: 5px solid black;
-}
-.navegacion__opcion:last-of-type {
-  border-bottom: 5px solid black;
 }
 .navegacion img {
   width: 80px;
