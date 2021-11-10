@@ -5,13 +5,15 @@
 //TEXT COLORS
 $colors-text: (
   yellow: #f6df1c,
+  white: white,
+  green: #97c93e,
 );
 
-//BACKGROUND COLORS
+//COLORS BACKGROUNDS
 $colors-background: (
   black: black,
+  yellow: map-get($colors-text, yellow),
 );
-
 //FONTS
 $font-principal: "Open Sans", sans-serif;
 $font-secundaria: "Poppins", sans-serif;
@@ -24,13 +26,7 @@ $font-sizes: (
   default: 16px,
   big: 18px,
   x-big: 24px,
-  u-big: 52px,
-);
-
-//COLORS BACKGROUNDS
-$colors-background: (
-  black: black,
-  yellow: map-get($colors-text, yellow),
+  u-big: 48px,
 );
 
 //FONTS WEIGHT

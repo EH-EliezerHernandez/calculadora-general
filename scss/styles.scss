@@ -5,12 +5,14 @@
 //BASES
 @import "./bases/resets";
 
-//PAGES
-@import "./pages/principal";
-
 //LAYOUT
 @import "./layout/headers";
 @import "./layout/navs";
+@import "./layout/mains";
+
+//PAGES
+@import "./pages/course";
+
 
 //COMPONENTS
 @import "./components/logos";
