@@ -48,6 +48,10 @@ h6 {
   margin: 0;
 }
 
+a {
+  color: #000000;
+}
+
 /*********************************\
         $HEADERS
 \*********************************/
@@ -89,21 +93,24 @@ h6 {
 }
 
 /**********************************\
-    $NAVS
+$NAVS
 \**********************************/
-.navegacion {
+.navegacion, .navegacion--general, .navegacion--principal {
   position: fixed;
-  right: 0;
-  top: 0;
-  max-width: 530px;
 }
-.navegacion:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
+.navegacion:hover .navegacion__opcion:not(.navegacion__opcion:hover), .navegacion--general:hover .navegacion__opcion:not(.navegacion__opcion:hover), .navegacion--principal:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
   background-color: black;
+}
+.navegacion:hover a:not(a:hover), .navegacion--general:hover a:not(a:hover), .navegacion--principal:hover a:not(a:hover) {
   color: white;
 }
-.navegacion ul {
+.navegacion:hover img:not(.navegacion__opcion:hover img), .navegacion--general:hover img:not(.navegacion__opcion:hover img), .navegacion--principal:hover img:not(.navegacion__opcion:hover img) {
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
+.navegacion ul, .navegacion--general ul, .navegacion--principal ul {
   height: 100vh;
   display: -ms-grid;
   display: grid;
@@ -111,7 +118,7 @@ h6 {
   grid-template-rows: repeat(4, 1fr);
   background-color: black;
 }
-.navegacion ul:hover {
+.navegacion ul:hover, .navegacion--general ul:hover, .navegacion--principal ul:hover {
   background-color: #f6df1c;
 }
 .navegacion__opcion {
@@ -122,23 +129,9 @@ h6 {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
   border: 5px solid black;
-  border-top: 3px solid black;
-  border-bottom: 2px solid black;
   background-color: #f6df1c;
 }
-.navegacion__opcion:first-of-type {
-  border-top: 5px solid black;
-}
-.navegacion__opcion:last-of-type {
-  border-bottom: 5px solid black;
-}
-.navegacion__opcion:hover {
-  border-color: #f6df1c;
-  -webkit-transform: translateX(-10px);
-          transform: translateX(-10px);
-}
-.navegacion a {
-  height: 100%;
+.navegacion a, .navegacion--general a, .navegacion--principal a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -148,10 +141,11 @@ h6 {
   -webkit-column-gap: 16px;
      -moz-column-gap: 16px;
           column-gap: 16px;
+  height: 100%;
   padding: 25px 10px 25px;
   cursor: pointer;
 }
-.navegacion img {
+.navegacion img, .navegacion--general img, .navegacion--principal img {
   width: 80px;
   height: 80px;
 }
@@ -165,6 +159,63 @@ h6 {
 }
 .navegacion__descripcion {
   margin-top: 18px;
+}
+
+.navegacion--principal {
+  right: 0;
+  top: 0;
+  max-width: 530px;
+}
+.navegacion--principal .navegacion__opcion {
+  border-top: 3px solid black;
+  border-bottom: 2px solid black;
+}
+.navegacion--principal .navegacion__opcion:first-of-type {
+  border-top: 5px solid black;
+}
+.navegacion--principal .navegacion__opcion:last-of-type {
+  border-bottom: 5px solid black;
+}
+.navegacion--principal .navegacion__opcion:hover {
+  border-color: #f6df1c;
+  -webkit-transform: translateX(-10px);
+          transform: translateX(-10px);
+}
+
+.navegacion--general {
+  bottom: 0;
+  margin-left: 100px;
+}
+.navegacion--general:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
+  border-top-color: yellow;
+}
+.navegacion--general ul {
+  height: auto;
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: none;
+  grid-template-rows: none;
+}
+.navegacion--general ul > *:nth-child(1) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+}
+.navegacion--general ul > *:nth-child(2) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+}
+.navegacion--general ul > *:nth-child(3) {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+}
+.navegacion--general .navegacion__opcion {
+  border-left-width: 3px;
+  border-right-width: 3px;
+}
+.navegacion--general li:hover {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+  border-color: #f6df1c;
 }
 
 /**********************************\

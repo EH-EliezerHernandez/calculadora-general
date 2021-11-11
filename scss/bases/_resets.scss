@@ -35,3 +35,6 @@ h6 {
   font-family: $font-secundaria;
   margin: 0;
 }
+a {
+  color: map-get($map: $colors-text, $key: black);
+}
