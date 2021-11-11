@@ -106,6 +106,10 @@ $NAVS
 .navegacion:hover a:not(a:hover), .navegacion--general:hover a:not(a:hover), .navegacion--principal:hover a:not(a:hover) {
   color: white;
 }
+.navegacion:hover img:not(.navegacion__opcion:hover img), .navegacion--general:hover img:not(.navegacion__opcion:hover img), .navegacion--principal:hover img:not(.navegacion__opcion:hover img) {
+  -webkit-filter: invert(100%);
+          filter: invert(100%);
+}
 .navegacion ul, .navegacion--general ul, .navegacion--principal ul {
   height: 100vh;
   display: -ms-grid;
@@ -144,8 +148,6 @@ $NAVS
 .navegacion img, .navegacion--general img, .navegacion--principal img {
   width: 80px;
   height: 80px;
-  -webkit-filter: invert(100%);
-          filter: invert(100%);
 }
 .navegacion__taller {
   margin-bottom: 5px;

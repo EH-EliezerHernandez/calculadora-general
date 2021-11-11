@@ -10,6 +10,9 @@ $NAVS
   &:hover a:not(a:hover) {
     color: white;
   }
+  &:hover img:not(.navegacion__opcion:hover img) {
+    filter: invert(100%);
+  }
   ul {
     height: 100vh;
     display: grid;
@@ -36,7 +39,6 @@ $NAVS
   img {
     width: 80px;
     height: 80px;
-    filter: invert(100%);
   }
   &__taller {
     margin-bottom: 5px;
