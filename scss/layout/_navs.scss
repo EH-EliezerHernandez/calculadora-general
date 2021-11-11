@@ -1,15 +1,13 @@
 /**********************************\
-    $NAVS
+$NAVS
 \**********************************/
-
 .navegacion {
   position: fixed;
-  right: 0;
-  top: 0;
-  max-width: 530px;
   &:hover &__opcion:not(.navegacion__opcion:hover) {
     transition: background-color 0.3s;
     background-color: map-get($map: $colors-background, $key: black);
+  }
+  &:hover a:not(a:hover) {
     color: white;
   }
   ul {
@@ -25,33 +23,20 @@
     transition-property: transform, border-color;
     transition-duration: 0.3s;
     border: 5px solid map-get($colors-background, black);
-    border: {
-      top: 3px solid map-get($colors-background, black);
-      bottom: 2px solid map-get($colors-background, black);
-    }
     background-color: map-get($colors-background, yellow);
   }
-  &__opcion:first-of-type {
-    border-top: 5px solid map-get($colors-background, black);
-  }
-  &__opcion:last-of-type {
-    border-bottom: 5px solid map-get($colors-background, black);
-  }
-  &__opcion:hover {
-    border-color: map-get($colors-background, yellow);
-    transform: translateX(-10px);
-  }
   a {
-    height: 100%;
     display: flex;
     align-items: center;
     column-gap: 16px;
+    height: 100%;
     padding: 25px 10px 25px;
     cursor: pointer;
   }
   img {
     width: 80px;
     height: 80px;
+    filter: invert(100%);
   }
   &__taller {
     margin-bottom: 5px;
@@ -63,5 +48,50 @@
   }
   &__descripcion {
     margin-top: 18px;
+  }
+}
+.navegacion--principal {
+  @extend .navegacion;
+  right: 0;
+  top: 0;
+  max-width: 530px;
+  .navegacion__opcion {
+    border: {
+      top: 3px solid map-get($colors-background, black);
+      bottom: 2px solid map-get($colors-background, black);
+    }
+  }
+  .navegacion__opcion:first-of-type {
+    border-top: 5px solid map-get($colors-background, black);
+  }
+  .navegacion__opcion:last-of-type {
+    border-bottom: 5px solid map-get($colors-background, black);
+  }
+  .navegacion__opcion:hover {
+    border-color: map-get($colors-background, yellow);
+    transform: translateX(-10px);
+  }
+}
+.navegacion--general {
+  @extend .navegacion;
+  bottom: 0;
+  margin-left: 100px;
+  &:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
+    border-top-color: yellow;
+  }
+  ul {
+    height: auto;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: none;
+  }
+  .navegacion__opcion {
+    border: {
+      left-width: 3px;
+      right-width: 3px;
+    }
+  }
+  li:hover {
+    transform: translateY(-10px);
+    border-color: map-get($colors-background, yellow);
   }
 }
