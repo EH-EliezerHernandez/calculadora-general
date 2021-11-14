@@ -221,11 +221,11 @@ $NAVS
 /**********************************\
     $MAINS
 \**********************************/
-.main {
+.main--general, .main--principal {
   margin-left: 100px;
   padding: 50px 30px;
-  padding-right: 560px;
 }
+
 .main__subtitle {
   margin-bottom: 28px;
   font-size: 24px;
@@ -235,6 +235,53 @@ $NAVS
 .main__title {
   font-size: 48px;
   margin-bottom: 36px;
+}
+.main--principal {
+  padding-right: 560px;
+}
+.main--general {
+  padding-bottom: 180px;
+}
+.main__container-forms {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+/**********************************\
+    $FORMS
+\**********************************/
+.form--circulo, .form--cuadrado, .form--triangulo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 320px;
+  margin-top: 40px;
+}
+.form--circulo span, .form--cuadrado span, .form--triangulo span {
+  font-weight: 700;
+}
+
+.form--cuadrado {
+  display: none;
+}
+.form--circulo {
+  display: none;
+}
+.form__label {
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+.form__campo {
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 
 /*********************************\
@@ -287,4 +334,49 @@ $NAVS
 }
 .autor:hover::after {
   width: 100%;
+}
+
+/**********************************\
+    $FIGURAS
+\**********************************/
+.figuras {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (-webkit-min-content)[3];
+  -ms-grid-columns: (min-content)[3];
+  grid-template-columns: repeat(3, -webkit-min-content);
+  grid-template-columns: repeat(3, min-content);
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 60px;
+}
+.figuras__container {
+  padding: 20px;
+  text-align: center;
+  background-color: #f6df1c;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.figuras img {
+  width: 128px;
+}
+
+/**********************************\
+    $BOTONS
+\**********************************/
+.btn--calcular {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 2px solid black;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn--calcular {
+  background-color: #97c93e;
 }

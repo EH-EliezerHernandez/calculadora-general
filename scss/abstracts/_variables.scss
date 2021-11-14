@@ -14,6 +14,7 @@ $colors-text: (
 $colors-background: (
   black: black,
   yellow: map-get($colors-text, yellow),
+  green: #97c93e,
 );
 //FONTS
 $font-principal: "Open Sans", sans-serif;
