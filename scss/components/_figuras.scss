@@ -1,0 +1,22 @@
+/**********************************\
+    $FIGURAS
+\**********************************/
+
+.figuras {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 60px;
+
+  &__container{
+      padding: 20px;
+      text-align: center;
+    background-color: map-get($colors-background,yellow);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  img{
+    width: 128px;
+  }
+}
