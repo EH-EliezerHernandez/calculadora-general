@@ -1,0 +1,33 @@
+/**********************************\
+    $FORMS
+\**********************************/
+%form {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  margin-top: 40px;
+  span {
+    font-weight: map-get($map: $font-weights, $key: big);
+  }
+}
+.form {
+  &--triangulo {
+    @extend %form;
+  }
+  &--cuadrado {
+    display: none;
+    @extend %form;
+  }
+  &--circulo {
+    display: none;
+    @extend %form;
+  }
+  &__label {
+    margin-bottom: 5px;
+    font-size: map-get($map: $font-sizes, $key: normal);
+  }
+  &__campo {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+}
