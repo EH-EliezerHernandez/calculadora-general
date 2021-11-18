@@ -9,14 +9,22 @@
   justify-content: space-evenly;
   margin-top: 60px;
 
-  &__container{
-      padding: 20px;
-      text-align: center;
-    background-color: map-get($colors-background,yellow);
+  &__container {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    background-color: map-get($colors-background, yellow);
     border-radius: 10px;
     cursor: pointer;
   }
-  img{
+  img {
     width: 128px;
+  }
+  &__element {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
   }
 }

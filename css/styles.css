@@ -269,6 +269,9 @@ $NAVS
   font-weight: 700;
 }
 
+.form--triangulo {
+  display: none;
+}
 .form--cuadrado {
   display: none;
 }
@@ -355,6 +358,7 @@ $NAVS
   margin-top: 60px;
 }
 .figuras__container {
+  position: relative;
   padding: 20px;
   text-align: center;
   background-color: #f6df1c;
@@ -363,6 +367,13 @@ $NAVS
 }
 .figuras img {
   width: 128px;
+}
+.figuras__element {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 /**********************************\

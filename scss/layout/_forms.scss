@@ -12,6 +12,7 @@
 }
 .form {
   &--triangulo {
+    display: none;
     @extend %form;
   }
   &--cuadrado {

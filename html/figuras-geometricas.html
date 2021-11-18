@@ -31,55 +31,83 @@
         <h2 class="main__subtitle">Trabajo Práctico - Platzi</h2>
         <h1 class="main__title">Curso Práctico de JavaScript</h1>
 
-        <div class="figuras">
-          <figure class="figuras__container" id="circulo">
+        <div class="figuras" id="figuras">
+          <figure class="figuras__container">
             <img
               src="../assets/img/circle.png"
               alt="Imagen de la figura geometrica circulo"
             />
             <figcaption>Circulo</figcaption>
+            <div id="circulo" class="figuras__element"></div>
           </figure>
-          <figure class="figuras__container" id="cuadrado">
+          <figure class="figuras__container">
             <img
               src="../assets/img/cube.png"
               alt="Imagen de la figura geometrica cuadrado"
             />
             <figcaption>Cuadrado</figcaption>
+            <div id="cuadrado" class="figuras__element"></div>
           </figure>
-          <figure class="figuras__container" id="triangulo">
+          <figure class="figuras__container">
             <img
               src="../assets/img/triangle.png"
               alt="Imagen de la figura geometrica triangulo"
             />
             <figcaption>Triangulo</figcaption>
+            <div id="triangulo" class="figuras__element"></div>
           </figure>
         </div>
         <div class="main__container-forms">
-          <form action="" class="form--triangulo">
-            <label for="ladoA" class="form__label">Ingrese <span>Lado A</span> en cm:</label>
-            <input type="number" id="ladoA" class="form__campo" />
+          <div id="forms-container">
+            <form action="" class="form--triangulo form" id="form-triangulo">
+              <label for="ladoA" class="form__label"
+                >Ingrese <span>Lado A</span> en cm:</label
+              >
+              <input type="number" id="ladoATriangulo" class="form__campo" />
 
-            <label for="ladoB" class="form__label">Ingrese <span>Lado B</span> en cm:</label>
-            <input type="number" id="ladoB" class="form__campo" />
+              <label for="ladoB" class="form__label"
+                >Ingrese <span>Lado B</span> en cm:</label
+              >
+              <input type="number" id="ladoBTriangulo" class="form__campo" />
 
-            <label for="base" class="form__label">Ingrese <span>Base</span> en cm:</label>
-            <input type="Number" id="base" class="form__campo" />
+              <label for="base" class="form__label"
+                >Ingrese <span>Base</span> en cm:</label
+              >
+              <input type="Number" id="baseTriangulo" class="form__campo" />
 
-            <label for="altura" class="form__label">Ingrese <span>Altura</span> en cm:</label>
-            <input type="Number" id="altura" class="form__campo" />
-
-            <button class="btn--calcular">Calcular Perimetro</button>
-            <button class="btn--calcular">Calcular Area</button>
-          </form>
-          <form action="" class="form--cuadrado">
-            <label for="lado">Ingrese el Lado en cm:</label>
-            <input type="Number" id="lado" />
-          </form>
-          <form action="" class="form--circulo">
-            <label for="radio">Ingrese el Radio en cm:</label>
-            <input type="Number" id="radio" />
-          </form>
+              <button
+                type="button"
+                class="btn--calcular"
+                id="btn-calcular-triangulo"
+              >
+                Calcular Perimetro y Area
+              </button>
+            </form>
+            <form action="" class="form--cuadrado form" id="form-cuadrado">
+              <label for="lado">Ingrese el Lado en cm:</label>
+              <input type="Number" id="ladosCuadrado" />
+              <button
+                type="button"
+                class="btn--calcular"
+                id="btn-calcular-cuadrado"
+              >
+                Calcular Perimetro y Area
+              </button>
+            </form>
+            <form action="" class="form--circulo form" id="form-circulo">
+              <label for="radio">Ingrese el Radio en cm:</label>
+              <input type="Number" id="radioCirculo" />
+              <button
+                type="button"
+                class="btn--calcular"
+                id="btn-calcular-circulo"
+              >
+                Calcular Perimetro y Area
+              </button>
+            </form>
+          </div>
         </div>
+        <div id="resultados"></div>
       </main>
       <nav class="navegacion--general">
         <ul>
@@ -128,5 +156,6 @@
         </ul>
       </nav>
     </div>
+    <script src="../js/calculadora_geometrica.js"></script>
   </body>
 </html>
