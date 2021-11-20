@@ -51,8 +51,8 @@ function mostrarMensaje(resultado)
     const $elementoResultados = document.querySelector('#resultados');
     const elementoPerimetro = document.createElement('P');
     const elementoArea = document.createElement('P');
-    elementoPerimetro.innerHTML = `<span class="label">Perimetro: </span> ${perimetro}`;
-    elementoArea.innerHTML = `<span class="label">Area: </span> ${area}`;
+    elementoPerimetro.innerHTML = `<span class="label">Perimetro: </span> ${perimetro.toFixed(2)}`;
+    elementoArea.innerHTML = `<span class="label">Area: </span> ${area.toFixed(2)}`;
     $elementoResultados.appendChild(elementoPerimetro);
     $elementoResultados.appendChild(elementoArea);
 }
@@ -86,22 +86,62 @@ function determinarFormulario(id){
         }
     }
 }
-
+//Functiones para la captura de informacion de las figuras
 function capturarDatosCuadrado(){
     const $inputLados= document.querySelector("#ladosCuadrado");
     const cuadrado = {
-        lados: $inputLados.value,
+        lados: parseFloat($inputLados.value),
     };
     return cuadrado;
 }
+
+function capturarDatosTriangulo(){
+    const $inputLadoA = document.querySelector("#ladoATriangulo");
+    const $inputLadoB = document.querySelector("#ladoBTriangulo");
+    const $inputBase = document.querySelector("#baseTriangulo");
+    const triangulo = {
+        ladoA: parseFloat($inputLadoA.value),
+        ladoB: parseFloat($inputLadoB.value),
+        base: parseFloat($inputBase.value),
+    };
+
+    return triangulo;
+}
+
+function capturarDatosCirculo(){
+    const $inputRadio = document.querySelector("#radioCirculo");
+    const circulo = {
+        radio: $inputRadio.value,
+    }
+    return circulo;
+}
+
 function realizarCalculosFiguras(elementId){
     let resultado = null;
     
     if(elementId === "btn-calcular-circulo"){
-        
+        const circulo = capturarDatosCirculo();
+        const {radio} = circulo;
+        const diametroCirculo = calcularDiametroCirculo(radio);
+        const perimetroCirculo = calcularPerimetroCirculo(diametroCirculo);
+        const areaCirculo = calcularAreaCirculo(radio);
+        resultado = {
+            perimetro: perimetroCirculo,
+            area: areaCirculo,
+        };
+        return resultado;
     }
     if(elementId === "btn-calcular-triangulo"){
-
+        const triangulo = capturarDatosTriangulo();
+        const {ladoA,ladoB,base} = triangulo;
+        const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
+        const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
+        const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
+        resultado = {
+            perimetro: perimetroTriangulo,
+            area: areaTriangulo,
+        };
+        return resultado;
     }
     if(elementId === "btn-calcular-cuadrado"){
         const cuadrado = capturarDatosCuadrado();
@@ -118,9 +158,10 @@ function realizarCalculosFiguras(elementId){
 function limpiarHTML(){
     const $resultadosContainer = document.querySelector("#resultados");
     console.log($resultadosContainer.firstChild);
-    /* while($resultadosContainer.firstChild){
-        $resultadosContainer.remove($resultadosContainer.firstChild);
-    } */
+    while($resultadosContainer.firstChild){
+        $resultadosContainer.removeChild($resultadosContainer.firstChild);
+        console.log("borrado");
+    }
 }
 function eventos(){
     const $parentBtnCalcular = document.querySelector("#forms-container");
@@ -139,8 +180,8 @@ function eventos(){
     $parentBtnCalcular.addEventListener("click",evt => {
          const elementId = evt.target.id;
          if(elementId === "btn-calcular-circulo" || elementId === "btn-calcular-triangulo" || elementId === "btn-calcular-cuadrado"){
-             const resultado =realizarCalculosFiguras(elementId);
-             limpiarHTML();
+            const resultado =realizarCalculosFiguras(elementId);
+            limpiarHTML();
             mostrarMensaje(resultado);
         }
     });
