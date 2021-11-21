@@ -97,6 +97,7 @@ $NAVS
 \**********************************/
 .navegacion, .navegacion--general, .navegacion--principal {
   position: fixed;
+  z-index: 0;
 }
 .navegacion:hover .navegacion__opcion:not(.navegacion__opcion:hover), .navegacion--general:hover .navegacion__opcion:not(.navegacion__opcion:hover), .navegacion--principal:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
   -webkit-transition: background-color 0.3s;
@@ -390,4 +391,60 @@ $NAVS
 
 .btn--calcular {
   background-color: #97c93e;
+}
+.btn--cerrar {
+  display: block;
+  margin-left: auto;
+  border: none;
+  font-size: 24px;
+  font-weight: 700;
+  background-color: transparent;
+}
+
+/**********************************\
+    $RESULTADOS
+\**********************************/
+.resultados {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+.resultados__card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 320px;
+  padding: 30px;
+  border: 5px solid black;
+  background-color: #f6df1c;
+}
+.resultados__title {
+  font-size: 24px;
+}
+.resultados__figura {
+  width: 55px;
+  height: 55px;
+}
+.resultados__figure-name {
+  font-size: 18px;
 }
