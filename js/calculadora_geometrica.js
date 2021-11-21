@@ -45,31 +45,39 @@ function calcularAreaCirculo(radio){
     return area;
 }
 
-function mostrarMensaje(resultado)
+//Funcion para mostrar mensajes o resultados
+function mostrarResultado(resultado)
 {   
-    const {perimetro, area} = resultado;
-    const $elementoResultados = document.querySelector('#resultados');
-    const elementoPerimetro = document.createElement('P');
-    const elementoArea = document.createElement('P');
-    elementoPerimetro.innerHTML = `<span class="label">Perimetro: </span> ${perimetro.toFixed(2)}`;
-    elementoArea.innerHTML = `<span class="label">Area: </span> ${area.toFixed(2)}`;
-    $elementoResultados.appendChild(elementoPerimetro);
-    $elementoResultados.appendChild(elementoArea);
+    if(resultado !== null){
+        const {perimetro, area} = resultado;
+        const $elementoResultados = document.querySelector('#resultados');
+        const elementoPerimetro = document.createElement('P');
+        const elementoArea = document.createElement('P');
+        elementoPerimetro.innerHTML = `<span class="label">Perimetro: </span> ${perimetro.toFixed(2)}`;
+        elementoArea.innerHTML = `<span class="label">Area: </span> ${area.toFixed(2)}`;
+        $elementoResultados.appendChild(elementoPerimetro);
+        $elementoResultados.appendChild(elementoArea);
+    }
 }
 
+//Funcion para habilitar el formulario
 function habilitarFormulario($formulario){
     $formulario.style.display="flex";
 }
 
+//Funcion para deshabilitar el formulario
 function deshabilitarFormulario($formulario){
     $formulario.style.display="none";
 }
 
+//funcion para ocultar todos los formularios
 function ocultarFormularios(forms){
     for( let i = 0; i < 3 ; i++){
         deshabilitarFormulario(forms[i]);
     }
 }
+
+//function para determinar cual es el formulario correspondiente segun la figura
 function determinarFormulario(id){
     const forms = document.querySelectorAll(".form");
     let figuraForm = " "; 
@@ -86,7 +94,9 @@ function determinarFormulario(id){
         }
     }
 }
+
 //Functiones para la captura de informacion de las figuras
+//cuadrado
 function capturarDatosCuadrado(){
     const $inputLados= document.querySelector("#ladosCuadrado");
     const cuadrado = {
@@ -95,6 +105,7 @@ function capturarDatosCuadrado(){
     return cuadrado;
 }
 
+//triangulo
 function capturarDatosTriangulo(){
     const $inputLadoA = document.querySelector("#ladoATriangulo");
     const $inputLadoB = document.querySelector("#ladoBTriangulo");
@@ -108,6 +119,7 @@ function capturarDatosTriangulo(){
     return triangulo;
 }
 
+//circulo
 function capturarDatosCirculo(){
     const $inputRadio = document.querySelector("#radioCirculo");
     const circulo = {
@@ -116,6 +128,17 @@ function capturarDatosCirculo(){
     return circulo;
 }
 
+//function para verificar si se trata de un triangulo isosceles
+function verificarIsosceles(lado1,lado2,base){
+
+    if(lado1 === lado2 && lado1 !== base){
+        return true;
+    }
+
+    return false;
+}
+
+//Function para realizar todos los calculos de las figuras
 function realizarCalculosFiguras(elementId){
     let resultado = null;
     
@@ -132,16 +155,25 @@ function realizarCalculosFiguras(elementId){
         return resultado;
     }
     if(elementId === "btn-calcular-triangulo"){
-        const triangulo = capturarDatosTriangulo();
-        const {ladoA,ladoB,base} = triangulo;
-        const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
-        const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
-        const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
-        resultado = {
-            perimetro: perimetroTriangulo,
-            area: areaTriangulo,
-        };
-        return resultado;
+        let isIsoscelesTriangulo;
+        let triangulo;
+            triangulo = capturarDatosTriangulo();
+            isIsoscelesTriangulo = verificarIsosceles(triangulo.ladoA,triangulo.ladoB,triangulo.base);
+            if(!isIsoscelesTriangulo){
+                console.log("Debe ingresar los datos correspondientes a un triangulo isosceles");
+                return resultado;                
+            }
+            else{
+                const {ladoA,ladoB,base} = triangulo;
+                const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
+                const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
+                const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
+                resultado = {
+                    perimetro: perimetroTriangulo,
+                    area: areaTriangulo,
+                };
+                return resultado;
+            }
     }
     if(elementId === "btn-calcular-cuadrado"){
         const cuadrado = capturarDatosCuadrado();
@@ -155,14 +187,16 @@ function realizarCalculosFiguras(elementId){
         return resultado;
     }
 }
+
+//function para limpiar el codigo html
 function limpiarHTML(){
     const $resultadosContainer = document.querySelector("#resultados");
-    console.log($resultadosContainer.firstChild);
     while($resultadosContainer.firstChild){
         $resultadosContainer.removeChild($resultadosContainer.firstChild);
         console.log("borrado");
     }
 }
+
 function eventos(){
     const $parentBtnCalcular = document.querySelector("#forms-container");
     const $figurasContainer = document.querySelector("#figuras");
@@ -182,7 +216,7 @@ function eventos(){
          if(elementId === "btn-calcular-circulo" || elementId === "btn-calcular-triangulo" || elementId === "btn-calcular-cuadrado"){
             const resultado =realizarCalculosFiguras(elementId);
             limpiarHTML();
-            mostrarMensaje(resultado);
+            mostrarResultado(resultado);
         }
     });
 }
