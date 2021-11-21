@@ -50,7 +50,7 @@ function mostrarResultado(resultado)
 {   
     if(resultado !== null){
         const {perimetro, area} = resultado;
-        const $elementoResultados = document.querySelector('#resultados');
+        const $elementoResultados = document.querySelector('#list-resultados');
         const elementoPerimetro = document.createElement('P');
         const elementoArea = document.createElement('P');
         elementoPerimetro.innerHTML = `<span class="label">Perimetro: </span> ${perimetro.toFixed(2)}`;
@@ -188,9 +188,14 @@ function realizarCalculosFiguras(elementId){
     }
 }
 
+function habilitarResultadosElement(){
+    const $resultados = document.querySelector("#overlay");
+    console.log($resultados);
+}
+
 //function para limpiar el codigo html
 function limpiarHTML(){
-    const $resultadosContainer = document.querySelector("#resultados");
+    const $resultadosContainer = document.querySelector("#list-resultados");
     while($resultadosContainer.firstChild){
         $resultadosContainer.removeChild($resultadosContainer.firstChild);
         console.log("borrado");

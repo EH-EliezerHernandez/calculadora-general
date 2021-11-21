@@ -2,16 +2,26 @@
     $BOTONS
 \**********************************/
 %btn {
-    margin-top: 10px;
-    padding: 5px 10px;
-    border: 2px solid map-get($colors-background,black);
-    font-weight: map-get($font-weights,big);
-    text-transform: uppercase;  
-    cursor: pointer;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 2px solid map-get($colors-background, black);
+  font-weight: map-get($font-weights, big);
+  text-transform: uppercase;
+  cursor: pointer;
 }
-.btn{
-    &--calcular{
-        @extend %btn;
-        background-color: map-get($map: $colors-background, $key: green);
-    }
+.btn {
+  &--calcular {
+    @extend %btn;
+  }
+  &--calcular {
+    background-color: map-get($map: $colors-background, $key: green);
+  }
+  &--cerrar {
+    display: block;
+    margin-left: auto;
+    border: none;
+    font-size: map-get($font-sizes, x-big);
+    font-weight: map-get($font-weights, big);
+    background-color: transparent;
+  }
 }

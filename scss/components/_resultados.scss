@@ -1,0 +1,35 @@
+/**********************************\
+    $RESULTADOS
+\**********************************/
+
+.resultados {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(map-get($colors-background, black), 0.5);
+  z-index: map-get($z-indexs, first);
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    padding: 30px;
+    border: 5px solid map-get($colors-background, black);
+    background-color: map-get($colors-background, yellow);
+  }
+  &__title {
+    font-size: map-get($font-sizes, x-big);
+  }
+  &__figura {
+    width: 55px;
+    height: 55px;
+  }
+  &__figure-name {
+    font-size: map-get($font-sizes, big);
+  }
+}
