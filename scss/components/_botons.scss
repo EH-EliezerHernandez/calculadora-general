@@ -23,5 +23,6 @@
     font-size: map-get($font-sizes, x-big);
     font-weight: map-get($font-weights, big);
     background-color: transparent;
+    cursor: pointer;
   }
 }

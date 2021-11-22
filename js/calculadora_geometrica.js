@@ -49,31 +49,48 @@ function calcularAreaCirculo(radio){
 function mostrarResultado(resultado)
 {   
     if(resultado !== null){
-        const {perimetro, area} = resultado;
         const $elementoResultados = document.querySelector('#list-resultados');
-        const elementoPerimetro = document.createElement('P');
-        const elementoArea = document.createElement('P');
-        elementoPerimetro.innerHTML = `<span class="label">Perimetro: </span> ${perimetro.toFixed(2)}`;
-        elementoArea.innerHTML = `<span class="label">Area: </span> ${area.toFixed(2)}`;
-        $elementoResultados.appendChild(elementoPerimetro);
-        $elementoResultados.appendChild(elementoArea);
+        for(const property in resultado){
+            let newElement;
+            if(property === "imagen"){
+                newElement = document.createElement('img');
+                newElement.src = resultado[property];
+                newElement.alt = `Imagen figura`;
+                
+            }else{
+                if(property === "name"){
+                        newElement = document.createElement('h4');
+                        newElement.innerHTML = `<span class="resultados__subtitle">${resultado[property]}`;
+                }else{
+                    if(property === "error"){
+                        newElement = document.createElement('P');
+                        newElement.textContent = `${resultado[property]}`;
+                        newElement.style.textAlign = "center";
+                    }else{
+                        newElement = document.createElement('P');
+                        newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${resultado[property].toFixed(2)}`;
+                    }
+                }
+            }
+            $elementoResultados.appendChild(newElement);
+        }
     }
 }
 
 //Funcion para habilitar el formulario
-function habilitarFormulario($formulario){
-    $formulario.style.display="flex";
+function habilitarElement($element){
+    $element.style.display="flex";
 }
 
 //Funcion para deshabilitar el formulario
-function deshabilitarFormulario($formulario){
-    $formulario.style.display="none";
+function deshabilitarElement($element){
+    $element.style.display="none";
 }
 
 //funcion para ocultar todos los formularios
 function ocultarFormularios(forms){
     for( let i = 0; i < 3 ; i++){
-        deshabilitarFormulario(forms[i]);
+        deshabilitarElement(forms[i]);
     }
 }
 
@@ -89,7 +106,7 @@ function determinarFormulario(id){
         figuraForm = forms[i].id.substring(5);
         if(figuraForm == id){
             $formulario = forms[i];
-            habilitarFormulario($formulario);   
+            habilitarElement($formulario);   
             return; 
         }
     }
@@ -100,7 +117,9 @@ function determinarFormulario(id){
 function capturarDatosCuadrado(){
     const $inputLados= document.querySelector("#ladosCuadrado");
     const cuadrado = {
+        name: "Cuadrado",
         lados: parseFloat($inputLados.value),
+        imagen: "../assets/img/cube.png",
     };
     return cuadrado;
 }
@@ -111,9 +130,11 @@ function capturarDatosTriangulo(){
     const $inputLadoB = document.querySelector("#ladoBTriangulo");
     const $inputBase = document.querySelector("#baseTriangulo");
     const triangulo = {
+        name: "Triangulo",
         ladoA: parseFloat($inputLadoA.value),
         ladoB: parseFloat($inputLadoB.value),
         base: parseFloat($inputBase.value),
+        imagen: "../assets/img/triangle.png",
     };
 
     return triangulo;
@@ -123,7 +144,9 @@ function capturarDatosTriangulo(){
 function capturarDatosCirculo(){
     const $inputRadio = document.querySelector("#radioCirculo");
     const circulo = {
+        name: "Circulo",
         radio: $inputRadio.value,
+        imagen: "../assets/img/circle.png",
     }
     return circulo;
 }
@@ -144,11 +167,13 @@ function realizarCalculosFiguras(elementId){
     
     if(elementId === "btn-calcular-circulo"){
         const circulo = capturarDatosCirculo();
-        const {radio} = circulo;
+        const {radio,name,imagen} = circulo;
         const diametroCirculo = calcularDiametroCirculo(radio);
         const perimetroCirculo = calcularPerimetroCirculo(diametroCirculo);
         const areaCirculo = calcularAreaCirculo(radio);
         resultado = {
+            imagen,
+            name,
             perimetro: perimetroCirculo,
             area: areaCirculo,
         };
@@ -160,15 +185,21 @@ function realizarCalculosFiguras(elementId){
             triangulo = capturarDatosTriangulo();
             isIsoscelesTriangulo = verificarIsosceles(triangulo.ladoA,triangulo.ladoB,triangulo.base);
             if(!isIsoscelesTriangulo){
-                console.log("Debe ingresar los datos correspondientes a un triangulo isosceles");
+                resultado = {
+                    imagen: "../assets/icons/error.svg" ,
+                    name: "Error",
+                    error: "La informacion introducida no corresponde a un triangulo isosceles",
+                };
                 return resultado;                
             }
             else{
-                const {ladoA,ladoB,base} = triangulo;
+                const {ladoA,ladoB,base,name,imagen} = triangulo;
                 const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
                 const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
                 const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
                 resultado = {
+                    imagen,
+                    name,
                     perimetro: perimetroTriangulo,
                     area: areaTriangulo,
                 };
@@ -177,20 +208,17 @@ function realizarCalculosFiguras(elementId){
     }
     if(elementId === "btn-calcular-cuadrado"){
         const cuadrado = capturarDatosCuadrado();
-        const {lados} = cuadrado;
+        const {lados,name,imagen} = cuadrado;
         const perimetroCuadrado = calcularPerimetroCuadrado(lados);
         const areaCuadrado = calcularAreaCuadrado(lados);
         resultado = {
+            imagen,
+            name,
             perimetro: perimetroCuadrado,
-            area: areaCuadrado
+            area: areaCuadrado,
         };
         return resultado;
     }
-}
-
-function habilitarResultadosElement(){
-    const $resultados = document.querySelector("#overlay");
-    console.log($resultados);
 }
 
 //function para limpiar el codigo html
@@ -205,7 +233,8 @@ function limpiarHTML(){
 function eventos(){
     const $parentBtnCalcular = document.querySelector("#forms-container");
     const $figurasContainer = document.querySelector("#figuras");
-    
+    const $btnCerrar = document.querySelector("#btn-cerrar");
+
     //Eventos para habilitar el formulario segun la figura
     $figurasContainer.addEventListener('click',evt => {
         const id = evt.target.id;
@@ -215,14 +244,22 @@ function eventos(){
             determinarFormulario(id);
         }
     });
+
     //Eventos para realizar los calculos
     $parentBtnCalcular.addEventListener("click",evt => {
          const elementId = evt.target.id;
          if(elementId === "btn-calcular-circulo" || elementId === "btn-calcular-triangulo" || elementId === "btn-calcular-cuadrado"){
+            const $sectionResultado = document.querySelector("#section-resultados");
+            habilitarElement($sectionResultado);
             const resultado =realizarCalculosFiguras(elementId);
             limpiarHTML();
             mostrarResultado(resultado);
         }
+    });
+
+    $btnCerrar.addEventListener("click",() => {
+        const $sectionResultado = document.querySelector("#section-resultados");
+        deshabilitarElement($sectionResultado);
     });
 }
 
