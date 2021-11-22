@@ -366,8 +366,10 @@ $NAVS
   color: white;
   border-radius: 10px;
   cursor: pointer;
-  -webkit-transition-property: background-color;
-  transition-property: background-color;
+  -webkit-transition-property: background-color, color, -webkit-filter;
+  transition-property: background-color, color, -webkit-filter;
+  transition-property: filter, background-color, color;
+  transition-property: filter, background-color, color, -webkit-filter;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }
