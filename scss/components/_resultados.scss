@@ -8,7 +8,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: rgba(map-get($colors-background, black), 0.5);
@@ -29,7 +29,20 @@
     width: 55px;
     height: 55px;
   }
-  &__figure-name {
+  &__subtitle {
     font-size: map-get($font-sizes, big);
+    text-align: center;
+  }
+  &__label {
+    font-weight: 700;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
