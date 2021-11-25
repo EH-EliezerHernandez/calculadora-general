@@ -30,7 +30,46 @@
       <main class="main--general">
         <h2 class="main__subtitle">Trabajo Práctico - Platzi</h2>
         <h1 class="main__title">Porcentajes y descuentos en precios</h1>
+        <div class="main__container-forms">
+          <form class="form" action="">
+            <figure class="form__img-container">
+              <img
+                class="form__img"
+                src="../assets/img/price.png"
+                alt="Imagen Descuentos"
+              />
+            </figure>
+            <h3 class="form__title">Cálculos</h3>
+            <label for="precio-producto" class="form__label"
+              >Escribe el <span>precio</span> de tu producto</label
+            >
+            <input type="number" class="form__campo" id="precio-producto" />
 
+            <label for="porcentaje-descuento" class="form__label"
+              >Escribe el <span>descuento</span> de tu producto</label
+            >
+            <input
+              type="number"
+              class="form__campo"
+              id="porcentaje-descuento"
+            />
+
+            <label for="cupon" class="form__label"
+              >Escribe el <span>Cupón</span> si tienes</label
+            >
+            <input type="number" class="form__campo" name="" id="cupon" />
+
+            <button class="btn--calcular">Calcular Precio con Descuento</button>
+          </form>
+          <section class="lista">
+            <h3 class="lista__title">Lista de cupones disponibles</h3>
+            <div class="lista__container">
+              <p class="lista__item">Promo10</p>
+              <p class="lista__item">Promo20</p>
+              <p class="lista__item">Promo30</p>
+            </div>
+          </section>
+        </div>
         <div class="resultados" id="section-resultados">
           <section class="resultados__card" id="resultados-card">
             <button type="button" class="btn--cerrar" id="btn-cerrar">X</button>

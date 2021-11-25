@@ -2,7 +2,12 @@
         $MIXINS
 \*********************************/
 
-@mixin dimensionImg($width,$height){
-    width: $width;
-    height: $height; 
+@mixin dimensionImg($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin font-size($size-px) {
+  font-size: calcularREM($size-px);
+  line-height: calcularREM($size-px) * 1.5;
 }

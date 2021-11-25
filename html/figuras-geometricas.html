@@ -31,6 +31,9 @@
         <h2 class="main__subtitle">Trabajo Práctico - Platzi</h2>
         <h1 class="main__title">Figuras Geometricas</h1>
 
+        <p class="main__description">
+          Seleccione por favor una figura geometrica:
+        </p>
         <div class="figuras" id="figuras">
           <figure class="figuras__container">
             <img
@@ -59,7 +62,7 @@
         </div>
         <div class="main__container-forms">
           <div id="forms-container">
-            <form action="" class="form--triangulo form" id="form-triangulo">
+            <form action="" class="form" id="form-triangulo">
               <label for="ladoA" class="form__label"
                 >Ingrese <span>Lado A</span> en cm:</label
               >
@@ -83,8 +86,11 @@
                 Calcular Perimetro y Area
               </button>
             </form>
-            <form action="" class="form--cuadrado form" id="form-cuadrado">
-              <label for="lado">Ingrese el Lado en cm:</label>
+            <form action="" class="form" id="form-cuadrado">
+              <label for="lado"
+                >Ingrese el valor correspondiente a los <span>lados</span> en
+                cm:</label
+              >
               <input type="Number" id="ladosCuadrado" />
               <button
                 type="button"
@@ -94,8 +100,8 @@
                 Calcular Perimetro y Area
               </button>
             </form>
-            <form action="" class="form--circulo form" id="form-circulo">
-              <label for="radio">Ingrese el Radio en cm:</label>
+            <form action="" class="form" id="form-circulo">
+              <label for="radio">Ingrese el <span>Radio</span> en cm:</label>
               <input type="Number" id="radioCirculo" />
               <button
                 type="button"

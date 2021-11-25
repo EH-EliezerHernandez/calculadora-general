@@ -99,7 +99,7 @@ function determinarFormulario(id){
     const forms = document.querySelectorAll(".form");
     let figuraForm = " "; 
     let $formulario = null;
-
+    
     ocultarFormularios(forms);
 
     for( let i = 0 ; i < 3 ; i++){

@@ -1,0 +1,13 @@
+/*********************************\
+        $FUNCTIONS
+\*********************************/
+
+@function calcularREM($und-px) {
+  $size: $und-px / 16px;
+  $size-REM: $size * 1rem;
+  @return $size-REM;
+}
+
+@function selec-fontSize($size-label) {
+  @return map-get($font-sizes, $size-label);
+}

@@ -1,6 +1,8 @@
 //ABSTRACTS
 @import "./abstracts/variables";
+@import "./abstracts/functions";
 @import "./abstracts/_mixins";
+
 
 //BASES
 @import "./bases/resets";
@@ -20,3 +22,4 @@
 @import "./components/figuras";
 @import "./components/botons";
 @import "./components/resultados";
+@import "./components/listas";
