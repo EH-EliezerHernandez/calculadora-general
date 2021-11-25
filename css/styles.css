@@ -2,6 +2,9 @@
     $VARIABLES
 \**********************************/
 /*********************************\
+        $FUNCTIONS
+\*********************************/
+/*********************************\
         $MIXINS
 \*********************************/
 /*********************************\
@@ -250,12 +253,16 @@ $NAVS
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-column-gap: 40px;
+     -moz-column-gap: 40px;
+          column-gap: 40px;
+  padding-top: 40px;
 }
 
 /**********************************\
     $FORMS
 \**********************************/
-.form--circulo, .form--cuadrado, .form--triangulo {
+.form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -263,29 +270,42 @@ $NAVS
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 320px;
-  margin-top: 40px;
-}
-.form--circulo span, .form--cuadrado span, .form--triangulo span {
-  font-weight: 700;
+  width: 400px;
 }
 
-.form--triangulo {
-  display: none;
-}
-.form--cuadrado {
-  display: none;
-}
-.form--circulo {
-  display: none;
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 .form__label {
   margin-bottom: 5px;
   font-size: 14px;
 }
 .form__campo {
-  padding: 5px 10px;
+  padding: 7px 10px;
   margin-bottom: 10px;
+  border: 1px solid black;
+}
+.form span {
+  font-weight: 700;
+}
+.form__selec-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.form img {
+  width: 55px;
+  height: 55px;
+  margin-bottom: 20px;
+}
+.form__title {
+  margin-bottom: 30px;
+  font-size: 24px;
 }
 
 /*********************************\
@@ -366,8 +386,10 @@ $NAVS
   color: white;
   border-radius: 10px;
   cursor: pointer;
-  -webkit-transition-property: background-color;
-  transition-property: background-color;
+  -webkit-transition-property: background-color, color, -webkit-filter;
+  transition-property: background-color, color, -webkit-filter;
+  transition-property: filter, background-color, color;
+  transition-property: filter, background-color, color, -webkit-filter;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }
@@ -483,4 +505,16 @@ $NAVS
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+/**********************************\
+    $LISTAS
+\**********************************/
+.lista__title {
+  padding-top: 20px;
+  font-size: 24px;
+}
+.lista__container {
+  margin-top: 20px;
+  font-size: 14px;
 }
