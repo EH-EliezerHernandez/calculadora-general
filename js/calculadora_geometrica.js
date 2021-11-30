@@ -45,52 +45,10 @@ function calcularAreaCirculo(radio){
     return area;
 }
 
-//Funcion para mostrar mensajes o resultados
-function mostrarResultado(resultado)
-{   
-    if(resultado !== null){
-        const $elementoResultados = document.querySelector('#list-resultados');
-        for(const property in resultado){
-            let newElement;
-            if(property === "imagen"){
-                newElement = document.createElement('img');
-                newElement.src = resultado[property];
-                newElement.alt = `Imagen figura`;
-                
-            }else{
-                if(property === "name"){
-                        newElement = document.createElement('h4');
-                        newElement.innerHTML = `<span class="resultados__subtitle">${resultado[property]}`;
-                }else{
-                    if(property === "error"){
-                        newElement = document.createElement('P');
-                        newElement.textContent = `${resultado[property]}`;
-                        newElement.style.textAlign = "center";
-                    }else{
-                        newElement = document.createElement('P');
-                        newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${resultado[property].toFixed(2)}`;
-                    }
-                }
-            }
-            $elementoResultados.appendChild(newElement);
-        }
-    }
-}
-
-//Funcion para habilitar el formulario
-function habilitarElement($element){
-    $element.style.display="flex";
-}
-
-//Funcion para deshabilitar el formulario
-function deshabilitarElement($element){
-    $element.style.display="none";
-}
-
 //funcion para ocultar todos los formularios
 function ocultarFormularios(forms){
     for( let i = 0; i < 3 ; i++){
-        deshabilitarElement(forms[i]);
+        ocultarElement(forms[i]);
     }
 }
 
@@ -106,7 +64,7 @@ function determinarFormulario(id){
         figuraForm = forms[i].id.substring(5);
         if(figuraForm == id){
             $formulario = forms[i];
-            habilitarElement($formulario);   
+            mostrarElement($formulario);   
             return; 
         }
     }
@@ -221,15 +179,6 @@ function realizarCalculosFiguras(elementId){
     }
 }
 
-//function para limpiar el codigo html
-function limpiarHTML(){
-    const $resultadosContainer = document.querySelector("#list-resultados");
-    while($resultadosContainer.firstChild){
-        $resultadosContainer.removeChild($resultadosContainer.firstChild);
-        console.log("borrado");
-    }
-}
-
 function eventos(){
     const $parentBtnCalcular = document.querySelector("#forms-container");
     const $figurasContainer = document.querySelector("#figuras");
@@ -250,7 +199,7 @@ function eventos(){
          const elementId = evt.target.id;
          if(elementId === "btn-calcular-circulo" || elementId === "btn-calcular-triangulo" || elementId === "btn-calcular-cuadrado"){
             const $sectionResultado = document.querySelector("#section-resultados");
-            habilitarElement($sectionResultado);
+            mostrarElement($sectionResultado);
             const resultado =realizarCalculosFiguras(elementId);
             limpiarHTML();
             mostrarResultado(resultado);
@@ -259,7 +208,7 @@ function eventos(){
 
     $btnCerrar.addEventListener("click",() => {
         const $sectionResultado = document.querySelector("#section-resultados");
-        deshabilitarElement($sectionResultado);
+        ocultarElement($sectionResultado);
     });
 }
 

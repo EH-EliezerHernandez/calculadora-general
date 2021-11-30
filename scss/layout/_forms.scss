@@ -35,4 +35,14 @@
     margin-bottom: 30px;
     font-size: map-get($font-sizes, x-big);
   }
+  &__select {
+    min-width: 120px;
+    width: min-content;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border: none;
+    outline: 2px solid black;
+    background-color: white;
+    font-weight: 700;
+  }
 }
