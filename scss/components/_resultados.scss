@@ -24,21 +24,25 @@
   }
   &__title {
     font-size: map-get($font-sizes, x-big);
+    margin-bottom: 10px;
   }
   &__figura {
     width: 55px;
     height: 55px;
   }
   &__subtitle {
+    margin-bottom: 10px;
     font-size: map-get($font-sizes, big);
     text-align: center;
   }
   &__label {
     font-weight: 700;
+    text-transform: capitalize;
   }
   img {
     width: 50px;
     height: 50px;
+    margin-bottom: 6px;
   }
   &__list {
     display: flex;

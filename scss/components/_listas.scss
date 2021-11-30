@@ -8,6 +8,9 @@
   }
   &__container {
     margin-top: 20px;
+  }
+  &__item {
     font-size: selec-fontSize(normal);
+    margin-bottom: 10px;
   }
 }

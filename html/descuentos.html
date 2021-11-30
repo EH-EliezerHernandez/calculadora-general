@@ -46,7 +46,8 @@
             <input type="number" class="form__campo" id="precio-producto" />
 
             <label for="porcentaje-descuento" class="form__label"
-              >Escribe el <span>descuento</span> de tu producto</label
+              >Escribe el <span>porcentaje de descuento</span> de tu
+              producto</label
             >
             <input
               type="number"
@@ -57,17 +58,30 @@
             <label for="cupon" class="form__label"
               >Escribe el <span>Cupón</span> si tienes</label
             >
-            <input type="number" class="form__campo" name="" id="cupon" />
+            <select name="" id="cupon" class="form__select">
+              <option value="ninguno" disabled selected hidden>Ninguno</option>
+              <option value="10">10%</option>
+              <option value="15">15%</option>
+              <option value="20">20%</option>
+            </select>
 
-            <button class="btn--calcular">Calcular Precio con Descuento</button>
+            <button type="button" class="btn--calcular" id="btn-calcular">
+              Calcular Precio con Descuento
+            </button>
           </form>
           <section class="lista">
             <h3 class="lista__title">Lista de cupones disponibles</h3>
-            <div class="lista__container">
-              <p class="lista__item">Promo10</p>
-              <p class="lista__item">Promo20</p>
-              <p class="lista__item">Promo30</p>
-            </div>
+            <ul class="lista__container">
+              <li>
+                <p class="lista__item">Promo 10% de descuento</p>
+              </li>
+              <li>
+                <p class="lista__item">Promo 20% de descuento</p>
+              </li>
+              <li>
+                <p class="lista__item">Promo 30% de descuento</p>
+              </li>
+            </ul>
           </section>
         </div>
         <div class="resultados" id="section-resultados">
@@ -125,6 +139,7 @@
         </ul>
       </nav>
     </div>
-    <script src="../js/calculadora_geometrica.js"></script>
+    <script src="../js/functiones-generics.js"></script>
+    <script src="../js/calculadora_descuento.js"></script>
   </body>
 </html>
