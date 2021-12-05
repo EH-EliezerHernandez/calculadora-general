@@ -35,58 +35,52 @@
             <figure class="form__img-container">
               <img
                 class="form__img"
-                src="../assets/img/price.png"
+                src="../assets/img/discount.png"
                 alt="Imagen Descuentos"
               />
             </figure>
             <header class="form__header">
               <h3 class="form__title">Cálculos</h3>
+              <div class="form__select-container">
+                <select name="" id="promedios" class="form__select">
+                  <option value="media-aritmetica">Media Aritmetica</option>
+                  <option value="media-armonica">Media Armonica</option>
+                  <option value="media-geometrica">Media Geometrica</option>
+                  <option value="moda">Moda</option>
+                  <option value="mediana">Mediana</option>
+                </select>
+              </div>
             </header>
             <label for="precio-producto" class="form__label"
-              >Escribe el <span>precio</span> de tu producto</label
+              >Agrega un <span>nuevo valor</span> a la lista</label
             >
-            <input type="number" class="form__campo" id="precio-producto" />
+            <input type="number" class="form__campo" id="campo-new-valor" />
+
+            <button type="button" class="btn--calcular" id="btn-add">
+              Agregar a la lista
+            </button>
 
             <label for="porcentaje-descuento" class="form__label"
-              >Escribe el <span>porcentaje de descuento</span> de tu
-              producto</label
+              >Escribe la <span>posicion</span> del valor a eliminar de la
+              lista</label
             >
             <input
               type="number"
               class="form__campo"
-              id="porcentaje-descuento"
+              id="campo-position-element"
             />
 
-            <label for="cupon" class="form__label"
-              >Escribe el <span>Cupón</span> si tienes</label
-            >
-            <div class="form__select-container">
-              <select name="" id="cupon" class="form__select">
-                <option value="ninguno" disabled selected hidden>
-                  Ninguno
-                </option>
-                <option value="10">10%</option>
-                <option value="15">15%</option>
-                <option value="20">20%</option>
-              </select>
-            </div>
-            <button type="button" class="btn--calcular" id="btn-calcular">
-              Calcular Precio con Descuento
+            <button type="button" class="btn--delete" id="btn-delete">
+              Agregar a la lista
             </button>
+
+            <!-- <button type="button" class="btn--calcular" id="btn-calcular">
+              Calcular Media Aritmetica
+            </button> -->
           </form>
           <section class="lista">
-            <h3 class="lista__title">Lista de cupones disponibles</h3>
-            <ul class="lista__container">
-              <li>
-                <p class="lista__item">Promo 10% de descuento</p>
-              </li>
-              <li>
-                <p class="lista__item">Promo 20% de descuento</p>
-              </li>
-              <li>
-                <p class="lista__item">Promo 30% de descuento</p>
-              </li>
-            </ul>
+            <h3 class="lista__title">Lista de Valores cargados</h3>
+            <ul class="lista__container" id="list-valors"></ul>
           </section>
         </div>
         <div class="resultados" id="section-resultados">
