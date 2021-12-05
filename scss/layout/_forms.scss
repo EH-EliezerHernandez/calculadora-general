@@ -32,16 +32,27 @@
     margin-bottom: 20px;
   }
   &__title {
-    margin-bottom: 30px;
     font-size: map-get($font-sizes, x-big);
   }
-  &__select {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  &__select-container {
+    height: min-content;
     min-width: 120px;
     width: min-content;
-    padding: 8px 10px;
     margin-bottom: 10px;
-    border: none;
+    padding-right: 8px;
     outline: 2px solid black;
+  }
+  &__select {
+    padding: 8px 10px;
+    border: none;
+    outline: none;
     background-color: white;
     font-weight: 700;
   }

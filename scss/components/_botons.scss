@@ -2,15 +2,18 @@
     $BOTONS
 \**********************************/
 %btn {
-  margin-top: 10px;
+  margin-bottom: 20px;
   padding: 5px 10px;
   border: 2px solid map-get($colors-background, black);
+  font-family: $font-principal;
+  font-size: map-get($map: $font-sizes, $key: default);
   font-weight: map-get($font-weights, big);
   text-transform: uppercase;
   cursor: pointer;
 }
 .btn {
-  &--calcular {
+  &--calcular,
+  &--delete {
     @extend %btn;
   }
   &--calcular {
@@ -25,5 +28,8 @@
     font-weight: map-get($font-weights, big);
     background-color: transparent;
     cursor: pointer;
+  }
+  &--delete {
+    background-color: map-get($map: $colors-background, $key: dark-yellow);
   }
 }
