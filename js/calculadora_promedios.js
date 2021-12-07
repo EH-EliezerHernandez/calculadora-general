@@ -81,7 +81,7 @@ function  añadirList(valor,campoID,elementosList){
         const $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
         const $elementoCampoValor = document.querySelector(campoID);
         insertarElemento($mensajeError,$elementoCampoValor);
-        return null;
+        return elementosList;
     }
 
     elementosList.push(valor);
@@ -126,7 +126,7 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
         const campoPosition = document.querySelector(valorIDCampo);
         insertarElemento($mensajeError,campoPosition);
         
-        return null;
+        return elementosList;
     }
     
     const nuevaLista = elementosList.filter((elementoActual,indice)=> position != indice);
