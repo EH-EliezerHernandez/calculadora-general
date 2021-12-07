@@ -106,6 +106,11 @@ function mostrarLista($elementoContenedorList,list){
 
 }
 
+function limpiarCampo(valorIdElemento){
+    document.querySelector(valorIdElemento).value = "";
+    
+}
+
 function eliminarElementoList(elementosList,position,valorIDCampo){
     const cantidadElementos = elementosList.length;
 
@@ -149,11 +154,13 @@ function eventos(){
             const valorIDCampo = "#campo-new-valor";
             const valorCampo = parseFloat(capturarValor(valorIDCampo));   
             elementosList = añadirList(valorCampo,valorIDCampo,elementosList);
+            limpiarCampo(valorIDCampo);
         }else{
             if(targetId === "btn-delete"){
                 const valorIDCampo = "#campo-position-element";
                 const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
                 elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
+                limpiarCampo(valorIDCampo);
             }
 
         }
