@@ -16,10 +16,12 @@ function insertarElemento(newElement,referenceNode){
     referenceNode.parentNode.insertBefore(newElement,referenceNode.nextSibling);
 }
 
-function crearMensaje(mensaje){
+function crearMensaje(mensaje,styleClass){
     const $elementMensaje = document.createElement("P");
     
     $elementMensaje.textContent = mensaje;
+
+    $elementMensaje.classList.add(styleClass);
 
     return $elementMensaje;
 }
@@ -73,11 +75,12 @@ function limpiarContenedorLista($contenedorLista){
 function  añadirList(valor,campoID,elementosList){
     
     if(!validarNumero(valor)){
+        const styleClassMensaje = "error";
+        const textMensaje = "El dato ingresado no es valido";
         eliminarError();
-        const $mensajeError = crearMensaje("El dato ingresado no es valido");
-        $mensajeError.classList.add("error");
-        const $elementoContenedor = document.querySelector(campoID);
-        insertarElemento($mensajeError,$elementoContenedor);
+        const $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
+        const $elementoCampoValor = document.querySelector(campoID);
+        insertarElemento($mensajeError,$elementoCampoValor);
         return null;
     }
 
@@ -105,18 +108,28 @@ function mostrarLista($elementoContenedorList,list){
 
 function eliminarElementoList(elementosList,position,valorIDCampo){
     const cantidadElementos = elementosList.length;
-    
-    if(validarPosition(position,cantidadElementos) === false){
-        console.log(validarPosition(position,cantidadElementos));
+
+    if(!validarPosition(position,cantidadElementos)){
+        let $mensajeError;
+        const  styleClassMensaje = "error";
+        
         eliminarError();
-        const mensajeError = crearMensaje("Ingrese una posición válida de la lista de números");
-        mensajeError.classList.add("error");
+        
+        if(!cantidadElementos){
+            const textMensaje = "La lista se encuentra vacia. Debe ingresar elementos a la lista antes de poder eliminarlos";
+            $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
+        }else{
+            const textMensaje = "Ingrese una posición válida de la lista de números";
+            $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
+        }
+        
         const campoPosition = document.querySelector(valorIDCampo);
-        insertarElemento(mensajeError,campoPosition);
+        insertarElemento($mensajeError,campoPosition);
+        
+        return null;
     }
     
     const nuevaLista = elementosList.filter((elementoActual,indice)=> position != indice);
-
     const $elementoContenedorList = document.querySelector("#list-valors");
 
     limpiarContenedorLista($elementoContenedorList);
