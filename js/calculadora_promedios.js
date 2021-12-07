@@ -110,7 +110,10 @@ function limpiarCampo(valorIdElemento){
     document.querySelector(valorIdElemento).value = "";
     
 }
-
+function agregarContenidoElemento(contenido,valorID){
+    const $elemento = document.querySelector(valorID);
+    $elemento.textContent = contenido;
+}
 function eliminarElementoList(elementosList,position,valorIDCampo){
     const cantidadElementos = elementosList.length;
 
@@ -147,7 +150,11 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     let elementosList = [];
-
+    const valorIDBtnCalcular = "#btn-calcular";
+    const mensajeDefaultBtnCalcular = "Calcular Media Aritmetica"; 
+    
+    agregarContenidoElemento(mensajeDefaultBtnCalcular,valorIDBtnCalcular);
+    
     $formPromedios.addEventListener("click",(evt)=>{
         const targetId = evt.target.id;
         if(targetId === "btn-add"){
@@ -161,10 +168,16 @@ function eventos(){
                 const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
                 elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
                 limpiarCampo(valorIDCampo);
+            }else{
+                if(targetId === "btn-calcular"){
+                    const $contenedorResultado = document.querySelector("#section-resultados");
+                    mostrarElement($contenedorResultado);
+                }
             }
 
         }
     });
+
 }
 
 eventos();
