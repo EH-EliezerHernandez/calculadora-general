@@ -55,6 +55,10 @@ a {
   color: #000000;
 }
 
+.error {
+  color: #ff3f3f;
+}
+
 /*********************************\
         $HEADERS
 \*********************************/
@@ -279,12 +283,12 @@ $NAVS
   display: flex;
 }
 .form__label {
-  margin-bottom: 5px;
+  margin: 5px 0;
   font-size: 14px;
 }
 .form__campo {
   padding: 7px 10px;
-  margin-bottom: 10px;
+  margin: 5px 0;
   border: 1px solid black;
 }
 .form span {
@@ -450,7 +454,7 @@ $NAVS
     $BOTONS
 \**********************************/
 .btn--calcular, .btn--delete {
-  margin-bottom: 20px;
+  margin: 5px 0 20px;
   padding: 5px 10px;
   border: 2px solid black;
   font-family: "Open Sans", sans-serif;

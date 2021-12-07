@@ -11,12 +11,12 @@
   @extend %form;
 
   &__label {
-    margin-bottom: 5px;
+    margin: 5px 0;
     font-size: map-get($map: $font-sizes, $key: normal);
   }
   &__campo {
     padding: 7px 10px;
-    margin-bottom: 10px;
+    margin: 5px 0;
     border: 1px solid map-get($colors-background, black);
   }
   span {
