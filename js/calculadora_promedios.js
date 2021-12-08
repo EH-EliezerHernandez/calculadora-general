@@ -163,6 +163,7 @@ function determinarContenidoBotton(valorOption){
     if(valorOption === "mediana"){
         contenidoBtnCalcular = "Calcular Mediana";
     }
+    return contenidoBtnCalcular;
 }
 
 function eventos(){
@@ -192,16 +193,18 @@ function eventos(){
                     const $contenedorResultado = document.querySelector("#section-resultados");
                     mostrarElement($contenedorResultado);
                 }
+                else{
+                    if(targetId === "select-promedios"){
+                        const valorOption = evt.target.value;
+                        const contenidoBtnCalcular = determinarContenidoBotton(valorOption);
+                        console.log(contenidoBtnCalcular);
+                        agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
+
+                    }
+                }
             }
 
         }
-    });
-
-    $selecPromedios.addEventListener("click",(evt)=>{
-        const valorOption = evt.target.value;
-        const contenidoBtnCalcular = determinarContenidoBotton(valorOption);
-
-        agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
     });
 
 }
