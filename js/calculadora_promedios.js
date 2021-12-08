@@ -147,13 +147,32 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
     return nuevaLista;
 }
 
+function determinarContenidoBotton(valorOption){
+    if(valorOption === "media-aritmetica"){
+        contenidoBtnCalcular = "Calcular Media aritmetica";
+    }
+    if(valorOption === "media-armonica"){
+        contenidoBtnCalcular = "Calcular Media armonica";
+    }
+    if(valorOption === "media-geometrica"){
+        contenidoBtnCalcular = "Calcular Media Geometrica";
+    }
+    if(valorOption === "moda"){
+        contenidoBtnCalcular ="Calcular Moda";
+    }
+    if(valorOption === "mediana"){
+        contenidoBtnCalcular = "Calcular Mediana";
+    }
+}
+
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
+    const $selecPromedios = document.querySelector("#select-promedios");
     let elementosList = [];
     const valorIDBtnCalcular = "#btn-calcular";
-    const mensajeDefaultBtnCalcular = "Calcular Media Aritmetica"; 
+    const contenidoDefaultBtnCalcular = "Calcular Media Aritmetica"; 
     
-    agregarContenidoElemento(mensajeDefaultBtnCalcular,valorIDBtnCalcular);
+    agregarContenidoElemento(contenidoDefaultBtnCalcular,valorIDBtnCalcular);
     
     $formPromedios.addEventListener("click",(evt)=>{
         const targetId = evt.target.id;
@@ -176,6 +195,13 @@ function eventos(){
             }
 
         }
+    });
+
+    $selecPromedios.addEventListener("click",(evt)=>{
+        const valorOption = evt.target.value;
+        const contenidoBtnCalcular = determinarContenidoBotton(valorOption);
+
+        agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
     });
 
 }
