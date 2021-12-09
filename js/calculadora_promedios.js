@@ -2,7 +2,7 @@ function calcularMediaAritmetica(arrayElement){
     const sumaElementos = arrayElement.reduce((acum,elementoActual) =>{
         return elementoActual + acum;
     });
-    const mediaAritmetica = sumaElementos / arrayElement.lenght;
+    const mediaAritmetica = sumaElementos / arrayElement.length;
     return mediaAritmetica;
 }
 
@@ -147,7 +147,7 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
     return nuevaLista;
 }
 
-function determinarContenidoBotton(valorOption){
+function determinarTipoPromedio(valorOption){
     if(valorOption === "media-aritmetica"){
         contenidoBtnCalcular = "Calcular Media aritmetica";
     }
@@ -166,6 +166,31 @@ function determinarContenidoBotton(valorOption){
     return contenidoBtnCalcular;
 }
 
+function realizarCalculosPromedio(valorOption,arrayList){
+    const objectResultado = {
+        imagen: "../assets/img/discount.png",
+    };
+    console.log(valorOption);
+    if(valorOption === "media-aritmetica"){
+        resultado = calcularMediaAritmetica(arrayList);
+        console.log(resultado);
+        objectResultado["name"]= "Media Aritmetica";
+        objectResultado["resultado"] = resultado;
+        return objectResultado;
+    }
+    if(valorOption === "media-armonica"){
+        
+    }
+    if(valorOption === "media-geometrica"){
+        
+    }
+    if(valorOption === "moda"){
+        
+    }
+    if(valorOption === "mediana"){
+        
+    }
+}
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     const $selecPromedios = document.querySelector("#select-promedios");
@@ -174,7 +199,7 @@ function eventos(){
     const contenidoDefaultBtnCalcular = "Calcular Media Aritmetica"; 
     
     agregarContenidoElemento(contenidoDefaultBtnCalcular,valorIDBtnCalcular);
-    
+
     $formPromedios.addEventListener("click",(evt)=>{
         const targetId = evt.target.id;
         if(targetId === "btn-add"){
@@ -191,7 +216,11 @@ function eventos(){
             }else{
                 if(targetId === "btn-calcular"){
                     const $contenedorResultado = document.querySelector("#section-resultados");
+                    const tipoPromedio = document.querySelector("#select-promedios").value;
                     mostrarElement($contenedorResultado);
+                    const objectResultado = realizarCalculosPromedio(tipoPromedio,elementosList);
+                    console.log(objectResultado);
+                    mostrarResultado(objectResultado);
                 }
                 else{
                     if(targetId === "select-promedios"){
