@@ -147,23 +147,19 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
     return nuevaLista;
 }
 
-function determinarTipoPromedio(valorOption){
-    if(valorOption === "media-aritmetica"){
-        contenidoBtnCalcular = "Calcular Media aritmetica";
-    }
-    if(valorOption === "media-armonica"){
-        contenidoBtnCalcular = "Calcular Media armonica";
-    }
-    if(valorOption === "media-geometrica"){
-        contenidoBtnCalcular = "Calcular Media Geometrica";
-    }
-    if(valorOption === "moda"){
-        contenidoBtnCalcular ="Calcular Moda";
-    }
-    if(valorOption === "mediana"){
-        contenidoBtnCalcular = "Calcular Mediana";
-    }
-    return contenidoBtnCalcular;
+function determinarContenidoTextElement(valorOption,arrayObjOptions){
+    
+    const objOption = arrayObjOptions.find(elementActual => {
+        const {tipoPromedio} = elementActual;
+
+        if(tipoPromedio === valorOption){
+            return elementActual;
+        }
+    })
+
+    const contenidoElement = objOption.contenidoElement;
+
+    return contenidoElement;
 }
 
 function realizarCalculosPromedio(valorOption,arrayList){
@@ -225,8 +221,30 @@ function eventos(){
                 else{
                     if(targetId === "select-promedios"){
                         const valorOption = evt.target.value;
-                        const contenidoBtnCalcular = determinarContenidoBotton(valorOption);
-                        console.log(contenidoBtnCalcular);
+                        const arrayObjOptions = [
+                            {
+                                tipoPromedio: "media-aritmetica",
+                                contenidoElement: "Calcular Media Aritmetica",
+                            },
+                            {
+                                tipoPromedio: "media-armonica",
+                                contenidoElement: "Calcular Media Armonica",
+                            },
+                            {
+                                tipoPromedio: "media-geometrica",
+                                contenidoElement: "Calcular Media Geometrica",
+                            },
+                            {
+                                tipoPromedio: "moda",
+                                contenidoElement: "Calcular Moda",
+                            },
+                            {
+                                tipoPromedio: "mediana",
+                                contenidoElement: "Calcular Mediana",
+                            }
+                        ];
+                
+                        const contenidoBtnCalcular = determinarContenidoTextElement(valorOption,arrayObjOptions);
                         agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
 
                     }
