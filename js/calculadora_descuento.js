@@ -55,11 +55,6 @@ function eventos(){
         mostrarResultado(resultado);
 
     });
-
-    $btnCerrar.addEventListener("click",evt => {
-        const $resultados = document.querySelector("#section-resultados");
-        ocultarElement($resultados);
-    })
 }
 
 eventos();

@@ -48,3 +48,12 @@ function limpiarHTML(){
         console.log("borrado");
     }
 }
+
+function cerrarElemento(){
+    const $btnCerrar = document.querySelector("#btn-cerrar");
+
+    $btnCerrar.addEventListener("click",evt => {
+    const $resultados = document.querySelector("#section-resultados");
+    ocultarElement($resultados);
+});
+}
