@@ -1,9 +1,67 @@
 function calcularMediaAritmetica(arrayElement){
+    const cantidadElementos = arrayElement.length;
     const sumaElementos = arrayElement.reduce((acum,elementoActual) =>{
         return elementoActual + acum;
     });
-    const mediaAritmetica = sumaElementos / arrayElement.length;
+    const mediaAritmetica = sumaElementos / cantidadElementos;
+
     return mediaAritmetica;
+}
+
+function determinarNumeroPar(num){
+    let isPar = false;
+
+    if(num % 2 === 0){
+        isPar = true;
+        return isPar;
+    }
+
+    return isPar;
+}
+
+function ordenarElementos(arrayList){//<----------- mira esto 
+
+    const cantidadElementos = arrayList.length;
+
+    for( let i=0 ; i < cantidadElementos ; i++){
+
+        for( let x=0 ; x < cantidadElementos ; x++){
+            
+            if( i != x){
+                const a = arrayList[i];
+                const b = arrayList[x];
+                const resta = a - b;
+
+                if(resta < 0){
+                    const aux = arrayList[x];
+                    arrayList[x]=arrayList[i];
+                    arrayList[i]=aux; //<---------- mira esto, sera que afecta al array original fuera de la funcion? como un parametro por referencia?
+                }
+            }
+        }
+
+    }
+
+    return arrayList;
+}
+
+function calcularMediana(arrayList){
+    let resultadoMediana;
+    const cantidadElementos = arrayList.length;
+    const arrayListNewOrder = ordenarElementos(arrayList);
+    const  mitadCantidadElementos = cantidadElementos / 2;
+    
+    if(determinarNumeroPar(cantidadElementos)){
+        const elementMediana1 = arrayListNewOrder[mitadCantidadElementos];
+        const elementMediana2 = arrayListNewOrder[mitadCantidadElementos - 1];
+        const arrayResultados = [elementMediana1,elementMediana2];
+        resultadoMediana = calcularMediaAritmetica(arrayResultados);
+        return resultadoMediana;
+    }
+    
+    const mitadCantidadElementosParteEntera = mitadCantidadElementos -  mitadCantidadElementos % 1;
+    resultadoMediana = arrayListNewOrder[mitadCantidadElementosParteEntera];
+    return resultadoMediana;
 }
 
 function capturarValor(valorID){
@@ -169,6 +227,7 @@ function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
         name: namePromedio,
         resultado: resultadoPromedio,
     };
+    console.log(objectResultado);
     return objectResultado;
 }
 
@@ -201,13 +260,13 @@ function eventos(){
                     const arrayObjProm = [
                             {
                                 tipoPromedio: "media-aritmetica",
-                                name: "media Aritmetica",
+                                name: "Media Aritmetica",
                                 functionCalcularPromedio: function(arrayElement){
                                     const mediaAritmetica = calcularMediaAritmetica(arrayElement);
                                     return mediaAritmetica;
                                 },
                             },
-                            {
+                            /* {
                                 tipoPromedio: "media-armonica",
                                 contenidoElement: "Calcular Media Armonica",
                             },
@@ -218,10 +277,14 @@ function eventos(){
                             {
                                 tipoPromedio: "moda",
                                 contenidoElement: "Calcular Moda",
-                            },
+                            }, */
                             {
                                 tipoPromedio: "mediana",
-                                contenidoElement: "Calcular Mediana",
+                                name: "Mediana",
+                                functionCalcularPromedio: function(arrayElement){
+                                    const mediana = calcularMediana(arrayElement);
+                                    return mediana;
+                                },
                             }
                         ];
                     mostrarElement($contenedorResultado);
