@@ -19,9 +19,10 @@ function determinarNumeroPar(num){
     return isPar;
 }
 
-function ordenarElementos(arrayList){//<----------- mira esto 
+function ordenarElementos(arrayList){ 
 
     const cantidadElementos = arrayList.length;
+    const newArrayList =[...arrayList];
 
     for( let i=0 ; i < cantidadElementos ; i++){
 
@@ -33,16 +34,16 @@ function ordenarElementos(arrayList){//<----------- mira esto
                 const resta = a - b;
 
                 if(resta < 0){
-                    const aux = arrayList[x];
-                    arrayList[x]=arrayList[i];
-                    arrayList[i]=aux; //<---------- mira esto, sera que afecta al array original fuera de la funcion? como un parametro por referencia?
+                    const aux = newArrayList[x];
+                    newArrayList[x] = newArrayList[i];
+                    newArrayList[i] = aux;
                 }
             }
         }
 
     }
 
-    return arrayList;
+    return newArrayList;
 }
 
 function calcularMediana(arrayList){
@@ -64,6 +65,9 @@ function calcularMediana(arrayList){
     return resultadoMediana;
 }
 
+function calcularModa(arrayList){
+    
+}
 function capturarValor(valorID){
     $campoNewElement = document.querySelector(valorID);
     valorCampo = $campoNewElement.value;
@@ -273,11 +277,15 @@ function eventos(){
                             {
                                 tipoPromedio: "media-geometrica",
                                 contenidoElement: "Calcular Media Geometrica",
-                            },
+                            }, */
                             {
                                 tipoPromedio: "moda",
-                                contenidoElement: "Calcular Moda",
-                            }, */
+                                name: "Moda",
+                                functionCalcularPromedio: function(arrayElement){
+                                    const moda = calcularModa(arrayElement);
+                                    return moda;
+                                }
+                            },
                             {
                                 tipoPromedio: "mediana",
                                 name: "Mediana",
