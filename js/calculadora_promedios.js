@@ -65,8 +65,16 @@ function calcularMediana(arrayList){
     return resultadoMediana;
 }
 
+function registrarElementosList(arrayList){
+
+    const objRegistroElementos = {};
+
+    arrayList.forEach((elementActual) => {
+        console.log(objRegistroElementos[elementActual]);
+    });
+}
 function calcularModa(arrayList){
-    
+    registrarElementosList(arrayList);
 }
 function capturarValor(valorID){
     $campoNewElement = document.querySelector(valorID);
@@ -220,7 +228,7 @@ function determinarContenidoTextElement(valorOption,arrayObjOptions){
 function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
     
     const objectResult = arrayObjProm.find((elementActual)=> 
-    elementActual.tipoPromedio === valorOption
+        elementActual.tipoPromedio === valorOption
     );
     
     const resultadoPromedio = objectResult.functionCalcularPromedio(arrayListNum);
@@ -235,6 +243,13 @@ function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
     return objectResultado;
 }
 
+function validarValor(valor,arrayValors){
+    
+    const isValid = arrayValors.some(elementActual => valor === elementActual);
+
+    return isValid;
+}
+
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     const $selecPromedios = document.querySelector("#select-promedios");
@@ -246,32 +261,41 @@ function eventos(){
 
     $formPromedios.addEventListener("click",(evt)=>{
         const targetId = evt.target.id;
-        const objFunctionBasics = {
-            'btn-add': () => {  
-                const valorIDCampo = "#campo-new-valor";
-                const valorCampo = parseFloat(capturarValor(valorIDCampo));   
-                elementosList = añadirList(valorCampo,valorIDCampo,elementosList);
-                limpiarCampo(valorIDCampo);
-            },
+        const arrayElementIdValor = [
+            'btn-add',
+            'btn-delete',
+            'btn-calcular',
+            'select-promedios',
+        ];
 
-            'btn-delete': () => {
-                const valorIDCampo = "#campo-position-element";
-                const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
-                elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
-                limpiarCampo(valorIDCampo);
-            },
+        if(validarValor(targetId,arrayElementIdValor)){
 
-            'btn-calcular': () => {
-                const $contenedorResultado = document.querySelector("#section-resultados");
-                const tipoPromedio = document.querySelector("#select-promedios").value;
-                const arrayObjProm = [
+            const objFunctionBasics = {
+                'btn-add': () => {  
+                    const valorIDCampo = "#campo-new-valor";
+                    const valorCampo = parseFloat(capturarValor(valorIDCampo));   
+                    elementosList = añadirList(valorCampo,valorIDCampo,elementosList);
+                    limpiarCampo(valorIDCampo);
+                },
+    
+                'btn-delete': () => {
+                    const valorIDCampo = "#campo-position-element";
+                    const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
+                    elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
+                    limpiarCampo(valorIDCampo);
+                },
+    
+                'btn-calcular': () => {
+                    const $contenedorResultado = document.querySelector("#section-resultados");
+                    const tipoPromedio = document.querySelector("#select-promedios").value;
+                    const arrayObjProm = [
                         {
                             tipoPromedio: "media-aritmetica",
                             name: "Media Aritmetica",
                             functionCalcularPromedio: function(arrayElement){
                                 const mediaAritmetica = calcularMediaAritmetica(arrayElement);
                                 return mediaAritmetica;
-                            },
+                            }
                         },
                         /* {
                             tipoPromedio: "media-armonica",
@@ -295,14 +319,15 @@ function eventos(){
                             functionCalcularPromedio: function(arrayElement){
                                 const mediana = calcularMediana(arrayElement);
                                 return mediana;
-                            },
+                            }
                         }
                     ];
                     mostrarElement($contenedorResultado);
                     const objectResultado = realizarCalculosPromedio(tipoPromedio,elementosList,arrayObjProm);
+                    console.log(objectResultado);
                     mostrarResultado(objectResultado);
                 },
-
+    
                 'select-promedios': () => {
                     const valorOption = evt.target.value;
                     const arrayObjOptions = [
@@ -330,12 +355,13 @@ function eventos(){
             
                     const contenidoBtnCalcular = determinarContenidoTextElement(valorOption,arrayObjOptions);
                     agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
+                }
             }
+            const functionOption = objFunctionBasics[targetId];
+    
+            functionOption();
+            
         }
-        const functionOption = objFunctionBasics[targetId];
-
-        functionOption();
-        
     });
 
 }
