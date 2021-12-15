@@ -65,16 +65,32 @@ function calcularMediana(arrayList){
     return resultadoMediana;
 }
 
-function registrarElementosList(arrayList){
+function determinarNumeroMayor(arrayList){
+    
+    const arrayListNewOrder = ordenarElementos(arrayList);
+    const indiceNumeroMayor = arrayListNewOrder.length - 1;
+    const numeroMayor = arrayListNewOrder[indiceNumeroMayor];
 
-    const objRegistroElementos = {};
+    return numeroMayor;
 
-    arrayList.forEach((elementActual) => {
-        console.log(objRegistroElementos[elementActual]);
+}
+
+function contarNumerosLista(arrayList){
+    const arrayObjListNumbers = arrayList.map((elementoActual) => {
+        const objListNumber = {};
+         objListNumber[elementoActual] = ++objListNumber[elementoActual] || 1;
+         return objListNumber;
     });
+
+    const arrayObjListNumbers;
 }
 function calcularModa(arrayList){
-    registrarElementosList(arrayList);
+    
+    const numeroMayor = determinarNumeroMayor(arrayList);
+
+    const arrayObjListNumbers = contarNumerosLista(arrayList);
+
+    return objListElement;
 }
 function capturarValor(valorID){
     $campoNewElement = document.querySelector(valorID);
