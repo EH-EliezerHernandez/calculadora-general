@@ -31,7 +31,16 @@ function mostrarResultado(resultado)
                         newElement.textContent = `${resultado[property]}`;
                         newElement.style.textAlign = "center";
                     }else{
-                        newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${resultado[property].toFixed(2)}`;
+                        let valorResultado;
+
+                        if(typeof resultado[property] === String){
+                            valorResultado = resultado[property];
+                        }else{
+                            valorResultado = resultado[property].toFixed(2);
+                        }
+                        
+                        newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
+
                     }
                 }
             }

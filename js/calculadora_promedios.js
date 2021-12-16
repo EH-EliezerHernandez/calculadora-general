@@ -29,8 +29,8 @@ function ordenarElementos(arrayList){
         for( let x=0 ; x < cantidadElementos ; x++){
             
             if( i != x){
-                const a = arrayList[i];
-                const b = arrayList[x];
+                const a = newArrayList[i];
+                const b = newArrayList[x];
                 const resta = a - b;
 
                 if(resta < 0){
@@ -50,6 +50,7 @@ function calcularMediana(arrayList){
     let resultadoMediana;
     const cantidadElementos = arrayList.length;
     const arrayListNewOrder = ordenarElementos(arrayList);
+    console.log(arrayListNewOrder);
     const  mitadCantidadElementos = cantidadElementos / 2;
     
     if(determinarNumeroPar(cantidadElementos)){
@@ -75,23 +76,38 @@ function determinarNumeroMayor(arrayList){
 
 }
 
-function contarNumerosLista(arrayList){
-    const arrayObjListNumbers = arrayList.map((elementoActual) => {
-        const objListNumber = {};
-         objListNumber[elementoActual] = ++objListNumber[elementoActual] || 1;
-         return objListNumber;
+function listarElementos(arrayList){
+    
+    const objListNumber = {};
+
+    arrayList.forEach(elementoActual => {
+        objListNumber[elementoActual] = ++objListNumber[elementoActual] || 1;
     });
 
-    const arrayObjListNumbers;
+    return objListNumber;
+}
+
+function buscarNumerosMasRepetidos(numeroMayor,objList){
+    let valoresMayores = "";
+    for( const property in objList){
+        if(objList[property] === numeroMayor){
+            valoresMayores = `${valoresMayores}${property} `;
+        }
+    }
+
+    return valoresMayores;
 }
 function calcularModa(arrayList){
     
-    const numeroMayor = determinarNumeroMayor(arrayList);
+    const objListNumbers = listarElementos(arrayList);
+    const arrayValorsObj = Object.values(objListNumbers);
+    const arrayNewOrderValorsObj = ordenarElementos(arrayValorsObj);
+    const valorMayorList = determinarNumeroMayor(arrayNewOrderValorsObj);
+    const elementosMasRepetidos = buscarNumerosMasRepetidos(valorMayorList,objListNumbers);
 
-    const arrayObjListNumbers = contarNumerosLista(arrayList);
-
-    return objListElement;
+    return elementosMasRepetidos;
 }
+
 function capturarValor(valorID){
     $campoNewElement = document.querySelector(valorID);
     valorCampo = $campoNewElement.value;
