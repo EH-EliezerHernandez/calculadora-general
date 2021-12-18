@@ -50,11 +50,9 @@ function mostrarResultado(resultado)
 }
 
 //function para limpiar el codigo html
-function limpiarHTML(){
-    const $resultadosContainer = document.querySelector("#list-resultados");
-    while($resultadosContainer.firstChild){
-        $resultadosContainer.removeChild($resultadosContainer.firstChild);
-        console.log("borrado");
+function limpiarHTML($elementoContenedor){
+    while($elementoContenedor.firstChild){
+        $elementoContenedor.removeChild($elementoContenedor.firstChild);
     }
 }
 

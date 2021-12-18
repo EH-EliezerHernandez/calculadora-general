@@ -188,7 +188,8 @@ function eventos(){
     $figurasContainer.addEventListener('click',evt => {
         const id = evt.target.id;
         const elemento = evt.target;
-        limpiarHTML();
+        const $elementoContenedorResultados = document.querySelector("#list-resultados");
+        limpiarHTML($elementoContenedorResultados);
         if(id === "circulo" || id === "cuadrado" || id === "triangulo"){
             determinarFormulario(id);
         }
@@ -199,9 +200,10 @@ function eventos(){
          const elementId = evt.target.id;
          if(elementId === "btn-calcular-circulo" || elementId === "btn-calcular-triangulo" || elementId === "btn-calcular-cuadrado"){
             const $sectionResultado = document.querySelector("#section-resultados");
+            const $elementoContenedorResultados = document.querySelector("#list-resultados");
             mostrarElement($sectionResultado);
             const resultado =realizarCalculosFiguras(elementId);
-            limpiarHTML();
+            limpiarHTML($elementoContenedorResultados);
             mostrarResultado(resultado);
         }
     });

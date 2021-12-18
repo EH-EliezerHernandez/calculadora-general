@@ -161,12 +161,6 @@ function eliminarError(){
 
 }
 
-function limpiarContenedorLista($contenedorLista){
-    while($contenedorLista.firstChild){
-        $contenedorLista.removeChild($contenedorLista.firstChild);
-    }
-}
-
 function mostrarLista($elementoContenedorList,list){
     
     list.forEach((valorActual,indice) =>{
@@ -194,7 +188,7 @@ function  añadirList(valor,campoID,elementosList){
 
     const $elementoContenedorList = document.querySelector("#list-valors");
 
-    limpiarContenedorLista($elementoContenedorList);
+    limpiarHTML($elementoContenedorList);
     
     mostrarLista($elementoContenedorList,elementosList);
     
@@ -236,7 +230,7 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
     const nuevaLista = elementosList.filter((elementoActual,indice)=> position != indice);
     const $elementoContenedorList = document.querySelector("#list-valors");
 
-    limpiarContenedorLista($elementoContenedorList);
+    limpiarHTML($elementoContenedorList);
 
     mostrarLista($elementoContenedorList,nuevaLista);
     
