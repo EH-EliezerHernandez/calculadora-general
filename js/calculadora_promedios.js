@@ -167,6 +167,17 @@ function limpiarContenedorLista($contenedorLista){
     }
 }
 
+function mostrarLista($elementoContenedorList,list){
+    
+    list.forEach((valorActual,indice) =>{
+        const newElement = document.createElement("LI");
+        newElement.innerHTML = `<p>${indice + 1}) ${valorActual}</p>`;
+        $elementoContenedorList.appendChild(newElement);
+    
+    });
+
+}
+
 function  añadirList(valor,campoID,elementosList){
     
     if(!validarNumero(valor)){
@@ -190,16 +201,6 @@ function  añadirList(valor,campoID,elementosList){
     return elementosList;
 }
 
-function mostrarLista($elementoContenedorList,list){
-    
-    list.forEach((valorActual,indice) =>{
-        const newElement = document.createElement("LI");
-        newElement.innerHTML = `<p>${indice + 1}) ${valorActual}</p>`;
-        $elementoContenedorList.appendChild(newElement);
-    
-    });
-
-}
 
 function limpiarCampo(valorIdElemento){
     document.querySelector(valorIdElemento).value = "";
@@ -284,7 +285,6 @@ function validarValor(valor,arrayValors){
 
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
-    const $selecPromedios = document.querySelector("#select-promedios");
     let elementosList = [];
     const valorIDBtnCalcular = "#btn-calcular";
     const contenidoDefaultBtnCalcular = "Calcular Media Aritmetica"; 
