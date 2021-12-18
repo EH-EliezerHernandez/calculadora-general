@@ -1,9 +1,111 @@
 function calcularMediaAritmetica(arrayElement){
+    const cantidadElementos = arrayElement.length;
     const sumaElementos = arrayElement.reduce((acum,elementoActual) =>{
         return elementoActual + acum;
     });
-    const mediaAritmetica = sumaElementos / arrayElement.length;
+    const mediaAritmetica = sumaElementos / cantidadElementos;
+
     return mediaAritmetica;
+}
+
+function determinarNumeroPar(num){
+    let isPar = false;
+
+    if(num % 2 === 0){
+        isPar = true;
+        return isPar;
+    }
+
+    return isPar;
+}
+
+function ordenarElementos(arrayList){ 
+
+    const cantidadElementos = arrayList.length;
+    const newArrayList =[...arrayList];
+
+    for( let i=0 ; i < cantidadElementos ; i++){
+
+        for( let x=0 ; x < cantidadElementos ; x++){
+            
+            if( i != x){
+                const a = newArrayList[i];
+                const b = newArrayList[x];
+                const resta = a - b;
+
+                if(resta < 0){
+                    const aux = newArrayList[x];
+                    newArrayList[x] = newArrayList[i];
+                    newArrayList[i] = aux;
+                }
+            }
+        }
+
+    }
+
+    return newArrayList;
+}
+
+function calcularMediana(arrayList){
+    let resultadoMediana;
+    const cantidadElementos = arrayList.length;
+    const arrayListNewOrder = ordenarElementos(arrayList);
+    console.log(arrayListNewOrder);
+    const  mitadCantidadElementos = cantidadElementos / 2;
+    
+    if(determinarNumeroPar(cantidadElementos)){
+        const elementMediana1 = arrayListNewOrder[mitadCantidadElementos];
+        const elementMediana2 = arrayListNewOrder[mitadCantidadElementos - 1];
+        const arrayResultados = [elementMediana1,elementMediana2];
+        resultadoMediana = calcularMediaAritmetica(arrayResultados);
+        return resultadoMediana;
+    }
+    
+    const mitadCantidadElementosParteEntera = mitadCantidadElementos -  mitadCantidadElementos % 1;
+    resultadoMediana = arrayListNewOrder[mitadCantidadElementosParteEntera];
+    return resultadoMediana;
+}
+
+function determinarNumeroMayor(arrayList){
+    
+    const arrayListNewOrder = ordenarElementos(arrayList);
+    const indiceNumeroMayor = arrayListNewOrder.length - 1;
+    const numeroMayor = arrayListNewOrder[indiceNumeroMayor];
+
+    return numeroMayor;
+
+}
+
+function listarElementos(arrayList){
+    
+    const objListNumber = {};
+
+    arrayList.forEach(elementoActual => {
+        objListNumber[elementoActual] = ++objListNumber[elementoActual] || 1;
+    });
+
+    return objListNumber;
+}
+
+function buscarNumerosMasRepetidos(numeroMayor,objList){
+    let valoresMayores = "";
+    for( const property in objList){
+        if(objList[property] === numeroMayor){
+            valoresMayores = `${valoresMayores}${property} `;
+        }
+    }
+
+    return valoresMayores;
+}
+function calcularModa(arrayList){
+    
+    const objListNumbers = listarElementos(arrayList);
+    const arrayValorsObj = Object.values(objListNumbers);
+    const arrayNewOrderValorsObj = ordenarElementos(arrayValorsObj);
+    const valorMayorList = determinarNumeroMayor(arrayNewOrderValorsObj);
+    const elementosMasRepetidos = buscarNumerosMasRepetidos(valorMayorList,objListNumbers);
+
+    return elementosMasRepetidos;
 }
 
 function capturarValor(valorID){
@@ -158,7 +260,7 @@ function determinarContenidoTextElement(valorOption,arrayObjOptions){
 function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
     
     const objectResult = arrayObjProm.find((elementActual)=> 
-    elementActual.tipoPromedio === valorOption
+        elementActual.tipoPromedio === valorOption
     );
     
     const resultadoPromedio = objectResult.functionCalcularPromedio(arrayListNum);
@@ -169,7 +271,15 @@ function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
         name: namePromedio,
         resultado: resultadoPromedio,
     };
+
     return objectResultado;
+}
+
+function validarValor(valor,arrayValors){
+    
+    const isValid = arrayValors.some(elementActual => valor === elementActual);
+
+    return isValid;
 }
 
 function eventos(){
@@ -183,84 +293,106 @@ function eventos(){
 
     $formPromedios.addEventListener("click",(evt)=>{
         const targetId = evt.target.id;
-        if(targetId === "btn-add"){
-            const valorIDCampo = "#campo-new-valor";
-            const valorCampo = parseFloat(capturarValor(valorIDCampo));   
-            elementosList = añadirList(valorCampo,valorIDCampo,elementosList);
-            limpiarCampo(valorIDCampo);
-        }else{
-            if(targetId === "btn-delete"){
-                const valorIDCampo = "#campo-position-element";
-                const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
-                elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
-                limpiarCampo(valorIDCampo);
-            }else{
-                if(targetId === "btn-calcular"){
+        const arrayElementIdValor = [
+            'btn-add',
+            'btn-delete',
+            'btn-calcular',
+            'select-promedios',
+        ];
+
+        if(validarValor(targetId,arrayElementIdValor)){
+
+            const objFunctionBasics = {
+                'btn-add': () => {  
+                    const valorIDCampo = "#campo-new-valor";
+                    const valorCampo = parseFloat(capturarValor(valorIDCampo));   
+                    elementosList = añadirList(valorCampo,valorIDCampo,elementosList);
+                    limpiarCampo(valorIDCampo);
+                },
+    
+                'btn-delete': () => {
+                    const valorIDCampo = "#campo-position-element";
+                    const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
+                    elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
+                    limpiarCampo(valorIDCampo);
+                },
+    
+                'btn-calcular': () => {
                     const $contenedorResultado = document.querySelector("#section-resultados");
                     const tipoPromedio = document.querySelector("#select-promedios").value;
                     const arrayObjProm = [
-                            {
-                                tipoPromedio: "media-aritmetica",
-                                name: "media Aritmetica",
-                                functionCalcularPromedio: function(arrayElement){
-                                    const mediaAritmetica = calcularMediaAritmetica(arrayElement);
-                                    return mediaAritmetica;
-                                },
-                            },
-                            {
-                                tipoPromedio: "media-armonica",
-                                contenidoElement: "Calcular Media Armonica",
-                            },
-                            {
-                                tipoPromedio: "media-geometrica",
-                                contenidoElement: "Calcular Media Geometrica",
-                            },
-                            {
-                                tipoPromedio: "moda",
-                                contenidoElement: "Calcular Moda",
-                            },
-                            {
-                                tipoPromedio: "mediana",
-                                contenidoElement: "Calcular Mediana",
+                        {
+                            tipoPromedio: "media-aritmetica",
+                            name: "Media Aritmetica",
+                            functionCalcularPromedio: function(arrayElement){
+                                const mediaAritmetica = calcularMediaAritmetica(arrayElement);
+                                return mediaAritmetica;
                             }
-                        ];
+                        },
+                        /* {
+                            tipoPromedio: "media-armonica",
+                            contenidoElement: "Calcular Media Armonica",
+                        },
+                        {
+                            tipoPromedio: "media-geometrica",
+                            contenidoElement: "Calcular Media Geometrica",
+                        }, */
+                        {
+                            tipoPromedio: "moda",
+                            name: "Moda",
+                            functionCalcularPromedio: function(arrayElement){
+                                const moda = calcularModa(arrayElement);
+                                return moda;
+                            }
+                        },
+                        {
+                            tipoPromedio: "mediana",
+                            name: "Mediana",
+                            functionCalcularPromedio: function(arrayElement){
+                                const mediana = calcularMediana(arrayElement);
+                                return mediana;
+                            }
+                        }
+                    ];
                     mostrarElement($contenedorResultado);
                     const objectResultado = realizarCalculosPromedio(tipoPromedio,elementosList,arrayObjProm);
+                    console.log(objectResultado);
                     mostrarResultado(objectResultado);
-                }
-                else{
-                    if(targetId === "select-promedios"){
-                        const valorOption = evt.target.value;
-                        const arrayObjOptions = [
-                            {
-                                tipoPromedio: "media-aritmetica",
-                                contenidoElement: "Calcular Media Aritmetica",
-                            },
-                            {
-                                tipoPromedio: "media-armonica",
-                                contenidoElement: "Calcular Media Armonica",
-                            },
-                            {
-                                tipoPromedio: "media-geometrica",
-                                contenidoElement: "Calcular Media Geometrica",
-                            },
-                            {
-                                tipoPromedio: "moda",
-                                contenidoElement: "Calcular Moda",
-                            },
-                            {
-                                tipoPromedio: "mediana",
-                                contenidoElement: "Calcular Mediana",
-                            }
-                        ];
-                
-                        const contenidoBtnCalcular = determinarContenidoTextElement(valorOption,arrayObjOptions);
-                        agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
-
-                    }
+                },
+    
+                'select-promedios': () => {
+                    const valorOption = evt.target.value;
+                    const arrayObjOptions = [
+                        {
+                            tipoPromedio: "media-aritmetica",
+                            contenidoElement: "Calcular Media Aritmetica",
+                        },
+                        {
+                            tipoPromedio: "media-armonica",
+                            contenidoElement: "Calcular Media Armonica",
+                        },
+                        {
+                            tipoPromedio: "media-geometrica",
+                            contenidoElement: "Calcular Media Geometrica",
+                        },
+                        {
+                            tipoPromedio: "moda",
+                            contenidoElement: "Calcular Moda",
+                        },
+                        {
+                            tipoPromedio: "mediana",
+                            contenidoElement: "Calcular Mediana",
+                        }
+                    ];
+            
+                    const contenidoBtnCalcular = determinarContenidoTextElement(valorOption,arrayObjOptions);
+                    agregarContenidoElemento(contenidoBtnCalcular,valorIDBtnCalcular);
                 }
             }
-
+            const functionOption = objFunctionBasics[targetId];
+    
+            functionOption();
+            
         }
     });
 
