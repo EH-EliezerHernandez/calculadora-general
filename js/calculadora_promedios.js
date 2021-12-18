@@ -19,7 +19,7 @@ function determinarNumeroPar(num){
     return isPar;
 }
 
-function ordenarElementos(arrayList){ 
+function ordenarElementosMenorMayor(arrayList){ 
 
     const cantidadElementos = arrayList.length;
     const newArrayList =[...arrayList];
@@ -49,7 +49,7 @@ function ordenarElementos(arrayList){
 function calcularMediana(arrayList){
     let resultadoMediana;
     const cantidadElementos = arrayList.length;
-    const arrayListNewOrder = ordenarElementos(arrayList);
+    const arrayListNewOrder = ordenarElementosMenorMayor(arrayList);
     console.log(arrayListNewOrder);
     const  mitadCantidadElementos = cantidadElementos / 2;
     
@@ -68,7 +68,7 @@ function calcularMediana(arrayList){
 
 function determinarNumeroMayor(arrayList){
     
-    const arrayListNewOrder = ordenarElementos(arrayList);
+    const arrayListNewOrder = ordenarElementosMenorMayor(arrayList);
     const indiceNumeroMayor = arrayListNewOrder.length - 1;
     const numeroMayor = arrayListNewOrder[indiceNumeroMayor];
 
@@ -87,7 +87,7 @@ function listarElementos(arrayList){
     return objListNumber;
 }
 
-function buscarNumerosMasRepetidos(numeroMayor,objList){
+function buscarNumerosMasRepetidosObjList(numeroMayor,objList){
     let valoresMayores = "";
     for( const property in objList){
         if(objList[property] === numeroMayor){
@@ -101,11 +101,11 @@ function calcularModa(arrayList){
     
     const objListNumbers = listarElementos(arrayList);
     const arrayValorsObj = Object.values(objListNumbers);
-    const arrayNewOrderValorsObj = ordenarElementos(arrayValorsObj);
+    const arrayNewOrderValorsObj = ordenarElementosMenorMayor(arrayValorsObj);
     const valorMayorList = determinarNumeroMayor(arrayNewOrderValorsObj);
-    const elementosMasRepetidos = buscarNumerosMasRepetidos(valorMayorList,objListNumbers);
+    const objElementosMasRepetidos = buscarNumerosMasRepetidosObjList(valorMayorList,objListNumbers);
 
-    return elementosMasRepetidos;
+    return objElementosMasRepetidos;
 }
 
 function capturarValor(valorID){
@@ -396,7 +396,7 @@ function eventos(){
         }
     });
 
+    cerrarElemento();
 }
 
 eventos();
-cerrarElemento();

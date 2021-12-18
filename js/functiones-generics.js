@@ -62,6 +62,7 @@ function cerrarElemento(){
     const $btnCerrar = document.querySelector("#btn-cerrar");
 
     $btnCerrar.addEventListener("click",evt => {
+        limpiarHTML();
     const $resultados = document.querySelector("#section-resultados");
     ocultarElement($resultados);
 });
