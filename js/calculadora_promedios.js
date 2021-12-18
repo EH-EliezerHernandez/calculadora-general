@@ -227,8 +227,8 @@ function eliminarElementoList(elementosList,position,valorIDCampo){
             $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
         }
         
-        const campoPosition = document.querySelector(valorIDCampo);
-        insertarElemento($mensajeError,campoPosition);
+        const $campoPosition = document.querySelector(valorIDCampo);
+        insertarElemento($mensajeError,$campoPosition);
         
         return elementosList;
     }
