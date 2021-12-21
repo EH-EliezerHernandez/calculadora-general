@@ -139,10 +139,21 @@ function validarNumero(valor){
 
 }
 
+function validarNumeroEntero(numero){
+    let isEntero = false;
+
+    if( numero % 1 === 0){
+        isEntero = true;
+        return isEntero;
+    }
+    
+    return isEntero;
+}
+
 function validarPosition(position,cantidadElementos){
     let isPositionValid = false;
 
-    if(validarNumero(position) && position >= 0 && position < cantidadElementos){
+    if(validarNumero(position) && position >= 0 && position < cantidadElementos && validarNumeroEntero(position)){
         isPositionValid = true;
         return isPositionValid;
     }
