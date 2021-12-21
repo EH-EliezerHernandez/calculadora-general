@@ -283,6 +283,8 @@ function eventos(){
     const valorIDBtnCalcular = "#btn-calcular";
     const contenidoDefaultBtnCalcular = "Calcular Media Aritmetica"; 
     
+    mostrarElement($formPromedios);
+
     agregarContenidoElemento(contenidoDefaultBtnCalcular,valorIDBtnCalcular);
 
     $formPromedios.addEventListener("click",(evt)=>{
