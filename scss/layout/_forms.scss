@@ -1,14 +1,10 @@
 /**********************************\
     $FORMS
 \**********************************/
-%form {
-  display: flex;
+.form {
+  display: none;
   flex-direction: column;
   width: 400px;
-}
-.form {
-  display: flex;
-  @extend %form;
 
   &__label {
     margin: 5px 0;
