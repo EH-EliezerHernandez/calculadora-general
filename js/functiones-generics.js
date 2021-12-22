@@ -56,12 +56,14 @@ function limpiarHTML($elementoContenedor){
     }
 }
 
-function cerrarElemento(){
-    const $btnCerrar = document.querySelector("#btn-cerrar");
+function cerrarElementoResultados(){
 
+    const $btnCerrar = document.querySelector("#btn-cerrar");
+    
     $btnCerrar.addEventListener("click",evt => {
-        limpiarHTML();
-    const $resultados = document.querySelector("#section-resultados");
-    ocultarElement($resultados);
-});
+        const $listResult = document.querySelector("#list-resultados");
+        limpiarHTML($listResult);
+        const $resultados = document.querySelector("#section-resultados");
+        ocultarElement($resultados);
+    });
 }

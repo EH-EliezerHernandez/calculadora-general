@@ -182,7 +182,6 @@ function realizarCalculosFiguras(elementId){
 function eventos(){
     const $parentBtnCalcular = document.querySelector("#forms-container");
     const $figurasContainer = document.querySelector("#figuras");
-    const $btnCerrar = document.querySelector("#btn-cerrar");
 
     //Eventos para habilitar el formulario segun la figura
     $figurasContainer.addEventListener('click',evt => {
@@ -208,10 +207,7 @@ function eventos(){
         }
     });
 
-    $btnCerrar.addEventListener("click",() => {
-        const $sectionResultado = document.querySelector("#section-resultados");
-        ocultarElement($sectionResultado);
-    });
+    cerrarElementoResultados();
 }
 
 eventos();

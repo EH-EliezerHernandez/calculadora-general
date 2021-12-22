@@ -44,8 +44,9 @@ function capturarDatosCompra(){
 }
 function eventos(){
     const $btnCalcular = document.querySelector("#btn-calcular");
-    const $btnCerrar = document.querySelector("#btn-cerrar");
-
+    const $formElement = document.querySelector("#form-descuento");
+    
+    mostrarElement($formElement);
     $btnCalcular.addEventListener("click",evt=>{
         const $resultados = document.querySelector("#section-resultados");
         mostrarElement($resultados);
@@ -55,6 +56,8 @@ function eventos(){
         mostrarResultado(resultado);
 
     });
+
+    cerrarElementoResultados();
 }
 
 eventos();
