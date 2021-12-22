@@ -53,48 +53,51 @@ $NAVS
     margin-top: 18px;
   }
 }
-.navegacion--principal {
-  @extend .navegacion;
-  right: 0;
-  top: 0;
-  max-width: 530px;
-  .navegacion__opcion {
-    border: {
-      top: 3px solid map-get($colors-background, black);
-      bottom: 2px solid map-get($colors-background, black);
+.navegacion-- {
+  &principal {
+    @extend .navegacion;
+    right: 0;
+    top: 0;
+    max-width: 530px;
+    .navegacion__opcion {
+      border: {
+        top: 3px solid map-get($colors-background, black);
+        bottom: 2px solid map-get($colors-background, black);
+      }
+    }
+    .navegacion__opcion:first-of-type {
+      border-top: 5px solid map-get($colors-background, black);
+    }
+    .navegacion__opcion:last-of-type {
+      border-bottom: 5px solid map-get($colors-background, black);
+    }
+    .navegacion__opcion:hover {
+      border-color: map-get($colors-background, yellow);
+      transform: translateX(-10px);
     }
   }
-  .navegacion__opcion:first-of-type {
-    border-top: 5px solid map-get($colors-background, black);
-  }
-  .navegacion__opcion:last-of-type {
-    border-bottom: 5px solid map-get($colors-background, black);
-  }
-  .navegacion__opcion:hover {
-    border-color: map-get($colors-background, yellow);
-    transform: translateX(-10px);
-  }
-}
-.navegacion--general {
-  @extend .navegacion;
-  bottom: 0;
-  margin-left: 100px;
-  &:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
-    border-top-color: yellow;
-  }
-  ul {
-    height: auto;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: none;
-  }
-  .navegacion__opcion {
-    border: {
-      left-width: 3px;
-      right-width: 3px;
+
+  &general {
+    @extend .navegacion;
+    bottom: 0;
+    margin-left: 100px;
+    &:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
+      border-top-color: yellow;
     }
-  }
-  li:hover {
-    transform: translateY(-10px);
-    border-color: map-get($colors-background, yellow);
+    ul {
+      height: auto;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: none;
+    }
+    .navegacion__opcion {
+      border: {
+        left-width: 3px;
+        right-width: 3px;
+      }
+    }
+    li:hover {
+      transform: translateY(-10px);
+      border-color: map-get($colors-background, yellow);
+    }
   }
 }
