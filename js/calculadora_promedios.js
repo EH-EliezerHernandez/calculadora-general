@@ -403,7 +403,7 @@ function eventos(){
         }
     });
 
-    cerrarElementoResultados()
+    cerrarElementoResultados();
 }
 
 eventos();

@@ -10,6 +10,12 @@
     margin: 5px 0;
     font-size: map-get($map: $font-sizes, $key: normal);
   }
+  &__label--check {
+    @extend .form__label;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: map-get($colors-text, green);
+  }
   &__campo {
     padding: 7px 10px;
     margin: 5px 0;

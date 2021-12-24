@@ -11,3 +11,11 @@
 @function selec-fontSize($size-label) {
   @return map-get($font-sizes, $size-label);
 }
+
+@function selec-colorText($color-label) {
+  @return map-get($colors-text, $color);
+}
+
+@function selec-colorBackground($color-label) {
+  @return map-get($colors-background, $color-label);
+}

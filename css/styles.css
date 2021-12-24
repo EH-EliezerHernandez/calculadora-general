@@ -119,11 +119,8 @@ $NAVS
           filter: invert(100%);
 }
 .navegacion ul, .navegacion--general ul, .navegacion--principal ul {
-  height: 100vh;
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: (1fr)[4];
-  grid-template-rows: repeat(4, 1fr);
   background-color: black;
 }
 .navegacion ul:hover, .navegacion--general ul:hover, .navegacion--principal ul:hover {
@@ -174,6 +171,11 @@ $NAVS
   top: 0;
   max-width: 530px;
 }
+.navegacion--principal ul {
+  height: 100vh;
+  -ms-grid-rows: (1fr)[4];
+  grid-template-rows: repeat(4, 1fr);
+}
 .navegacion--principal .navegacion__opcion {
   border-top: 3px solid black;
   border-bottom: 2px solid black;
@@ -202,6 +204,7 @@ $NAVS
   grid-template-columns: repeat(3, 1fr);
   -ms-grid-rows: none;
   grid-template-rows: none;
+  background-color: #f6df1c;
 }
 .navegacion--general ul > *:nth-child(1) {
   -ms-grid-row: 1;
@@ -273,9 +276,14 @@ $NAVS
           flex-direction: column;
   width: 400px;
 }
-.form__label {
+.form__label, .form__label--check {
   margin: 5px 0;
   font-size: 14px;
+}
+.form__label--check {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #97c93e;
 }
 .form__campo {
   padding: 7px 10px;
