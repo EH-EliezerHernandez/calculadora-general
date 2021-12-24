@@ -67,3 +67,9 @@ function cerrarElementoResultados(){
         ocultarElement($resultados);
     });
 }
+
+//Funcionalidad para agregar contenido al elemento
+function agregarContenidoElemento(contenido,valorID){
+    const $elemento = document.querySelector(valorID);
+    $elemento.textContent = contenido;
+}
