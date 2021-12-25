@@ -8,6 +8,12 @@ function ocultarElement($element){
     $element.style.display="none";
 }
 
+//Funcion para limpiar un campo
+function limpiarCampo(valorIdElemento){
+    document.querySelector(valorIdElemento).value = "";
+    
+}
+
 //Funcion para mostrar mensajes o resultados
 function mostrarResultado(resultado)
 {   
@@ -56,10 +62,65 @@ function limpiarHTML($elementoContenedor){
     }
 }
 
+//Funcion para validar un numero
+function validarNumero(valor){
+    let isNumber = false;
+
+    if(!isNaN(valor)){
+        isNumber = true;
+        return isNumber;
+    }
+    return isNumber;
+}
+
 //Function para añadir contenido a un elemento
 function agregarContenidoElemento(contenido,valorID){
     const $elemento = document.querySelector(valorID);
     $elemento.textContent = contenido;
+}
+//Function para eliminar mensajes de error
+function eliminarError(){
+    const $errorElements = document.querySelectorAll(".error");
+    if($errorElements.length != 0){
+        for(let i = 0 ; i <  $errorElements.length ; i++){
+            $errorElements[i].remove();
+        }
+    }
+}
+
+//Function para mostrar el mensaje error
+function mostraError(mensajeError,idElement){
+    const styleClassError = "error";
+
+    eliminarError();
+
+    const $elementError = crearMensaje(mensajeError,styleClassError);
+    const $elementoCampo = document.querySelector(idElement);
+    insertarElemento($elementError,$elementoCampo);
+
+}
+
+//Function para mostrar lista
+function mostrarLista($elementoContenedorList,list){
+    
+    list.forEach((valorActual,indice) =>{
+        const newElement = document.createElement("LI");
+        newElement.innerHTML = `<p>${indice + 1}) ${valorActual}</p>`;
+        $elementoContenedorList.appendChild(newElement);
+    
+    });
+}
+
+//Funcion para añadir elementos a la lista
+function  añadirList(valor,elementosList){
+
+    elementosList.push(valor);
+
+    const $elementoContenedorList = document.querySelector("#list-valors");
+
+    limpiarHTML($elementoContenedorList);
+    
+    mostrarLista($elementoContenedorList,elementosList);
 }
 
 function cerrarElemento(){
