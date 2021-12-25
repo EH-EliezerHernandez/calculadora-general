@@ -8,12 +8,12 @@
 .main {
   &__subtitle {
     margin-bottom: 28px;
-    font-size: map-get($font-sizes, x-big);
-    color: map-get($map: $colors-text, $key: green);
+    font-size: selecFontSize(x-big);
+    color: selecColorText(green);
     text-transform: uppercase;
   }
   &__title {
-    font-size: map-get($font-sizes, u-big);
+    font-size: selecFontSize(u-big);
     margin-bottom: 36px;
   }
   &--principal {

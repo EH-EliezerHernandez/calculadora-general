@@ -300,7 +300,7 @@ $NAVS
   margin-bottom: 20px;
 }
 .form__title {
-  font-size: 24px;
+  font-size: 18px;
 }
 .form__header {
   display: -webkit-box;
@@ -548,12 +548,12 @@ $NAVS
 \**********************************/
 .lista__title {
   padding-top: 20px;
-  font-size: 24px;
+  font-size: selec-fontSize(x-big);
 }
 .lista__container {
   margin-top: 20px;
 }
 .lista__item {
-  font-size: 14px;
+  font-size: selec-fontSize(normal);
   margin-bottom: 10px;
 }

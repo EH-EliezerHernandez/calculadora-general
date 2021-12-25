@@ -1,26 +1,26 @@
 /*********************************\
         $AUTORS
 \*********************************/
-.autor{
-    position: relative;
-    font-family: $font-principal;
-    font-size: map-get($font-sizes,big);
-    font-weight: map-get($font-weights,big);
-    transform: rotate(-90deg) translateX(-70px);
-    color: map-get($colors-text,yellow); 
-    text-transform: uppercase;
-    &::after{
-        content: ' ';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        height: 3px;
-        width: 0%;
-        /* transform: scaleY(20); */
-        background-color: yellow;
-        transition: width .4s;
-    }
-    &:hover::after{
-        width: 100%;
-    }
+.autor {
+  position: relative;
+  font-family: $font-principal;
+  font-size: map-get($font-sizes, big);
+  font-weight: map-get($font-weights, big);
+  transform: rotate(-90deg) translateX(-70px);
+  color: map-get($colors-text, yellow);
+  text-transform: uppercase;
+  &::after {
+    content: " ";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 3px;
+    width: 0%;
+    /* transform: scaleY(20); */
+    background-color: yellow;
+    transition: width 0.4s;
+  }
+  &:hover::after {
+    width: 100%;
+  }
 }

@@ -3,13 +3,13 @@ $NAVS
 \**********************************/
 .navegacion {
   position: fixed;
-  z-index: map-get($z-indexs, default);
+  z-index: selecZIndex(default);
   &:hover &__opcion:not(.navegacion__opcion:hover) {
     transition: background-color 0.3s;
-    background-color: map-get($map: $colors-background, $key: black);
+    background-color: selecColorBackground(black);
   }
   &:hover a:not(a:hover) {
-    color: white;
+    color: selecColorText(white);
   }
   &:hover img:not(.navegacion__opcion:hover img) {
     filter: invert(100%);

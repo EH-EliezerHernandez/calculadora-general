@@ -10,7 +10,7 @@
   align-items: center;
   height: 100vh;
   padding: 30px 0;
-  background-color: map-get($colors-background, black);
+  background-color: selecColorBackground(black);
   &__logos {
     display: flex;
     flex-direction: column;
