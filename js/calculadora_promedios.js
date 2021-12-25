@@ -114,31 +114,6 @@ function capturarValor(valorID){
     return valorCampo;
 }
 
-function insertarElemento(newElement,referenceNode){
-    referenceNode.parentNode.insertBefore(newElement,referenceNode.nextSibling);
-}
-
-function crearMensaje(mensaje,styleClass){
-    const $elementMensaje = document.createElement("P");
-    
-    $elementMensaje.textContent = mensaje;
-
-    $elementMensaje.classList.add(styleClass);
-
-    return $elementMensaje;
-}
-
-function validarNumero(valor){
-    let isNumber = false;
-
-    if(!isNaN(valor)){
-        isNumber = true;
-        return isNumber;
-    }
-    return isNumber;
-
-}
-
 function validarNumeroEntero(numero){
     let isEntero = false;
 
@@ -159,57 +134,6 @@ function validarPosition(position,cantidadElementos){
     }
 
     return isPositionValid;
-}
-
-function eliminarError(){
-    const $errorElements = document.querySelectorAll(".error");
-    if($errorElements.length != 0){
-        for(let i = 0 ; i <  $errorElements.length ; i++){
-            $errorElements[i].remove();
-        }
-    }
-
-
-}
-
-function mostrarLista($elementoContenedorList,list){
-    
-    list.forEach((valorActual,indice) =>{
-        const newElement = document.createElement("LI");
-        newElement.innerHTML = `<p>${indice + 1}) ${valorActual}</p>`;
-        $elementoContenedorList.appendChild(newElement);
-    
-    });
-
-}
-
-function  añadirList(valor,campoID,elementosList){
-    
-    if(!validarNumero(valor)){
-        const styleClassMensaje = "error";
-        const textMensaje = "El dato ingresado no es valido";
-        eliminarError();
-        const $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
-        const $elementoCampoValor = document.querySelector(campoID);
-        insertarElemento($mensajeError,$elementoCampoValor);
-        return elementosList;
-    }
-
-    elementosList.push(valor);
-
-    const $elementoContenedorList = document.querySelector("#list-valors");
-
-    limpiarHTML($elementoContenedorList);
-    
-    mostrarLista($elementoContenedorList,elementosList);
-    
-    return elementosList;
-}
-
-
-function limpiarCampo(valorIdElemento){
-    document.querySelector(valorIdElemento).value = "";
-    
 }
 
 function eliminarElementoList(elementosList,position,valorIDCampo){
@@ -278,13 +202,6 @@ function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
     return objectResultado;
 }
 
-function validarValor(valor,arrayValors){
-    
-    const isValid = arrayValors.some(elementActual => valor === elementActual);
-
-    return isValid;
-}
-
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     let elementosList = [];
@@ -310,7 +227,18 @@ function eventos(){
                 'btn-add': () => {  
                     const valorIDCampo = "#campo-new-valor";
                     const valorCampo = parseFloat(capturarValor(valorIDCampo));   
-                    elementosList = añadirList(valorCampo,valorIDCampo,elementosList);
+                    
+                    if(validarNumero(valorCampo)){
+                        const $elementContenedorList = document.querySelector("#list-valors");
+                        añadirList(valorCampo,elementosList);
+                        limpiarHTML($elementContenedorList);
+                        mostrarLista($elementContenedorList,elementosList);
+                    }else{
+                        const mensajeError = "El valor Ingresado no es valido";
+                        eliminarError();
+                        mostrarError(mensajeError,valorIDCampo);
+                    }
+
                     limpiarCampo(valorIDCampo);
                 },
     
