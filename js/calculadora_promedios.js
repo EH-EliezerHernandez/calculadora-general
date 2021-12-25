@@ -211,10 +211,7 @@ function limpiarCampo(valorIdElemento){
     document.querySelector(valorIdElemento).value = "";
     
 }
-function agregarContenidoElemento(contenido,valorID){
-    const $elemento = document.querySelector(valorID);
-    $elemento.textContent = contenido;
-}
+
 function eliminarElementoList(elementosList,position,valorIDCampo){
     const cantidadElementos = elementosList.length;
 

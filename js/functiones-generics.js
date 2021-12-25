@@ -56,6 +56,12 @@ function limpiarHTML($elementoContenedor){
     }
 }
 
+//Function para añadir contenido a un elemento
+function agregarContenidoElemento(contenido,valorID){
+    const $elemento = document.querySelector(valorID);
+    $elemento.textContent = contenido;
+}
+
 function cerrarElemento(){
     const $btnCerrar = document.querySelector("#btn-cerrar");
 
