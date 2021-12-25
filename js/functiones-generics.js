@@ -13,6 +13,31 @@ function limpiarCampo(valorIdElemento){
     document.querySelector(valorIdElemento).value = "";
     
 }
+function validarValorVacio(valor){
+    let isValid = false;
+
+    if(valor){
+        isValid = true;
+        return isValid;
+    }
+
+    return isValid;
+}
+//Function para crear mensaje
+function crearMensaje(mensaje,styleClass){
+    const $elementMensaje = document.createElement("P");
+    
+    $elementMensaje.textContent = mensaje;
+
+    $elementMensaje.classList.add(styleClass);
+
+    return $elementMensaje;
+}
+
+//Function para insertar elemento en el codigo html despues de un elemento
+function insertarElemento(newElement,referenceNode){
+    referenceNode.parentNode.insertBefore(newElement,referenceNode.nextSibling);
+}
 
 //Funcion para mostrar mensajes o resultados
 function mostrarResultado(resultado)
@@ -89,15 +114,21 @@ function eliminarError(){
 }
 
 //Function para mostrar el mensaje error
-function mostraError(mensajeError,idElement){
+function mostrarError(mensajeError,idElement){
     const styleClassError = "error";
-
-    eliminarError();
 
     const $elementError = crearMensaje(mensajeError,styleClassError);
     const $elementoCampo = document.querySelector(idElement);
     insertarElemento($elementError,$elementoCampo);
 
+}
+
+//Function para validar si un valor se encuentra en la lista
+function validarValor(valor,arrayValors){
+    
+    const isValid = arrayValors.some(elementActual => valor === elementActual);
+
+    return isValid;
 }
 
 //Function para mostrar lista
@@ -113,14 +144,7 @@ function mostrarLista($elementoContenedorList,list){
 
 //Funcion para añadir elementos a la lista
 function  añadirList(valor,elementosList){
-
     elementosList.push(valor);
-
-    const $elementoContenedorList = document.querySelector("#list-valors");
-
-    limpiarHTML($elementoContenedorList);
-    
-    mostrarLista($elementoContenedorList,elementosList);
 }
 
 function cerrarElemento(){

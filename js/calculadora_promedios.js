@@ -114,20 +114,6 @@ function capturarValor(valorID){
     return valorCampo;
 }
 
-function insertarElemento(newElement,referenceNode){
-    referenceNode.parentNode.insertBefore(newElement,referenceNode.nextSibling);
-}
-
-function crearMensaje(mensaje,styleClass){
-    const $elementMensaje = document.createElement("P");
-    
-    $elementMensaje.textContent = mensaje;
-
-    $elementMensaje.classList.add(styleClass);
-
-    return $elementMensaje;
-}
-
 function validarNumeroEntero(numero){
     let isEntero = false;
 
@@ -216,13 +202,6 @@ function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
     return objectResultado;
 }
 
-function validarValor(valor,arrayValors){
-    
-    const isValid = arrayValors.some(elementActual => valor === elementActual);
-
-    return isValid;
-}
-
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     let elementosList = [];
@@ -248,12 +227,16 @@ function eventos(){
                 'btn-add': () => {  
                     const valorIDCampo = "#campo-new-valor";
                     const valorCampo = parseFloat(capturarValor(valorIDCampo));   
-                    const mensajeError = "El valor Ingresado no es valido";
-
+                    
                     if(validarNumero(valorCampo)){
+                        const $elementContenedorList = document.querySelector("#list-valors");
                         añadirList(valorCampo,elementosList);
+                        limpiarHTML($elementContenedorList);
+                        mostrarLista($elementContenedorList,elementosList);
                     }else{
-                        mostraError(mensajeError,valorIDCampo);
+                        const mensajeError = "El valor Ingresado no es valido";
+                        eliminarError();
+                        mostrarError(mensajeError,valorIDCampo);
                     }
 
                     limpiarCampo(valorIDCampo);
