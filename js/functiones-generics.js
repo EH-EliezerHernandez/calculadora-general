@@ -156,3 +156,74 @@ function cerrarElemento(){
     ocultarElement($resultados);
 });
 }
+
+//Function para ordenar elementos de la lista de mayor a menor
+function ordenarElementosMenorMayor(arrayList){ 
+
+    const cantidadElementos = arrayList.length;
+    const newArrayList =[...arrayList];
+
+    for( let i=0 ; i < cantidadElementos ; i++){
+
+        for( let x=0 ; x < cantidadElementos ; x++){
+            
+            if( i != x){
+                const a = newArrayList[i];
+                const b = newArrayList[x];
+                const resta = a - b;
+
+                if(resta < 0){
+                    const aux = newArrayList[x];
+                    newArrayList[x] = newArrayList[i];
+                    newArrayList[i] = aux;
+                }
+            }
+        }
+
+    }
+
+    return newArrayList;
+}
+//Function para determinar si se trata de un numero par
+function determinarNumeroPar(num){
+    let isPar = false;
+
+    if(num % 2 === 0){
+        isPar = true;
+        return isPar;
+    }
+
+    return isPar;
+}
+
+//Calcular media aritmetica
+function calcularMediaAritmetica(arrayElement){
+    const cantidadElementos = arrayElement.length;
+    const sumaElementos = arrayElement.reduce((acum,elementoActual) =>{
+        return elementoActual + acum;
+    });
+    const mediaAritmetica = sumaElementos / cantidadElementos;
+
+    return mediaAritmetica;
+}
+
+//Function para calcular la mediana 
+function calcularMediana(arrayList){
+    let resultadoMediana;
+    const cantidadElementos = arrayList.length;
+    const arrayListNewOrder = ordenarElementosMenorMayor(arrayList);
+    console.log(arrayListNewOrder);
+    const  mitadCantidadElementos = cantidadElementos / 2;
+    
+    if(determinarNumeroPar(cantidadElementos)){
+        const elementMediana1 = arrayListNewOrder[mitadCantidadElementos];
+        const elementMediana2 = arrayListNewOrder[mitadCantidadElementos - 1];
+        const arrayResultados = [elementMediana1,elementMediana2];
+        resultadoMediana = calcularMediaAritmetica(arrayResultados);
+        return resultadoMediana;
+    }
+    
+    const mitadCantidadElementosParteEntera = mitadCantidadElementos -  mitadCantidadElementos % 1;
+    resultadoMediana = arrayListNewOrder[mitadCantidadElementosParteEntera];
+    return resultadoMediana;
+}

@@ -67,10 +67,21 @@ function evento(){
                 },
                 "btn-calcular": ()=>{
                     const arrayListSalarios = arrayListObjSalariados.map((elementActual)=>{
-                        object.values(elementActual);                        
+                        return elementActual.salario;                        
                     });
+
+                    const medianaSalarios = calcularMediana(arrayListSalarios);
+                    const objResultado = {
+                        imagen: "../assets/img/dollar.png",
+                        name: "Mediana salarial",
+                        resultado: medianaSalarios,
+                    };
+
+                    const $contenedorResultados = document.querySelector("#section-resultados");
+                    mostrarElement($contenedorResultados);
+                    mostrarResultado(objResultado);
                 },
-                                
+                
             }
             const functionOption = objOptionForm[targetID];
             functionOption();
