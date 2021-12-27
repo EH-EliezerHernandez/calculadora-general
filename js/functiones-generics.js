@@ -44,39 +44,49 @@ function mostrarResultado(resultado)
 {   
     if(resultado !== null){
         const $elementoResultados = document.querySelector('#list-resultados');
-        for(const property in resultado){
-            let newElement;
-            if(property === "imagen"){
-                newElement = document.createElement('img');
+        
+        const objOptions = {
+            "imagen": (property) => {
+                const newElement = document.createElement('img');
                 newElement.src = resultado[property];
                 newElement.alt = `Imagen figura`;
+                $elementoResultados.appendChild(newElement);
+            },
+            "name": (property) => {
+                const newElement = document.createElement('h4');
+                newElement.textContent = `${resultado[property]}`;
+                newElement.classList.add("resultados__subtitle");
+                $elementoResultados.appendChild(newElement);
+            },
+            "error": (property) => {
+                const newElement = document.createElement('P');
+                newElement.textContent = `${resultado[property]}`;
+                newElement.style.textAlign = "center";
+                $elementoResultados.appendChild(newElement);
+            },
+        };
+        for(const property in resultado){
+            console.log(`property: ${property}`);
+            if(!objOptions[property]){
+                let valorResultado;
+                const newElement = document.createElement('P');
                 
-            }else{
-                if(property === "name"){
-                        newElement = document.createElement('h4');
-                        newElement.textContent = `${resultado[property]}`;
-                        newElement.classList.add("resultados__subtitle");
-                }else{
-                    newElement = document.createElement('P');
-                    if(property === "error"){
-                        newElement.textContent = `${resultado[property]}`;
-                        newElement.style.textAlign = "center";
-                    }else{
-                        let valorResultado;
-
-                        if(typeof resultado[property] === String){
-                            valorResultado = resultado[property];
-                        }else{
-                            console.log(resultado[property]);
-                            valorResultado = resultado[property].toFixed(2);
-                        }
-                        
-                        newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
-
-                    }
+                if(typeof resultado[property] === String){
+                    valorResultado = resultado[property];
+                    newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
+                    $elementoResultados.appendChild(newElement);
+                    continue;
                 }
+                
+                valorResultado = resultado[property].toFixed(2);
+                newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
+                $elementoResultados.appendChild(newElement);
+                continue;
             }
-            $elementoResultados.appendChild(newElement);
+            
+            console.log(resultado[property]);
+            objOptions[property](property);
+        
         }
     }
 }

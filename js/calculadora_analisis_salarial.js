@@ -24,10 +24,10 @@ function calcularMedianaSalarialTopPorciento(arrayListSalarios){
     return medianaSalarios;
 }
 
-function prepararObjResultado(rutaImagen,title,resultado){
+function prepararObjResultado(rutaImagen,name,resultado){
     const objResultado ={
         imagen: rutaImagen,
-        title,
+        name,
         resultado
     };
 
