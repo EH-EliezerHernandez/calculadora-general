@@ -44,38 +44,47 @@ function mostrarResultado(resultado)
 {   
     if(resultado !== null){
         const $elementoResultados = document.querySelector('#list-resultados');
+        
         for(const property in resultado){
-            let newElement;
-            if(property === "imagen"){
-                newElement = document.createElement('img');
+            
+            if("imagen" === property){
+                const newElement = document.createElement('img');
                 newElement.src = resultado[property];
                 newElement.alt = `Imagen figura`;
-                
-            }else{
-                if(property === "name"){
-                        newElement = document.createElement('h4');
-                        newElement.textContent = `${resultado[property]}`;
-                        newElement.classList.add("resultados__subtitle");
-                }else{
-                    newElement = document.createElement('P');
-                    if(property === "error"){
-                        newElement.textContent = `${resultado[property]}`;
-                        newElement.style.textAlign = "center";
-                    }else{
-                        let valorResultado;
-
-                        if(typeof resultado[property] === String){
-                            valorResultado = resultado[property];
-                        }else{
-                            valorResultado = resultado[property].toFixed(2);
-                        }
-                        
-                        newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
-
-                    }
-                }
+                $elementoResultados.appendChild(newElement);
+                continue;
             }
+            
+            if("name" === property){
+                const newElement = document.createElement('h4');
+                newElement.textContent = `${resultado[property]}`;
+                newElement.classList.add("resultados__subtitle");
+                $elementoResultados.appendChild(newElement);
+                continue;
+            }
+            
+            if("error" == property){
+                const newElement = document.createElement('P');
+                newElement.textContent = `${resultado[property]}`;
+                newElement.style.textAlign = "center";
+                $elementoResultados.appendChild(newElement);
+                continue
+            }
+
+            let valorResultado;
+            const newElement = document.createElement('P');
+            
+            if(typeof resultado[property] === String){
+                valorResultado = resultado[property];
+                newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
+                $elementoResultados.appendChild(newElement);
+                continue;
+            }
+            
+            valorResultado = resultado[property].toFixed(2);
+            newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
             $elementoResultados.appendChild(newElement);
+        
         }
     }
 }
@@ -212,7 +221,7 @@ function calcularMediana(arrayList){
     let resultadoMediana;
     const cantidadElementos = arrayList.length;
     const arrayListNewOrder = ordenarElementosMenorMayor(arrayList);
-    console.log(arrayListNewOrder);
+    
     const  mitadCantidadElementos = cantidadElementos / 2;
     
     if(determinarNumeroPar(cantidadElementos)){
@@ -226,4 +235,22 @@ function calcularMediana(arrayList){
     const mitadCantidadElementosParteEntera = mitadCantidadElementos -  mitadCantidadElementos % 1;
     resultadoMediana = arrayListNewOrder[mitadCantidadElementosParteEntera];
     return resultadoMediana;
+}
+
+//Function para determinar la opcion seleccionada pasada en un array
+function determinarSelecOption(valorOption,arrayListNum,arrayObjOptions){
+
+    const objOption = arrayObjOptions.find((elementActual)=> 
+        elementActual.optionId === valorOption
+    );
+    
+    const resultadoCalculo = objOption.calcularResultado(arrayListNum);
+    const titleOption = objOption.title;
+
+    const objectResultado = {
+        name: titleOption,
+        resultado: resultadoCalculo,
+    };
+
+    return objectResultado;
 }

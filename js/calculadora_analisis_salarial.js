@@ -4,6 +4,36 @@ function capturarDato($valorId){
     return dato;
 }
 
+
+function calcularCantidadSegunPorcentaje(cantidadTotal,porcentaje){
+    const cantidadResultante = porcentaje * cantidadTotal / 100;
+    return cantidadResultante;
+}
+
+function calcularMedianaSalarialTopPorciento(arrayListSalarios){
+    const cantidadSalariados = arrayListSalarios.length;
+    const cantidadTopSalariados = calcularCantidadSegunPorcentaje(cantidadSalariados,porcentajeTopSalariados);
+    const posicionPrimerSalariadoTop = cantidadSalariados - cantidadTopSalariados;
+    
+    const arrayListSalariosNewOrder = ordenarElementosMenorMayor(arrayListSalarios);
+    
+    const arrayListTopSalariados = arrayListSalariosNewOrder.filter((elementActual,indice)  => indice >= posicionPrimerSalariadoTop);
+    
+    const medianaSalarios = calcularMediana(arrayListTopSalariados);
+
+    return medianaSalarios;
+}
+
+function prepararObjResultado(rutaImagen,name,resultado){
+    const objResultado ={
+        imagen: rutaImagen,
+        name,
+        resultado
+    };
+
+    return objResultado;
+}
+
 function evento(){
     const $formAnalisisSalarial = document.querySelector("#form-analisis-salarial");
     const btnIdCalcular = "#btn-calcular";
@@ -66,23 +96,43 @@ function evento(){
                     
                 },
                 "btn-calcular": ()=>{
+                    const rutaImagen = "../assets/img/dollar.png";
+                    const optionMediana = capturarDato("#selec-mediana");
+                    const $elementContenedorResultados = document.querySelector("#section-resultados");
+
+                    const arrayObjOptionsMediana = [
+                        {
+                            optionId: "mediana-salarial",
+                            title: "Mediana Salarial",
+                            calcularResultado:(arraySalarios)=>{
+                                return calcularMediana(arraySalarios);
+                            }
+                        },
+                        {
+                            optionId: "mediana-salarial-top", 
+                            title: "Mediana Salarial Top %",
+                            calcularResultado: (arraySalarios)   => {
+                                return calcularMedianaSalarialTopPorciento(arraySalarios)
+                            },
+                        }
+                    ];
+
                     const arrayListSalarios = arrayListObjSalariados.map((elementActual)=>{
                         return elementActual.salario;                        
                     });
 
-                    const medianaSalarios = calcularMediana(arrayListSalarios);
-                    const objResultado = {
-                        imagen: "../assets/img/dollar.png",
-                        name: "Mediana salarial",
-                        resultado: medianaSalarios,
-                    };
+                    const objectMedianaResult = determinarSelecOption(optionMediana,arrayListSalarios,arrayObjOptionsMediana)
+                    
+                    const {name,resultado}= objectMedianaResult;
 
-                    const $contenedorResultados = document.querySelector("#section-resultados");
-                    mostrarElement($contenedorResultados);
+                    const objResultado = prepararObjResultado(rutaImagen,name,resultado);
+
+                    mostrarElement($elementContenedorResultados);
                     mostrarResultado(objResultado);
                 },
                 
             }
+
             const functionOption = objOptionForm[targetID];
             functionOption();
         }

@@ -116,24 +116,6 @@ function determinarContenidoTextElement(valorOption,arrayObjOptions){
     return contenidoElement;
 }
 
-function realizarCalculosPromedio(valorOption,arrayListNum,arrayObjProm){
-    
-    const objectResult = arrayObjProm.find((elementActual)=> 
-        elementActual.tipoPromedio === valorOption
-    );
-    
-    const resultadoPromedio = objectResult.functionCalcularPromedio(arrayListNum);
-    const namePromedio = objectResult.name;
-
-    const objectResultado = {
-        imagen: "../assets/img/discount.png",
-        name: namePromedio,
-        resultado: resultadoPromedio,
-    };
-
-    return objectResultado;
-}
-
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     let elementosList = [];
