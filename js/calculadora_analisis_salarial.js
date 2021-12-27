@@ -12,6 +12,7 @@ function calcularCantidadSegunPorcentaje(cantidadTotal,porcentaje){
 
 function calcularMedianaSalarialTopPorciento(arrayListSalarios){
     const cantidadSalariados = arrayListSalarios.length;
+    const porcentajeTopSalariados = 10;
     const cantidadTopSalariados = calcularCantidadSegunPorcentaje(cantidadSalariados,porcentajeTopSalariados);
     const posicionPrimerSalariadoTop = cantidadSalariados - cantidadTopSalariados;
     
