@@ -39,7 +39,7 @@ function evento(){
     const $formAnalisisSalarial = document.querySelector("#form-analisis-salarial");
     const btnIdCalcular = "#btn-calcular";
     const contenidoDefaultBtnCalcular = "Calcular Analisis Salarial";
-    const arrayListObjSalariados = [];
+    let arrayListObjSalariados = [];
     
     mostrarElement($formAnalisisSalarial);
     agregarContenidoElemento(contenidoDefaultBtnCalcular,btnIdCalcular);
@@ -95,6 +95,12 @@ function evento(){
                         limpiarCampo(idCampoSalario);
                     }
                     
+                },
+                "btn-delete": () => {
+                    const valorCampoPosition = capturarDato("#campo-position-element") - 1;
+                    
+                    determinarErrorCampoPosition(arrayListObjSalariados,valorCampoPosition);
+                    arrayListObjSalariados = eliminarElementoList(arrayListObjSalariados,valorCampoPosition);
                 },
                 "btn-calcular": ()=>{
                     const rutaImagen = "../assets/img/dollar.png";

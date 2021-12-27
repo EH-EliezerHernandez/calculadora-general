@@ -237,6 +237,31 @@ function calcularMediana(arrayList){
     return resultadoMediana;
 }
 
+//Function para validar si se trata de un numero entero
+function validarNumeroEntero(numero){
+    let isEntero = false;
+
+    if( numero % 1 === 0){
+        isEntero = true;
+        return isEntero;
+    }
+    
+    return isEntero;
+}
+
+//Function para validar position ingresada por el usuario
+function validarPosition(position,arrayElements){
+    let isPositionValid = false;
+    const cantidadElementos = arrayElements.length;
+
+    if(validarNumero(position) && position >= 0 && position < cantidadElementos && validarNumeroEntero(position)){
+        isPositionValid = true;
+        return isPositionValid;
+    }
+
+    return isPositionValid;
+}
+
 //Function para determinar la opcion seleccionada pasada en un array
 function determinarSelecOption(valorOption,arrayListNum,arrayObjOptions){
 
@@ -253,4 +278,54 @@ function determinarSelecOption(valorOption,arrayListNum,arrayObjOptions){
     };
 
     return objectResultado;
+}
+
+function validarArrayVacio(arrayList){
+    const cantidadElementos = arrayList.length;
+    let isArrayVacio = false;
+    
+    if(cantidadElementos){
+        isArrayVacio = true;
+        return isArrayVacio;
+    }
+
+    return isArrayVacio;
+}
+
+//Funtion para determinar el error al no llenar el campo position correctamente
+function determinarErrorCampoPosition(elementosList,position){
+    let mensajeError = "";
+    const cantidadElementos = elementosList.length;
+    
+    if(!validarArrayVacio(elementosList)){
+        eliminarError();
+        mensajeError = "La lista se encuentra vacia. Debe ingresar elementos a la lista antes de poder eliminarlos";
+        const IdCampoPosition = "#campo-position-element";
+        mostrarError(mensajeError,IdCampoPosition); 
+    }else{
+        if(!validarPosition(position,elementosList)){
+            eliminarError();
+            mensajeError = "Ingrese una posición válida de la lista de números";
+            const IdCampoPosition = "#campo-position-element";
+            mostrarError(mensajeError,IdCampoPosition); 
+        }
+    }
+    
+}
+
+//Function para eliminar un elemento de la lista o array segun el elemento suministrado al campo correpondiente
+function eliminarElementoList(elementosList,position){
+    
+    if(validarPosition(position,elementosList) && validarArrayVacio(elementosList)){
+        const nuevaLista = elementosList.filter((elementoActual,indice)=> position != indice);
+        const $elementoContenedorList = document.querySelector("#list-valors");
+    
+        limpiarHTML($elementoContenedorList);
+    
+        mostrarLista($elementoContenedorList,nuevaLista);
+        
+        return nuevaLista;
+    }
+
+    return elementosList;
 }

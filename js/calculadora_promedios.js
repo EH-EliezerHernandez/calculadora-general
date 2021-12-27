@@ -46,61 +46,6 @@ function capturarValor(valorID){
     return valorCampo;
 }
 
-function validarNumeroEntero(numero){
-    let isEntero = false;
-
-    if( numero % 1 === 0){
-        isEntero = true;
-        return isEntero;
-    }
-    
-    return isEntero;
-}
-
-function validarPosition(position,cantidadElementos){
-    let isPositionValid = false;
-
-    if(validarNumero(position) && position >= 0 && position < cantidadElementos && validarNumeroEntero(position)){
-        isPositionValid = true;
-        return isPositionValid;
-    }
-
-    return isPositionValid;
-}
-
-function eliminarElementoList(elementosList,position,valorIDCampo){
-    const cantidadElementos = elementosList.length;
-
-    if(!validarPosition(position,cantidadElementos)){
-        let $mensajeError;
-        const  styleClassMensaje = "error";
-        
-        eliminarError();
-        
-        if(!cantidadElementos){
-            const textMensaje = "La lista se encuentra vacia. Debe ingresar elementos a la lista antes de poder eliminarlos";
-            $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
-        }else{
-            const textMensaje = "Ingrese una posición válida de la lista de números";
-            $mensajeError = crearMensaje(textMensaje,styleClassMensaje);
-        }
-        
-        const $campoPosition = document.querySelector(valorIDCampo);
-        insertarElemento($mensajeError,$campoPosition);
-        
-        return elementosList;
-    }
-    
-    const nuevaLista = elementosList.filter((elementoActual,indice)=> position != indice);
-    const $elementoContenedorList = document.querySelector("#list-valors");
-
-    limpiarHTML($elementoContenedorList);
-
-    mostrarLista($elementoContenedorList,nuevaLista);
-    
-    return nuevaLista;
-}
-
 function determinarContenidoTextElement(valorOption,arrayObjOptions){
     
     const objOption = arrayObjOptions.find(elementActual => {
