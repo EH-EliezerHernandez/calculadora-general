@@ -67,6 +67,7 @@ function mostrarResultado(resultado)
                         if(typeof resultado[property] === String){
                             valorResultado = resultado[property];
                         }else{
+                            console.log(resultado[property]);
                             valorResultado = resultado[property].toFixed(2);
                         }
                         
@@ -212,7 +213,7 @@ function calcularMediana(arrayList){
     let resultadoMediana;
     const cantidadElementos = arrayList.length;
     const arrayListNewOrder = ordenarElementosMenorMayor(arrayList);
-    console.log(arrayListNewOrder);
+    
     const  mitadCantidadElementos = cantidadElementos / 2;
     
     if(determinarNumeroPar(cantidadElementos)){
@@ -226,4 +227,22 @@ function calcularMediana(arrayList){
     const mitadCantidadElementosParteEntera = mitadCantidadElementos -  mitadCantidadElementos % 1;
     resultadoMediana = arrayListNewOrder[mitadCantidadElementosParteEntera];
     return resultadoMediana;
+}
+
+//Function para determinar la opcion seleccionada pasada en un array
+function determinarSelecOption(valorOption,arrayListNum,arrayObjOptions){
+
+    const objOption = arrayObjOptions.find((elementActual)=> 
+        elementActual.optionId === valorOption
+    );
+    
+    const resultadoCalculo = objOption.calcularResultado(arrayListNum);
+    const titleOption = objOption.title;
+
+    const objectResultado = {
+        name: titleOption,
+        resultado: resultadoCalculo,
+    };
+
+    return objectResultado;
 }
