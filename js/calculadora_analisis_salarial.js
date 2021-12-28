@@ -1,10 +1,3 @@
-function capturarDato($valorId){
-    const dato = document.querySelector($valorId).value;
-
-    return dato;
-}
-
-
 function calcularCantidadSegunPorcentaje(cantidadTotal,porcentaje){
     const cantidadResultante = porcentaje * cantidadTotal / 100;
     return cantidadResultante;
@@ -23,16 +16,6 @@ function calcularMedianaSalarialTopPorciento(arrayListSalarios){
     const medianaSalarios = calcularMediana(arrayListTopSalariados);
 
     return medianaSalarios;
-}
-
-function prepararObjResultado(rutaImagen,name,resultado){
-    const objResultado ={
-        imagen: rutaImagen,
-        name,
-        resultado
-    };
-
-    return objResultado;
 }
 
 function evento(){
@@ -97,8 +80,11 @@ function evento(){
                     
                 },
                 "btn-delete": () => {
-                    const valorCampoPosition = capturarDato("#campo-position-element") - 1;
-                    
+                    const valorIDCampoPosition = "#campo-position-element";
+                    const valorCampoPosition = parseInt(capturarDato(valorIDCampoPosition) - 1);
+
+                    limpiarCampo(valorIDCampoPosition);
+                    eliminarError();
                     determinarErrorCampoPosition(arrayListObjSalariados,valorCampoPosition);
                     arrayListObjSalariados = eliminarElementoList(arrayListObjSalariados,valorCampoPosition);
                 },
@@ -129,10 +115,8 @@ function evento(){
                     });
 
                     const objectMedianaResult = determinarSelecOption(optionMediana,arrayListSalarios,arrayObjOptionsMediana)
-                    
-                    const {name,resultado}= objectMedianaResult;
 
-                    const objResultado = prepararObjResultado(rutaImagen,name,resultado);
+                    const objResultado = prepararObjResultado(rutaImagen,objectMedianaResult);
 
                     mostrarElement($elementContenedorResultados);
                     mostrarResultado(objResultado);
@@ -145,6 +129,7 @@ function evento(){
         }
     });
 
+    cerrarElemento();
 }
 
 evento();

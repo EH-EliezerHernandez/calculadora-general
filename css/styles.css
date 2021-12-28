@@ -514,6 +514,7 @@ $NAVS
   padding: 30px;
   border: 5px solid black;
   background-color: #f6df1c;
+  border-radius: 10px;
 }
 .resultados__title {
   font-size: 24px;

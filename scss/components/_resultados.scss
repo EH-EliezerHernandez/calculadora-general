@@ -21,6 +21,7 @@
     padding: 30px;
     border: 5px solid map-get($colors-background, black);
     background-color: map-get($colors-background, yellow);
+    border-radius: 10px;
   }
   &__title {
     font-size: map-get($font-sizes, x-big);

@@ -87,6 +87,8 @@ function eventos(){
                     const valorIDCampo = "#campo-new-valor";
                     const valorCampo = parseFloat(capturarValor(valorIDCampo));   
                     
+                    eliminarError();
+
                     if(validarNumero(valorCampo)){
                         const $elementContenedorList = document.querySelector("#list-valors");
                         añadirList(valorCampo,elementosList);
@@ -94,7 +96,6 @@ function eventos(){
                         mostrarLista($elementContenedorList,elementosList);
                     }else{
                         const mensajeError = "El valor Ingresado no es valido";
-                        eliminarError();
                         mostrarError(mensajeError,valorIDCampo);
                     }
 
@@ -102,53 +103,59 @@ function eventos(){
                 },
     
                 'btn-delete': () => {
-                    const valorIDCampo = "#campo-position-element";
-                    const valorCampoPosition = parseFloat(capturarValor(valorIDCampo)) - 1;
-                    elementosList = eliminarElementoList(elementosList,valorCampoPosition,valorIDCampo);
-                    limpiarCampo(valorIDCampo);
+                    const valorIDCampoPosition = "#campo-position-element";
+                    const valorCampoPosition = parseInt(capturarValor(valorIDCampoPosition)) - 1;
+
+                    limpiarCampo(valorIDCampoPosition);
+                    eliminarError();
+                    determinarErrorCampoPosition(elementosList,valorCampoPosition);
+                    elementosList = eliminarElementoList(elementosList,valorCampoPosition);
                 },
     
                 'btn-calcular': () => {
+                    const rutaImagen = "../assets/img/discount.png";
                     const $contenedorResultado = document.querySelector("#section-resultados");
                     const tipoPromedio = document.querySelector("#select-promedios").value;
                     const arrayObjProm = [
                         {
-                            tipoPromedio: "media-aritmetica",
-                            name: "Media Aritmetica",
-                            functionCalcularPromedio: function(arrayElement){
+                            optionId: "media-aritmetica",
+                            title: "Media Aritmetica",
+                            calcularResultado: function(arrayElement){
                                 const mediaAritmetica = calcularMediaAritmetica(arrayElement);
                                 return mediaAritmetica;
                             }
                         },
                         /* {
-                            tipoPromedio: "media-armonica",
+                            optionId: "media-armonica",
                             contenidoElement: "Calcular Media Armonica",
                         },
                         {
-                            tipoPromedio: "media-geometrica",
+                            optionId: "media-geometrica",
                             contenidoElement: "Calcular Media Geometrica",
                         }, */
                         {
-                            tipoPromedio: "moda",
-                            name: "Moda",
-                            functionCalcularPromedio: function(arrayElement){
+                            optionId: "moda",
+                            title: "Moda",
+                            calcularResultado: function(arrayElement){
                                 const moda = calcularModa(arrayElement);
                                 return moda;
                             }
                         },
                         {
-                            tipoPromedio: "mediana",
-                            name: "Mediana",
-                            functionCalcularPromedio: function(arrayElement){
+                            optionId: "mediana",
+                            title: "Mediana",
+                            calcularResultado: function(arrayElement){
                                 const mediana = calcularMediana(arrayElement);
                                 return mediana;
                             }
                         }
                     ];
+
                     mostrarElement($contenedorResultado);
-                    const objectResultado = realizarCalculosPromedio(tipoPromedio,elementosList,arrayObjProm);
-                    console.log(objectResultado);
-                    mostrarResultado(objectResultado);
+                    const objectResultadoPromedio = determinarSelecOption(tipoPromedio,elementosList,arrayObjProm);
+                    
+                    const objResultado = prepararObjResultado(rutaImagen,objectResultadoPromedio);
+                    mostrarResultado(objResultado);
                 },
     
                 'select-promedios': () => {
