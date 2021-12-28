@@ -137,7 +137,6 @@ function mostrarError(mensajeError,idElement){
     const $elementError = crearMensaje(mensajeError,styleClassError);
     const $elementoCampo = document.querySelector(idElement);
     insertarElemento($elementError,$elementoCampo);
-
 }
 
 //Function para validar si un valor se encuentra en la lista
@@ -302,23 +301,18 @@ function validarArrayVacio(arrayList){
 
 //Funtion para determinar el error al no llenar el campo position correctamente
 function determinarErrorCampoPosition(elementosList,position){
-    let mensajeError = "";
-    const cantidadElementos = elementosList.length;
     
     if(!validarArrayVacio(elementosList)){
         eliminarError();
-        mensajeError = "La lista se encuentra vacia. Debe ingresar elementos a la lista antes de poder eliminarlos";
-        const IdCampoPosition = "#campo-position-element";
-        mostrarError(mensajeError,IdCampoPosition); 
-    }else{
-        if(!validarPosition(position,elementosList)){
-            eliminarError();
-            mensajeError = "Ingrese una posición válida de la lista de números";
-            const IdCampoPosition = "#campo-position-element";
-            mostrarError(mensajeError,IdCampoPosition); 
-        }
+        const mensajeError = "La lista se encuentra vacia. Debe ingresar elementos a la lista antes de poder eliminarlos";
+        return mensajeError;
     }
     
+    if(!validarPosition(position,elementosList)){
+        eliminarError();
+        const mensajeError = "Ingrese una posición válida de la lista de números";
+        return mensajeError;
+    }
 }
 
 //Function para eliminar un elemento de la lista o array segun el elemento suministrado al campo correpondiente

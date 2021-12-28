@@ -18,6 +18,22 @@ function calcularMedianaSalarialTopPorciento(arrayListSalarios){
     return medianaSalarios;
 }
 
+function determinarErrorSalariados(obj){
+    const {nombre,salario} = obj;
+    
+    if(!validarNumero(salario)){
+        const idCampoSalario = "#campo-salario";
+        const mensajeSueldoError = "El sueldo no es valido";
+        mostrarError(mensajeSueldoError,idCampoSalario);
+    }
+    
+    if(!validarValorVacio(nombre)){
+        const idCampoNombre = "#campo-name";
+        const mensajeNombreError = "El nombre no es valido";
+        mostrarError(mensajeNombreError,idCampoNombre);
+    }
+}
+
 function evento(){
     const $formAnalisisSalarial = document.querySelector("#form-analisis-salarial");
     const btnIdCalcular = "#btn-calcular";
@@ -46,22 +62,11 @@ function evento(){
                         salario,
                     };
                     
-                    const isSueldoValid = validarNumero(salario);
-                    const isNombreValid = validarValorVacio(nombre);
-                    
                     eliminarError();
-
-                    if(!isSueldoValid){
-                        const mensajeSueldoError = "El sueldo no es valido";
-                        mostrarError(mensajeSueldoError,idCampoSalario);
-                    }
-                    
-                    if(!isNombreValid){
-                        const mensajeNombreError = "El nombre no es valido";
-                        mostrarError(mensajeNombreError,idCampoNombre);
-                    }
-                    
-                    if(isNombreValid && isSueldoValid){
+                
+                    determinarErrorSalariados(objAsalariado);
+                
+                    if(validarNumero(salario) && validarValorVacio(nombre)){
                         const $elementoContenedorList = document.querySelector("#list-valors");
                         const styleSalario = "bold";
                         
@@ -70,14 +75,13 @@ function evento(){
                         const arrayListSalariado = arrayListObjSalariados.map((elementActual)=>{
                             const {nombre,salario} = elementActual;
                             return `${nombre} <spam class="${styleSalario}">USB ${salario}</spam>`
-                        });
+                        }); 
                         
                         limpiarHTML($elementoContenedorList);
                         mostrarLista($elementoContenedorList, arrayListSalariado); 
                         limpiarCampo(idCampoNombre);
                         limpiarCampo(idCampoSalario);
-                    }
-                    
+                    }  
                 },
                 "btn-delete": () => {
                     const valorIDCampoPosition = "#campo-position-element";
@@ -85,7 +89,8 @@ function evento(){
 
                     limpiarCampo(valorIDCampoPosition);
                     eliminarError();
-                    determinarErrorCampoPosition(arrayListObjSalariados,valorCampoPosition);
+                    const mensajeError = determinarErrorCampoPosition(arrayListObjSalariados,valorCampoPosition);
+                    mostrarError(mensajeError,valorIDCampoPosition);
                     arrayListObjSalariados = eliminarElementoList(arrayListObjSalariados,valorCampoPosition);
                 },
                 "btn-calcular": ()=>{
