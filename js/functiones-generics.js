@@ -167,8 +167,9 @@ function cerrarElemento(){
     const $btnCerrar = document.querySelector("#btn-cerrar");
 
     $btnCerrar.addEventListener("click",evt => {
-        limpiarHTML();
         const $resultados = document.querySelector("#section-resultados");
+        const $listResultado = document.querySelector("#list-resultados");
+        limpiarHTML($listResultado);
         ocultarElement($resultados);
     });
 }
