@@ -199,7 +199,10 @@ $NAVS
 
 .navegacion--general {
   bottom: 0;
+  right: 0;
+  left: 0;
   margin-left: 100px;
+  width: calc(100% - 100px);
 }
 .navegacion--general:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
   border-top-color: yellow;
