@@ -145,7 +145,7 @@ function realizarCalculosFiguras(elementId){
             if(!isIsoscelesTriangulo){
                 resultado = {
                     imagen: "../assets/icons/error.svg" ,
-                    name: "Error",
+                    title: "error",
                     error: "La informacion introducida no corresponde a un triangulo isosceles",
                 };
                 return resultado;                

@@ -13,14 +13,13 @@ function calcularMontoPagar(descuento,precio){
     return montoPagar;
 }
 
-function calcularResultadosCompra(compra){
-    const {precio,porcentajeDescuento,cupon} = compra;
+function calcularResultadosFactura(precio,porcentajeDescuento,cupon){
     const porcentajeDescuentoTotal = sumarPorcentajesDescuento(porcentajeDescuento,cupon);
     const descuento = calcularDescuento(porcentajeDescuentoTotal,precio);
     const monto = calcularMontoPagar(descuento,precio);
+
     const objectCompra = {
-        imagen: "../assets/img/price.png",
-        name: "Informacion del pago",
+        title: "Informacion del pago",
         descuento,
         monto,
     };
@@ -28,33 +27,38 @@ function calcularResultadosCompra(compra){
     return objectCompra;
 }
 
-function capturarDatosCompra(){
-    const $campoPrecio = document.querySelector("#precio-producto");
-    const $campoPorcentajeDescuento = document.querySelector("#porcentaje-descuento");
-    const $campoCupon = document.querySelector("#cupon");
-    const $btnCerar = document.querySelector("#btn-cerrar");
-
-    const compra = {
-        precio: parseFloat($campoPrecio.value),
-        porcentajeDescuento: parseFloat($campoPorcentajeDescuento.value),
-        cupon: parseFloat($campoCupon.value),
-    };
-    
-    return compra;
-}
 function eventos(){
-    const $btnCalcular = document.querySelector("#btn-calcular");
-    const $btnCerrar = document.querySelector("#btn-cerrar");
+    const $formularioDescuentos = document.querySelector("#form-descuento");
 
-    $btnCalcular.addEventListener("click",evt=>{
-        const $resultados = document.querySelector("#section-resultados");
-        mostrarElement($resultados);
-        const compra = capturarDatosCompra();
-        const resultado = calcularResultadosCompra(compra);
-        console.log(resultado);
-        mostrarResultado(resultado);
+    mostrarElement($formularioDescuentos);
+
+    $formularioDescuentos.addEventListener("click",evt=>{
+        const targetID = evt.target.id;
+        
+        const arrayIdFormsValors = [
+          "btn-calcular",  
+        ];
+        if(validarValor(targetID,arrayIdFormsValors)){
+
+            const rutaImagen = "../assets/img/price.png";
+            const $contenedorResultados = document.querySelector("#section-resultados");
+            const valorIDCampoPrecio = "#precio-producto";
+            const valorIDCampoDescuento = "#porcentaje-descuento";
+            const valorIDCampoCupon = "#cupon";
+
+            const precio = parseFloat(capturarDato(valorIDCampoPrecio));
+            const porcentajeDescuento = parseFloat(capturarDato(valorIDCampoDescuento));
+            const porcentajeCupon = parseFloat(capturarDato(valorIDCampoCupon));
+            
+            const objResultadoCompra = calcularResultadosFactura(precio,porcentajeDescuento,porcentajeCupon);
+            const objResultado = prepararObjResultado(rutaImagen,objResultadoCompra);        
+            mostrarElement($contenedorResultados);
+            mostrarResultado(objResultado);
+        }
 
     });
+
+    cerrarElemento();
 }
 
 eventos();

@@ -8,6 +8,13 @@ function ocultarElement($element){
     $element.style.display="none";
 }
 
+//Function para capturar datos de un elemento de formulario HTML
+function capturarDato(valorId){
+    const dato = document.querySelector(valorId).value;
+    
+    return dato;
+}
+
 //Funcion para limpiar un campo
 function limpiarCampo(valorIdElemento){
     document.querySelector(valorIdElemento).value = "";
@@ -46,7 +53,7 @@ function mostrarResultado(resultado)
         const $elementoResultados = document.querySelector('#list-resultados');
         
         for(const property in resultado){
-            
+            console.log(typeof resultado[property]);
             if("imagen" === property){
                 const newElement = document.createElement('img');
                 newElement.src = resultado[property];
@@ -55,7 +62,7 @@ function mostrarResultado(resultado)
                 continue;
             }
             
-            if("name" === property){
+            if("title" === property){
                 const newElement = document.createElement('h4');
                 newElement.textContent = `${resultado[property]}`;
                 newElement.classList.add("resultados__subtitle");
@@ -74,7 +81,7 @@ function mostrarResultado(resultado)
             let valorResultado;
             const newElement = document.createElement('P');
             
-            if(typeof resultado[property] === String){
+            if(typeof resultado[property] === "string"){
                 valorResultado = resultado[property];
                 newElement.innerHTML = `<span class="resultados__label">${property}: </span> ${valorResultado}`;
                 $elementoResultados.appendChild(newElement);
@@ -112,6 +119,7 @@ function agregarContenidoElemento(contenido,valorID){
     const $elemento = document.querySelector(valorID);
     $elemento.textContent = contenido;
 }
+
 //Function para eliminar mensajes de error
 function eliminarError(){
     const $errorElements = document.querySelectorAll(".error");
@@ -161,9 +169,9 @@ function cerrarElemento(){
 
     $btnCerrar.addEventListener("click",evt => {
         limpiarHTML();
-    const $resultados = document.querySelector("#section-resultados");
-    ocultarElement($resultados);
-});
+        const $resultados = document.querySelector("#section-resultados");
+        ocultarElement($resultados);
+    });
 }
 
 //Function para ordenar elementos de la lista de mayor a menor
@@ -265,15 +273,15 @@ function validarPosition(position,arrayElements){
 //Function para determinar la opcion seleccionada pasada en un array
 function determinarSelecOption(valorOption,arrayListNum,arrayObjOptions){
 
-    const objOption = arrayObjOptions.find((elementActual)=> 
-        elementActual.optionId === valorOption
+    const objOption = arrayObjOptions.find((elementActual)=>
+        elementActual.optionId === valorOption    
     );
-    
+
     const resultadoCalculo = objOption.calcularResultado(arrayListNum);
     const titleOption = objOption.title;
 
     const objectResultado = {
-        name: titleOption,
+        title: titleOption,
         resultado: resultadoCalculo,
     };
 
@@ -328,4 +336,17 @@ function eliminarElementoList(elementosList,position){
     }
 
     return elementosList;
+}
+
+//Function declara los valores pasados como parametros como los atributos de un objeto
+function prepararObjResultado(rutaImagen,obj){
+    const objResultado = {};
+
+    objResultado["imagen"] = rutaImagen;
+
+    for( property in obj){
+        objResultado[property] = obj[property];
+    }
+
+    return objResultado;
 }
