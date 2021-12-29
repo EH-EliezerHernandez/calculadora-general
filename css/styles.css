@@ -371,6 +371,8 @@ $NAVS
         $AUTORS
 \*********************************/
 .autor {
+  overflow: hidden;
+  padding: 10px 0 10px;
   position: relative;
   font-family: "Open Sans", sans-serif;
   font-size: 18px;
@@ -383,17 +385,37 @@ $NAVS
 .autor::after {
   content: " ";
   position: absolute;
-  bottom: -5px;
-  left: 0;
+  left: -100%;
+  bottom: 6px;
   height: 3px;
-  width: 0%;
-  /* transform: scaleY(20); */
-  background-color: yellow;
-  -webkit-transition: width 0.4s;
-  transition: width 0.4s;
+  width: 100%;
+  background-color: #f6df1c;
 }
 .autor:hover::after {
-  width: 100%;
+  -webkit-animation-name: mover;
+          animation-name: mover;
+  -webkit-animation-duration: 1.4s;
+          animation-duration: 1.4s;
+}
+@-webkit-keyframes mover {
+  75% {
+    -webkit-transform: translate(200%);
+            transform: translate(200%);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+}
+@keyframes mover {
+  75% {
+    -webkit-transform: translate(200%);
+            transform: translate(200%);
+  }
+  100% {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
 }
 
 /**********************************\
@@ -567,4 +589,33 @@ $NAVS
 .lista__item {
   font-size: selec-fontSize(normal);
   margin-bottom: 10px;
+}
+
+/*********************************\
+        $ENLACES
+\*********************************/
+.enlace {
+  position: fixed;
+  top: 4px;
+  right: 0;
+  display: inline-block;
+  padding: 22px;
+  padding-right: 40px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #f6df1c;
+  text-transform: uppercase;
+  background-color: black;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition-property: background-color transform;
+  transition-property: background-color transform;
+  -webkit-transition-duration: 0.6s;
+          transition-duration: 0.6s;
+}
+.enlace:hover {
+  color: #000000;
+  -webkit-transform: rotate(-90deg) translateX(-20px);
+          transform: rotate(-90deg) translateX(-20px);
+  background-color: #f6df1c;
 }
