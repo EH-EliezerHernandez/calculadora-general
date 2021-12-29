@@ -2,6 +2,8 @@
         $AUTORS
 \*********************************/
 .autor {
+  overflow: hidden;
+  padding: 10px 0 10px;
   position: relative;
   font-family: $font-principal;
   font-size: map-get($font-sizes, big);
@@ -12,15 +14,22 @@
   &::after {
     content: " ";
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    left: -100%;
+    bottom: 6px;
     height: 3px;
-    width: 0%;
-    /* transform: scaleY(20); */
-    background-color: yellow;
-    transition: width 0.4s;
+    width: 100%;
+    background-color: selecColorBackground(yellow);
   }
   &:hover::after {
-    width: 100%;
+    animation-name: mover;
+    animation-duration: 1.4s;
+  }
+  @keyframes mover {
+    75% {
+      transform: translate(200%);
+    }
+    100% {
+      transform: scaleX(0);
+    }
   }
 }
