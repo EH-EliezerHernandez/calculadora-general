@@ -568,3 +568,32 @@ $NAVS
   font-size: selec-fontSize(normal);
   margin-bottom: 10px;
 }
+
+/*********************************\
+        $ENLACES
+\*********************************/
+.enlace {
+  position: fixed;
+  top: 4px;
+  right: 0;
+  display: inline-block;
+  padding: 22px;
+  padding-right: 40px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #f6df1c;
+  text-transform: uppercase;
+  background-color: black;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition-property: background-color transform;
+  transition-property: background-color transform;
+  -webkit-transition-duration: 0.6s;
+          transition-duration: 0.6s;
+}
+.enlace:hover {
+  color: #000000;
+  -webkit-transform: rotate(-90deg) translateX(-20px);
+          transform: rotate(-90deg) translateX(-20px);
+  background-color: #f6df1c;
+}
