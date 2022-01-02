@@ -7,8 +7,12 @@
   width: 400px;
 
   &__label {
-    margin: 5px 0;
-    font-size: selecFontSize(normal);
+    @include ajustarFontSizeLabel(normal);
+  }
+  &__label--bold {
+    @include ajustarFontSizeLabel(default);
+    color: selecColorText(green);
+    font-weight: selecFontWeigth(big);
   }
   &__campo {
     padding: 7px 10px;
