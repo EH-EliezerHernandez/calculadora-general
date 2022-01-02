@@ -25,7 +25,7 @@ $NAVS
   }
   &__opcion {
     transition-property: transform, border-color;
-    transition-duration: 0.3s;
+    transition-duration: 0.6s;
     border: 5px solid map-get($colors-background, black);
     background-color: map-get($colors-background, yellow);
   }

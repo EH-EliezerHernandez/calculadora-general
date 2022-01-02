@@ -34,6 +34,9 @@ function determinarErrorSalariados(obj){
     }
 }
 
+function determinarOptionList(){
+        
+}
 function evento(){
     const $formAnalisisSalarial = document.querySelector("#form-analisis-salarial");
     const btnIdCalcular = "#btn-calcular";
@@ -48,8 +51,9 @@ function evento(){
         const arrayIDOptions = [
             "btn-add",
             "btn-delete",
-            "btn-calcular"
+            "btn-calcular",
         ];
+
         if(validarValor(targetID,arrayIDOptions)){
             const objOptionForm = {
                 "btn-add": () =>{
@@ -95,6 +99,8 @@ function evento(){
                 },
                 "btn-calcular": ()=>{
                     const rutaImagen = "../assets/img/dollar.png";
+                    const valorCheckbox = capturarDato("#selec-precargarda");
+                    console.log(valorCheckbox);
                     const optionMediana = capturarDato("#selec-mediana");
                     const $elementContenedorResultados = document.querySelector("#section-resultados");
 
