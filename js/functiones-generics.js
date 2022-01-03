@@ -149,10 +149,11 @@ function validarValor(valor,arrayValors){
 
 //Function para mostrar lista
 function mostrarLista($elementoContenedorList,list){
-    
+    const styleFontWeight = "bold";
+
     list.forEach((valorActual,indice) =>{
         const newElement = document.createElement("LI");
-        newElement.innerHTML = `<p>${indice + 1}) ${valorActual}</p>`;
+        newElement.innerHTML = `<p><spam class="bold">${indice + 1} -</spam> ${valorActual}</p>`;
         $elementoContenedorList.appendChild(newElement);
     
     });
@@ -201,6 +202,7 @@ function ordenarElementosMenorMayor(arrayList){
 
     return newArrayList;
 }
+
 //Function para determinar si se trata de un numero par
 function determinarNumeroPar(num){
     let isPar = false;
