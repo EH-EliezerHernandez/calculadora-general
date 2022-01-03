@@ -34,18 +34,23 @@ function determinarErrorSalariados(obj){
     }
 }
 
-function determinarOptionList(){
-        
+function cargarListaPrecargada(){
+    const $elementContenedorListPrecargada = document.querySelector("#list-precargados");
+    const newArrayListSalariados = concatenarLista(colombia);
+    mostrarLista($elementContenedorListPrecargada,newArrayListSalariados);
 }
+
 function evento(){
     const $formAnalisisSalarial = document.querySelector("#form-analisis-salarial");
     const btnIdCalcular = "#btn-calcular";
     const contenidoDefaultBtnCalcular = "Calcular Analisis Salarial";
     let arrayListObjSalariados = [];
     
-    mostrarElement($formAnalisisSalarial);
-    agregarContenidoElemento(contenidoDefaultBtnCalcular,btnIdCalcular);
     
+    agregarContenidoElemento(contenidoDefaultBtnCalcular,btnIdCalcular);
+    mostrarElement($formAnalisisSalarial);
+    
+
     $formAnalisisSalarial.addEventListener("click",(evt)=>{
         const targetID = evt.target.id; 
         const arrayIDOptions = [
@@ -53,7 +58,7 @@ function evento(){
             "btn-delete",
             "btn-calcular",
         ];
-
+        
         if(validarValor(targetID,arrayIDOptions)){
             const objOptionForm = {
                 "btn-add": () =>{
@@ -67,9 +72,9 @@ function evento(){
                     };
                     
                     eliminarError();
-                
+                    
                     determinarErrorSalariados(objAsalariado);
-                
+                    
                     if(validarNumero(salario) && validarValorVacio(nombre)){
                         const $elementoContenedorList = document.querySelector("#list-valors");
                         
@@ -95,10 +100,11 @@ function evento(){
                 },
                 "btn-calcular": ()=>{
                     const rutaImagen = "../assets/img/dollar.png";
-                    const arrayListSalariosActiva = seleccionarlista(colombia,arrayListObjSalariados);
+                    const $elementContenedorResultados = document.querySelector("#section-resultados");
+                    const arrayListSalariadosActiva = seleccionarlista(colombia,arrayListObjSalariados);
                     const optionMediana = capturarDato("#selec-mediana");
                     
-                    const $elementContenedorResultados = document.querySelector("#section-resultados");
+
                     const arrayObjOptionsMediana = [
                         {
                             optionId: "mediana-salarial",
@@ -116,7 +122,7 @@ function evento(){
                         }
                     ];
 
-                    const arrayListSalarios = arrayListSalariosActiva.map((elementActual)=>{
+                    const arrayListSalarios = arrayListSalariadosActiva.map((elementActual)=>{
                         return elementActual.salario;                        
                     });
 
@@ -138,4 +144,5 @@ function evento(){
     cerrarElemento();
 }
 
+cargarListaPrecargada();
 evento();
