@@ -4,3 +4,8 @@
 .bold {
   font-weight: selecFontWeigth(big);
 }
+
+.deshabilitado {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
