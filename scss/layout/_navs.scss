@@ -25,16 +25,14 @@ $NAVS
   }
   &__opcion {
     transition-property: transform, border-color;
-    transition-duration: 0.6s;
+    transition-duration: 0.3s;
     border: 5px solid map-get($colors-background, black);
     background-color: map-get($colors-background, yellow);
   }
   a {
     display: flex;
     align-items: center;
-    column-gap: 16px;
     height: 100%;
-    padding: 25px 10px 25px;
     cursor: pointer;
   }
   img {
@@ -43,11 +41,12 @@ $NAVS
   }
   &__taller {
     margin-bottom: 5px;
-    font-size: map-get($font-sizes, big);
+    font-size: selecFontSize(big);
     text-transform: uppercase;
   }
   &__title {
-    font-size: map-get($font-sizes, x-big);
+    font-size: selecFontSize(big-medium);
+    font-weight: selecFontWeigth(bold);
   }
   &__descripcion {
     margin-top: 18px;
@@ -74,6 +73,10 @@ $NAVS
     border-color: map-get($colors-background, yellow);
     transform: translateX(-10px);
   }
+  a {
+    column-gap: 16px;
+    padding: 25px 10px;
+  }
 }
 .navegacion--general {
   @extend .navegacion;
@@ -82,22 +85,29 @@ $NAVS
   left: 0;
   margin-left: 100px;
   width: calc(100% - 100px);
-  &:hover .navegacion__opcion:not(.navegacion__opcion:hover) {
-    border-top-color: yellow;
-  }
   ul {
     height: auto;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: none;
   }
-  .navegacion__opcion {
+  li {
     border: {
       left-width: 3px;
       right-width: 3px;
     }
   }
+  li:hover .navegacion__title {
+    transform: scale(1.1) translateX(12px);
+  }
   li:hover {
     transform: translateY(-10px);
     border-color: map-get($colors-background, yellow);
+  }
+  a {
+    column-gap: none;
+    padding: 14px 10px;
+  }
+  .navegacion__title {
+    transition: transform 0.3s;
   }
 }
