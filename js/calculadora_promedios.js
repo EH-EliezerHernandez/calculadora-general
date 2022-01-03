@@ -61,6 +61,15 @@ function determinarContenidoTextElement(valorOption,arrayObjOptions){
     return contenidoElement;
 }
 
+function habilitarBtnCalcular(arrayList){
+    const cantidadElementosArray = arrayList.length;
+    
+    if(cantidadElementosArray >= 2){
+        const valorIdBtnCalcular = "#btn-calcular";
+        habilitarElemento(valorIdBtnCalcular);
+    }
+}
+
 function eventos(){
     const $formPromedios = document.querySelector("#form-promedios");
     let elementosList = [];
@@ -94,6 +103,7 @@ function eventos(){
                         añadirList(valorCampo,elementosList);
                         limpiarHTML($elementContenedorList);
                         mostrarLista($elementContenedorList,elementosList);
+                        habilitarBtnCalcular(elementosList);
                     }else{
                         const mensajeError = "El valor Ingresado no es valido";
                         mostrarError(mensajeError,valorIDCampo);
@@ -197,4 +207,5 @@ function eventos(){
     cerrarElemento();
 }
 
+deshabilitarElemento("#btn-calcular");
 eventos();
