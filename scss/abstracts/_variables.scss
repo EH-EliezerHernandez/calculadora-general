@@ -1,0 +1,48 @@
+/**********************************\
+    $VARIABLES
+\**********************************/
+
+//TEXT COLORS
+$colors-text: (
+  yellow: #f6df1c,
+  white: white,
+  green: #97c93e,
+  black: #000000,
+  error: rgb(255, 63, 63),
+);
+
+//COLORS BACKGROUNDS
+$colors-background: (
+  black: black,
+  yellow: map-get($colors-text, yellow),
+  green: #97c93e,
+  dark-yellow: #ffbf35,
+);
+//FONTS
+$font-principal: "Open Sans", sans-serif;
+$font-secundaria: "Poppins", sans-serif;
+
+//FONT SIZES
+$font-sizes: (
+  x-samll: 8px,
+  small: 12px,
+  normal: 14px,
+  default: 16px,
+  big: 18px,
+  big-medium: 22px,
+  x-big: 24px,
+  u-big: 48px,
+);
+
+//FONTS WEIGHT
+$font-weights: (
+  big: 700,
+);
+
+//Z-INDEXS
+$z-indexs: (
+  default: 0,
+  first: 20,
+  midium: 40,
+  last: 60,
+);

@@ -1,0 +1,26 @@
+//ABSTRACTS
+@import "./abstracts/variables";
+@import "./abstracts/functions";
+@import "./abstracts/_mixins";
+
+//BASES
+@import "./bases/resets";
+@import "./bases/helpers";
+
+//LAYOUT
+@import "./layout/headers";
+@import "./layout/navs";
+@import "./layout/mains";
+@import "./layout/forms";
+
+//PAGES
+@import "./pages/course";
+
+//COMPONENTS
+@import "./components/logos";
+@import "./components/autors";
+@import "./components/figuras";
+@import "./components/botons";
+@import "./components/resultados";
+@import "./components/listas";
+@import "./components/enlaces";

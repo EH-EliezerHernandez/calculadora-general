@@ -1,0 +1,59 @@
+/**********************************\
+    $FORMS
+\**********************************/
+.form {
+  display: none;
+  flex-direction: column;
+  width: 400px;
+
+  &__label {
+    @include ajustarFontSizeLabel(normal);
+  }
+  &__label--bold {
+    @include ajustarFontSizeLabel(default);
+    color: selecColorText(green);
+    font-weight: selecFontWeigth(big);
+  }
+  &__campo {
+    padding: 7px 10px;
+    margin: 5px 0;
+    border: 1px solid map-get($colors-background, black);
+  }
+  span {
+    font-weight: selecFontWeigth(big);
+  }
+  &__selec-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  img {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 20px;
+  }
+  &__title {
+    font-size: selecFontSize(big);
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  &__select-container {
+    height: min-content;
+    min-width: 120px;
+    width: min-content;
+    margin-bottom: 10px;
+    padding-right: 8px;
+    outline: 2px solid black;
+  }
+  &__select {
+    padding: 8px 10px;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-weight: 700;
+  }
+}

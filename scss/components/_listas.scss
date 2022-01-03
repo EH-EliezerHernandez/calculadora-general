@@ -1,0 +1,16 @@
+/**********************************\
+    $LISTAS
+\**********************************/
+.lista {
+  &__title {
+    padding-top: 20px;
+    font-size: selec-fontSize(x-big);
+  }
+  &__container {
+    margin-top: 20px;
+  }
+  &__item {
+    font-size: selec-fontSize(normal);
+    margin-bottom: 10px;
+  }
+}

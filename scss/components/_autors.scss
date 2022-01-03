@@ -1,0 +1,35 @@
+/*********************************\
+        $AUTORS
+\*********************************/
+.autor {
+  overflow: hidden;
+  padding: 10px 0 10px;
+  position: relative;
+  font-family: $font-principal;
+  font-size: map-get($font-sizes, big);
+  font-weight: map-get($font-weights, big);
+  transform: rotate(-90deg) translateX(-70px);
+  color: map-get($colors-text, yellow);
+  text-transform: uppercase;
+  &::after {
+    content: " ";
+    position: absolute;
+    left: -100%;
+    bottom: 6px;
+    height: 3px;
+    width: 100%;
+    background-color: selecColorBackground(yellow);
+  }
+  &:hover::after {
+    animation-name: mover;
+    animation-duration: 1.4s;
+  }
+  @keyframes mover {
+    75% {
+      transform: translate(200%);
+    }
+    100% {
+      transform: scaleX(0);
+    }
+  }
+}

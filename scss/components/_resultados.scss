@@ -1,0 +1,53 @@
+/**********************************\
+    $RESULTADOS
+\**********************************/
+
+.resultados {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(map-get($colors-background, black), 0.5);
+  z-index: map-get($z-indexs, first);
+  &__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 320px;
+    padding: 30px;
+    border: 5px solid map-get($colors-background, black);
+    background-color: map-get($colors-background, yellow);
+    border-radius: 10px;
+  }
+  &__title {
+    font-size: map-get($font-sizes, x-big);
+    margin-bottom: 10px;
+  }
+  &__figura {
+    width: 55px;
+    height: 55px;
+  }
+  &__subtitle {
+    margin-bottom: 10px;
+    font-size: map-get($font-sizes, big);
+    text-align: center;
+  }
+  &__label {
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+  img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 6px;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

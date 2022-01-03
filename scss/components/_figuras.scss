@@ -1,0 +1,44 @@
+/**********************************\
+    $FIGURAS
+\**********************************/
+
+.figuras {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 60px;
+
+  &__container {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    background-color: map-get($colors-background, black);
+    color: map-get($colors-text, white);
+    border-radius: 10px;
+    cursor: pointer;
+    transition-property: filter, background-color, color;
+    transition-duration: 0.5s;
+  }
+  &__container:hover {
+    background-color: map-get($colors-background, yellow);
+    color: map-get($colors-text, black);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  }
+  &__container:hover img {
+    filter: invert(0);
+  }
+  img {
+    width: 128px;
+    filter: invert(100%);
+  }
+
+  &__element {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}

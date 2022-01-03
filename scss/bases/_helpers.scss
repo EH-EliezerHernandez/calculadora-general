@@ -1,0 +1,11 @@
+/*********************************\
+        $HELPERS
+\*********************************/
+.bold {
+  font-weight: selecFontWeigth(big);
+}
+
+form .deshabilitado {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

@@ -1,0 +1,35 @@
+/**********************************\
+    $BOTONS
+\**********************************/
+%btn {
+  margin: 5px 0 20px;
+  padding: 5px 10px;
+  border: 2px solid map-get($colors-background, black);
+  font-family: $font-principal;
+  font-size: map-get($map: $font-sizes, $key: default);
+  font-weight: map-get($font-weights, big);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn {
+  &--calcular,
+  &--delete {
+    @extend %btn;
+  }
+  &--calcular {
+    background-color: map-get($map: $colors-background, $key: green);
+  }
+  &--cerrar {
+    display: block;
+    margin-left: auto;
+    border: none;
+    outline: none;
+    font-size: map-get($font-sizes, x-big);
+    font-weight: map-get($font-weights, big);
+    background-color: transparent;
+    cursor: pointer;
+  }
+  &--delete {
+    background-color: map-get($map: $colors-background, $key: dark-yellow);
+  }
+}

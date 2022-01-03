@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bases/normalizes.css" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="principal">
+      <header class="header">
+        <figure class="header__logos">
+          <img class="logo--platzi" src="../assets/img/platzi.webp" alt="" />
+          <img
+            class="logo--js"
+            src="../assets/img/js-challenge-logo.png"
+            alt=""
+          />
+        </figure>
+        <p class="autor">@eliezersam93</p>
+      </header>
+      <main class="main--general">
+        <h2 class="main__subtitle">Trabajo Práctico - Platzi</h2>
+        <h1 class="main__title">Figuras Geometricas</h1>
+
+        <p class="main__description">
+          Seleccione por favor una figura geometrica:
+        </p>
+        <div class="figuras" id="figuras">
+          <figure class="figuras__container">
+            <img
+              src="../assets/img/circle.png"
+              alt="Imagen de la figura geometrica circulo"
+            />
+            <figcaption>Circulo</figcaption>
+            <div id="circulo" class="figuras__element"></div>
+          </figure>
+          <figure class="figuras__container">
+            <img
+              src="../assets/img/cube.png"
+              alt="Imagen de la figura geometrica cuadrado"
+            />
+            <figcaption>Cuadrado</figcaption>
+            <div id="cuadrado" class="figuras__element"></div>
+          </figure>
+          <figure class="figuras__container">
+            <img
+              src="../assets/img/triangle.png"
+              alt="Imagen de la figura geometrica triangulo"
+            />
+            <figcaption>Triangulo</figcaption>
+            <div id="triangulo" class="figuras__element"></div>
+          </figure>
+        </div>
+        <div class="main__container-forms">
+          <div id="forms-container">
+            <form action="" class="form" id="form-triangulo">
+              <label for="ladoA" class="form__label"
+                >Ingrese <span>Lado A</span> en cm:</label
+              >
+              <input type="number" id="ladoATriangulo" class="form__campo" />
+
+              <label for="ladoB" class="form__label"
+                >Ingrese <span>Lado B</span> en cm:</label
+              >
+              <input type="number" id="ladoBTriangulo" class="form__campo" />
+
+              <label for="base" class="form__label"
+                >Ingrese <span>Base</span> en cm:</label
+              >
+              <input type="Number" id="baseTriangulo" class="form__campo" />
+
+              <button
+                type="button"
+                class="btn--calcular"
+                id="btn-calcular-triangulo"
+              >
+                Calcular Perimetro y Area
+              </button>
+            </form>
+            <form action="" class="form" id="form-cuadrado">
+              <label for="lado" class="form__label"
+                >Ingrese el valor correspondiente a los <span>lados</span> en
+                cm:</label
+              >
+              <input type="Number" id="ladosCuadrado" class="form__campo" />
+              <button
+                type="button"
+                class="btn--calcular"
+                id="btn-calcular-cuadrado"
+              >
+                Calcular Perimetro y Area
+              </button>
+            </form>
+            <form action="" class="form" id="form-circulo">
+              <label for="radio" class="form__label"
+                >Ingrese el <span>Radio</span> en cm:</label
+              >
+              <input type="Number" id="radioCirculo" class="form__campo" />
+              <button
+                type="button"
+                class="btn--calcular"
+                id="btn-calcular-circulo"
+              >
+                Calcular Perimetro y Area
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="resultados" id="section-resultados">
+          <section class="resultados__card" id="resultados-card">
+            <button type="button" class="btn--cerrar" id="btn-cerrar">X</button>
+            <h3 class="resultados__title">Resultado</h3>
+            <div id="list-resultados" class="resultados__list"></div>
+          </section>
+        </div>
+      </main>
+      <nav class="navegacion--general">
+        <ul>
+          <li class="navegacion__opcion">
+            <a
+              href="./descuentos.html"
+              title="Calculadora de Descuentos y Porcentajes"
+            >
+              <picture class="navegacion__img">
+                <img
+                  src="../assets/img/price.png"
+                  class="figura--precio"
+                  alt="Imagen taller #2"
+                />
+              </picture>
+              <div class="navegacion__informacion">
+                <h2 class="navegacion__title">Precios y descuentos</h2>
+              </div>
+            </a>
+          </li>
+          <li class="navegacion__opcion">
+            <a href="./promedios.html" title="Calculadora de Promedios">
+              <picture class="navegacion__img">
+                <img
+                  src="../assets/img/discount.png"
+                  class="figura--promedio"
+                  alt="Imagen taller #3"
+                />
+              </picture>
+              <div class="navegacion__informacion">
+                <h2 class="navegacion__title">Promedios, Moda y Mediana</h2>
+              </div>
+            </a>
+          </li>
+          <li class="navegacion__opcion">
+            <a
+              href="analisis-salarial.html"
+              title="Calculadora de Analisis Salarial"
+            >
+              <picture class="navegacion__img">
+                <img
+                  src="../assets/img/dollar.png"
+                  class="figura--salario"
+                  alt="Imagen taller #4"
+                />
+              </picture>
+              <div class="navegacion__informacion">
+                <h2 class="navegacion__title">Analisis Salarial</h2>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a href="./index.html" class="enlace" title="Home">HOME</a>
+    </div>
+    <script src="../js/functiones-generics.js"></script>
+    <script src="../js/calculadora_geometrica.js"></script>
+  </body>
+</html>

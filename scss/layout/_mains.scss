@@ -1,0 +1,34 @@
+/**********************************\
+    $MAINS
+\**********************************/
+%main {
+  margin-left: 100px;
+  padding: 50px 30px;
+}
+.main {
+  &__subtitle {
+    margin-bottom: 28px;
+    font-size: selecFontSize(x-big);
+    color: selecColorText(green);
+    text-transform: uppercase;
+  }
+  &__title {
+    font-size: selecFontSize(u-big);
+    margin-bottom: 36px;
+  }
+  &--principal {
+    @extend %main;
+    padding-right: 560px;
+  }
+
+  &--general {
+    @extend %main;
+    padding-bottom: 180px;
+  }
+  &__container-forms {
+    display: flex;
+    justify-content: center;
+    column-gap: 40px;
+    padding-top: 40px;
+  }
+}
