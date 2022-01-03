@@ -9,7 +9,9 @@
 }
 
 @function selecFontSize($size-label) {
-  @return map-get($font-sizes, $size-label);
+  $medidaPX: map-get($font-sizes, $size-label);
+  $medidaREM: calcularREM($medidaPX);
+  @return $medidaREM;
 }
 
 @function selecColorBackground($color-label) {
