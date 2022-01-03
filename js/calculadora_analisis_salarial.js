@@ -144,5 +144,6 @@ function evento(){
     cerrarElemento();
 }
 
+deshabilitarElemento("#btn-calcular");
 cargarListaPrecargada();
 evento();

@@ -360,6 +360,7 @@ function prepararObjResultado(rutaImagen,obj){
     return objResultado;
 }
 
+//Funcionalidad que selecciona la lista segun el ckeckbox
 function seleccionarlista(arrayListOption1,arrayListOption2){
     const $checkboxElement = document.querySelector("#selec-precargarda");
     let arrayListSeleccionada = []; 
@@ -372,4 +373,13 @@ function seleccionarlista(arrayListOption1,arrayListOption2){
     arrayListSeleccionada = arrayListOption2;
     return arrayListSeleccionada;
 
+}
+
+//Funcionalidad que deshabilita el elemento que coincida con el valor id pasado como parametro
+function deshabilitarElemento(valorID){
+    const valorClassStyleDeshabilitado = "deshabilitado";
+    const $elementHabiltitado = document.querySelector(valorID);
+    $elementHabiltitado.classList.add(valorClassStyleDeshabilitado);
+    $elementHabiltitado.disabled = true;
+    console.log($elementHabiltitado.disabled);
 }
