@@ -205,13 +205,7 @@ function ordenarElementosMenorMayor(arrayList){
 
 //Function para determinar si se trata de un numero par
 function determinarNumeroPar(num){
-    let isPar = false;
-
-    if(num % 2 === 0){
-        isPar = true;
-        return isPar;
-    }
-
+    const isPar = num % 2 === 0;
     return isPar;
 }
 
