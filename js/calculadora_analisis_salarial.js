@@ -72,14 +72,10 @@ function evento(){
                 
                     if(validarNumero(salario) && validarValorVacio(nombre)){
                         const $elementoContenedorList = document.querySelector("#list-valors");
-                        const styleSalario = "bold";
                         
                         añadirList(objAsalariado,arrayListObjSalariados);
                         
-                        const arrayListSalariado = arrayListObjSalariados.map((elementActual)=>{
-                            const {nombre,salario} = elementActual;
-                            return `${nombre} <spam class="${styleSalario}">USB ${salario}</spam>`
-                        }); 
+                        const arrayListSalariado = concatenarLista(arrayListObjSalariados);
                         
                         limpiarHTML($elementoContenedorList);
                         mostrarLista($elementoContenedorList, arrayListSalariado); 
@@ -99,11 +95,10 @@ function evento(){
                 },
                 "btn-calcular": ()=>{
                     const rutaImagen = "../assets/img/dollar.png";
-                    const valorCheckbox = capturarDato("#selec-precargarda");
-                    console.log(valorCheckbox);
+                    const arrayListSalariosActiva = seleccionarlista(colombia,arrayListObjSalariados);
                     const optionMediana = capturarDato("#selec-mediana");
+                    
                     const $elementContenedorResultados = document.querySelector("#section-resultados");
-
                     const arrayObjOptionsMediana = [
                         {
                             optionId: "mediana-salarial",
@@ -114,14 +109,14 @@ function evento(){
                         },
                         {
                             optionId: "mediana-salarial-top", 
-                            title: "Mediana Salarial Top %",
+                            title: "Mediana Salarial Top 10%",
                             calcularResultado: (arraySalarios)   => {
                                 return calcularMedianaSalarialTopPorciento(arraySalarios)
                             },
                         }
                     ];
 
-                    const arrayListSalarios = arrayListObjSalariados.map((elementActual)=>{
+                    const arrayListSalarios = arrayListSalariosActiva.map((elementActual)=>{
                         return elementActual.salario;                        
                     });
 

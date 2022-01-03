@@ -316,6 +316,18 @@ function determinarErrorCampoPosition(elementosList,position){
     }
 }
 
+//Concatenar valores de la lista de salarios
+function concatenarLista(arrayList){
+
+    const styleSalario = "bold";
+    const newArrayList =  arrayList.map((elementActual)=>{
+        const {nombre,salario} = elementActual;
+        return `${nombre} <spam class="${styleSalario}">USB ${salario}</spam>`
+    }); 
+
+    return newArrayList;
+}
+
 //Function para eliminar un elemento de la lista o array segun el elemento suministrado al campo correpondiente
 function eliminarElementoList(elementosList,position){
     
@@ -344,4 +356,18 @@ function prepararObjResultado(rutaImagen,obj){
     }
 
     return objResultado;
+}
+
+function seleccionarlista(arrayListOption1,arrayListOption2){
+    const $checkboxElement = document.querySelector("#selec-precargarda");
+    let arrayListSeleccionada = []; 
+
+    if($checkboxElement.checked){
+        arrayListaSeleccionada = arrayListOption1;
+        return arrayListaSeleccionada;
+    }
+
+    arrayListSeleccionada = arrayListOption2;
+    return arrayListSeleccionada;
+
 }
