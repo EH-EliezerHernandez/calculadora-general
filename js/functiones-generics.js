@@ -381,5 +381,12 @@ function deshabilitarElemento(valorID){
     const $elementHabiltitado = document.querySelector(valorID);
     $elementHabiltitado.classList.add(valorClassStyleDeshabilitado);
     $elementHabiltitado.disabled = true;
-    console.log($elementHabiltitado.disabled);
+}
+
+//Funcionalidad que habilita el elemento que concida con el valor id pasado como parametro
+function habilitarElemento(valorID){
+    const valorClassStylleDeshabilitado = "deshabilitado";
+    const $elementDesabilitado = document.querySelector(valorID);
+    $elementDesabilitado.classList.remove(valorClassStylleDeshabilitado);
+    $elementDesabilitado.disabled = false;
 }

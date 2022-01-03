@@ -40,6 +40,15 @@ function cargarListaPrecargada(){
     mostrarLista($elementContenedorListPrecargada,newArrayListSalariados);
 }
 
+function habilitarBtnCalcular(arrayList){
+    const cantidadElementosArray = arrayList.length;
+    
+    if(cantidadElementosArray >= 2){
+        const valorIdBtnCalcular = "#btn-calcular";
+        habilitarElemento(valorIdBtnCalcular);
+    }
+}
+
 function evento(){
     const $formAnalisisSalarial = document.querySelector("#form-analisis-salarial");
     const btnIdCalcular = "#btn-calcular";
@@ -80,6 +89,8 @@ function evento(){
                         
                         añadirList(objAsalariado,arrayListObjSalariados);
                         
+                        habilitarBtnCalcular(arrayListObjSalariados);
+
                         const arrayListSalariado = concatenarLista(arrayListObjSalariados);
                         
                         limpiarHTML($elementoContenedorList);
@@ -99,39 +110,43 @@ function evento(){
                     arrayListObjSalariados = eliminarElementoList(arrayListObjSalariados,valorCampoPosition);
                 },
                 "btn-calcular": ()=>{
-                    const rutaImagen = "../assets/img/dollar.png";
-                    const $elementContenedorResultados = document.querySelector("#section-resultados");
-                    const arrayListSalariadosActiva = seleccionarlista(colombia,arrayListObjSalariados);
-                    const optionMediana = capturarDato("#selec-mediana");
-                    
+                    const $btnCalcular = document.querySelector(btnIdCalcular);
+                    if(!$btnCalcular.disabled){
 
-                    const arrayObjOptionsMediana = [
-                        {
-                            optionId: "mediana-salarial",
-                            title: "Mediana Salarial",
-                            calcularResultado:(arraySalarios)=>{
-                                return calcularMediana(arraySalarios);
-                            }
-                        },
-                        {
-                            optionId: "mediana-salarial-top", 
-                            title: "Mediana Salarial Top 10%",
-                            calcularResultado: (arraySalarios)   => {
-                                return calcularMedianaSalarialTopPorciento(arraySalarios)
+                        const rutaImagen = "../assets/img/dollar.png";
+                        const $elementContenedorResultados = document.querySelector("#section-resultados");
+                        const arrayListSalariadosActiva = seleccionarlista(colombia,arrayListObjSalariados);
+                        const optionMediana = capturarDato("#selec-mediana");
+                        
+                        
+                        const arrayObjOptionsMediana = [
+                            {
+                                optionId: "mediana-salarial",
+                                title: "Mediana Salarial",
+                                calcularResultado:(arraySalarios)=>{
+                                    return calcularMediana(arraySalarios);
+                                }
                             },
-                        }
-                    ];
-
-                    const arrayListSalarios = arrayListSalariadosActiva.map((elementActual)=>{
-                        return elementActual.salario;                        
-                    });
-
-                    const objectMedianaResult = determinarSelecOption(optionMediana,arrayListSalarios,arrayObjOptionsMediana)
-
-                    const objResultado = prepararObjResultado(rutaImagen,objectMedianaResult);
-
-                    mostrarElement($elementContenedorResultados);
-                    mostrarResultado(objResultado);
+                            {
+                                optionId: "mediana-salarial-top", 
+                                title: "Mediana Salarial Top 10%",
+                                calcularResultado: (arraySalarios)   => {
+                                    return calcularMedianaSalarialTopPorciento(arraySalarios)
+                                },
+                            }
+                        ];
+                        
+                        const arrayListSalarios = arrayListSalariadosActiva.map((elementActual)=>{
+                            return elementActual.salario;                        
+                        });
+                        
+                        const objectMedianaResult = determinarSelecOption(optionMediana,arrayListSalarios,arrayObjOptionsMediana)
+                        
+                        const objResultado = prepararObjResultado(rutaImagen,objectMedianaResult);
+                        
+                        mostrarElement($elementContenedorResultados);
+                        mostrarResultado(objResultado);
+                    }
                 },
                 
             }
