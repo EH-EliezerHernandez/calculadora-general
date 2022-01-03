@@ -11,7 +11,7 @@ function calcularMedianaSalarialTopPorciento(arrayListSalarios){
     
     const arrayListSalariosNewOrder = ordenarElementosMenorMayor(arrayListSalarios);
     
-    const arrayListTopSalariados = arrayListSalariosNewOrder.filter((elementActual,indice)  => indice >= posicionPrimerSalariadoTop);
+    const arrayListTopSalariados = arrayListSalariosNewOrder.slice(posicionPrimerSalariadoTop);
     
     const medianaSalarios = calcularMediana(arrayListTopSalariados);
 
