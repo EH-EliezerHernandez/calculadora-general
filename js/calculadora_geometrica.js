@@ -75,7 +75,7 @@ function determinarFormulario(id){
 function capturarDatosCuadrado(){
     const $inputLados= document.querySelector("#ladosCuadrado");
     const cuadrado = {
-        name: "Cuadrado",
+        title: "Cuadrado",
         lados: parseFloat($inputLados.value),
         imagen: "../assets/img/cube.png",
     };
@@ -88,7 +88,7 @@ function capturarDatosTriangulo(){
     const $inputLadoB = document.querySelector("#ladoBTriangulo");
     const $inputBase = document.querySelector("#baseTriangulo");
     const triangulo = {
-        name: "Triangulo",
+        title: "Triangulo",
         ladoA: parseFloat($inputLadoA.value),
         ladoB: parseFloat($inputLadoB.value),
         base: parseFloat($inputBase.value),
@@ -102,7 +102,7 @@ function capturarDatosTriangulo(){
 function capturarDatosCirculo(){
     const $inputRadio = document.querySelector("#radioCirculo");
     const circulo = {
-        name: "Circulo",
+        title: "Circulo",
         radio: $inputRadio.value,
         imagen: "../assets/img/circle.png",
     }
@@ -125,13 +125,13 @@ function realizarCalculosFiguras(elementId){
     
     if(elementId === "btn-calcular-circulo"){
         const circulo = capturarDatosCirculo();
-        const {radio,name,imagen} = circulo;
+        const {radio,title,imagen} = circulo;
         const diametroCirculo = calcularDiametroCirculo(radio);
         const perimetroCirculo = calcularPerimetroCirculo(diametroCirculo);
         const areaCirculo = calcularAreaCirculo(radio);
         resultado = {
             imagen,
-            name,
+            title,
             perimetro: perimetroCirculo,
             area: areaCirculo,
         };
@@ -151,13 +151,13 @@ function realizarCalculosFiguras(elementId){
                 return resultado;                
             }
             else{
-                const {ladoA,ladoB,base,name,imagen} = triangulo;
+                const {ladoA,ladoB,base,title,imagen} = triangulo;
                 const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
                 const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
                 const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
                 resultado = {
                     imagen,
-                    name,
+                    title,
                     perimetro: perimetroTriangulo,
                     area: areaTriangulo,
                 };
@@ -166,12 +166,12 @@ function realizarCalculosFiguras(elementId){
     }
     if(elementId === "btn-calcular-cuadrado"){
         const cuadrado = capturarDatosCuadrado();
-        const {lados,name,imagen} = cuadrado;
+        const {lados,title,imagen} = cuadrado;
         const perimetroCuadrado = calcularPerimetroCuadrado(lados);
         const areaCuadrado = calcularAreaCuadrado(lados);
         resultado = {
             imagen,
-            name,
+            title,
             perimetro: perimetroCuadrado,
             area: areaCuadrado,
         };
@@ -187,7 +187,6 @@ function eventos(){
     //Eventos para habilitar el formulario segun la figura
     $figurasContainer.addEventListener('click',evt => {
         const id = evt.target.id;
-        const elemento = evt.target;
         const $elementoContenedorResultados = document.querySelector("#list-resultados");
         limpiarHTML($elementoContenedorResultados);
         if(id === "circulo" || id === "cuadrado" || id === "triangulo"){
