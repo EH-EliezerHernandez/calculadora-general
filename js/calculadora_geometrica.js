@@ -17,8 +17,8 @@ function calcularPerimetroTriangulo(lado1,lado2,base){
     return perimetro;
 }
 
-function calcularAlturaTriangulo(lado, base)
-{  const altura = Math.sqrt(lado - Math.pow(base,2)/4);
+function calcularAlturaTriangulo(lado, base){ 
+    const altura = Math.sqrt(lado - Math.pow(base,2)/4);
     return altura;
 }
 
@@ -112,7 +112,7 @@ function capturarDatosCirculo(){
 //function para verificar si se trata de un triangulo isosceles
 function verificarIsosceles(lado1,lado2,base){
 
-    if(lado1 === lado2 && lado1 !== base){
+    if(lado1 === lado2 && lado1 !== base && lado1 > base){
         return true;
     }
 
@@ -122,7 +122,7 @@ function verificarIsosceles(lado1,lado2,base){
 //Function para realizar todos los calculos de las figuras
 function realizarCalculosFiguras(elementId){
     let resultado = null;
-    
+
     if(elementId === "btn-calcular-circulo"){
         const circulo = capturarDatosCirculo();
         const {radio,title,imagen} = circulo;
@@ -137,11 +137,13 @@ function realizarCalculosFiguras(elementId){
         };
         return resultado;
     }
+
     if(elementId === "btn-calcular-triangulo"){
         let isIsoscelesTriangulo;
         let triangulo;
             triangulo = capturarDatosTriangulo();
             isIsoscelesTriangulo = verificarIsosceles(triangulo.ladoA,triangulo.ladoB,triangulo.base);
+            
             if(!isIsoscelesTriangulo){
                 resultado = {
                     imagen: "../assets/icons/error.svg" ,
@@ -150,19 +152,20 @@ function realizarCalculosFiguras(elementId){
                 };
                 return resultado;                
             }
-            else{
-                const {ladoA,ladoB,base,title,imagen} = triangulo;
-                const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
-                const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
-                const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
-                resultado = {
-                    imagen,
-                    title,
-                    perimetro: perimetroTriangulo,
-                    area: areaTriangulo,
-                };
-                return resultado;
-            }
+
+            const {ladoA,ladoB,base,title,imagen} = triangulo;
+            const perimetroTriangulo = calcularPerimetroTriangulo(ladoA,ladoB,base);
+            const alturaTriangulo = calcularAlturaTriangulo(ladoA,base);
+            const areaTriangulo = calcularAreaTriangulo(base,alturaTriangulo);
+            resultado = {
+                imagen,
+                title,
+                perimetro: perimetroTriangulo,
+                area: areaTriangulo,
+            };
+
+            return resultado;
+            
     }
     if(elementId === "btn-calcular-cuadrado"){
         const cuadrado = capturarDatosCuadrado();
