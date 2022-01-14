@@ -200,7 +200,13 @@ function eventos(){
     //Eventos para realizar los calculos
     $parentBtnCalcular.addEventListener("click",evt => {
          const elementId = evt.target.id;
-         if(elementId === "btn-calcular-circulo" || elementId === "btn-calcular-triangulo" || elementId === "btn-calcular-cuadrado"){
+         const arrayIDBtns = [
+            "btn-calcular-circulo",
+            "btn-calcular-triangulo",
+            "btn-calcular-cuadrado"
+         ];
+         
+         if(validarValor(elementId,arrayIDBtns)){
             const $sectionResultado = document.querySelector("#section-resultados");
             const $elementoContenedorResultados = document.querySelector("#list-resultados");
             mostrarElement($sectionResultado);
